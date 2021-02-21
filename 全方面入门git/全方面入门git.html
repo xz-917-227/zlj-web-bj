@@ -37,7 +37,7 @@
     -->
     <!-- 四。上传代码至github   （CTRL+~进入终端）(按q键盘可以回到可以输入命令状态)（claer清楚所有内容）(按上下键可以找到之前的命令内容)
             1.新建一个文件夹，名字与仓库名称一样--把文件放到编辑器(VScode)中编写代码--里面要有一个“.gitignore”文件，这个文件是被git忽略的文件，里面就可以放需要被忽略的文件
-            2.编写好代码后--打开IDEA的终端--输入命令 git init(这条命令是初始化git)--要是这条命令无效时，就找到IEDA的settings--搜索git.path,把git.path修改为git的安装路径--保存--重启IDEA即可
+            2.编写好代码后--打开IDEA的终端--输入命令 git init(这条命令是初始化git)--要是这条命令无效时，就找到IEDA的settings--搜索git.path,把git.path修改为git的安装路径--保存--重启IDEA即可(关闭所有窗口)
             插入:第一次上传代码到github时要先配置用户名和邮箱，或则否则git会提示：please tell me who you are
             插入:在VScode运行命令来配置你的用户名和邮箱：git config --global user.name "xiaojun"
                                                         git config --global user.email "205153795@qq.com"
@@ -107,7 +107,7 @@
                 6.如何解决合并分支时的冲突：在不同分支同时修改同一个文件时(可能在多个程序员不知道的情况下)  
                                 1.  git merge --abort   --这样冲突没有了，直接保留当前分支的内容，忽略其他分支的内容 -然后git add . 和git commit -m "提交"即可
                                 2.  如果直接输入git merge dev --就会有冲突了，你就可以手动修改，把特殊标记符号删除掉，留下想要留的代码
-                                   然后输入git add .和git commit就会出现一个可编辑的页面 -- 按i键盘进入可编辑状态，就可以输入你想要留的注明信息--先按Esc键盘再输入 wq: 就可以保存并推出该界面了
+                                   然后输入git add .和git commit就会出现一个可编辑的页面 -- 按i键盘进入可编辑状态，就可以输入你想要留的注明信息--先按Esc键盘再输入 :wq 就可以保存并推出该界面了
                                    然后再输入git commit -m "解决冲突后的代码"--然后推送到远程仓库就可以了
     -->
 
