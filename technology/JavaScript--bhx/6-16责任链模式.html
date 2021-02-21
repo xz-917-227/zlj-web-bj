@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="CommonUtil.js"></script>
+</head>
+<body>
+    <script>
+        // js设计模式 --- 责任链模式
+        // 责任链模式responsibility  目的:消除  发送者 和 接受者的耦合
+        /*  流程：
+        发送者知道链中的第一个接受者，它向这个接受者发出请求
+        每一个接受者都对请求进行分析，要么处理它，要么往下传递
+        每一个接受者知道的其他对象只有一个，即它的下家对象
+        如果没有任何接受者处理请求，那么请求将从链上离开，不同的实现对此有不同的反应。
+        */
+
+        // 案例 做项目-> :项目经理给一个任务->task  项目组有[小A 小B 小C 小D]，最后谁会做给谁做
+        
+
+        // 常规模式
+        //有一个任务的类(发送者)
+        var Assign=function(task ){
+            this.task=task;
+        };
+
+        // 接受任务的类
+        var WorkFlow=function(assgin){
+            this.assgin=assgin;    
+        };
+        WorkFlow.prototype={
+            constructor:WorkFlow,
+            // 分析当前的任务到底谁能去执行
+            filterHandler:function(es){  //参数，是所有接受者的集合
+                for(var i=0,len=es.length; i<len;i++){//var i=0,len=es.length这种写法可以提高效率，就可以不用每次都重新去获得数组的长度
+                    // 如果当前这个任务刚好是你这个人比较擅长的  那就执行
+                        if(this.assgin.task === es[i].cando){
+                            return es[i].todo();
+                        }
+                }
+                return;
+            },
+        };
+
+        // 处理者
+        var Executor=function(name,cando){
+            this.name=name;//接受者的姓名
+            this.cando=cando;//擅长的任务
+        };
+        Executor.prototype={
+            constructor:Executor,
+            todo:function(){
+                document.write(this.name + "开发" + this.cando);
+            },
+        };
+
+        // 检测
+        // 实例化四个处理对象
+        var e1=new Executor('小A','javascript编程');
+        var e2=new Executor('小B','CSS编程');
+        var e3=new Executor('小C','Java编程');
+        var e4=new Executor('小D','MySQL编程');
+
+        // 实例化任务对象
+        var assgin=new Assign('MySQL编程');
+        // 实例化接受任务的对象
+        var wf =new WorkFlow(assgin);
+        wf.filterHandler([e1,e2,e3,e4]);
+
+
+    </script>
+    
+</body>
+</html>

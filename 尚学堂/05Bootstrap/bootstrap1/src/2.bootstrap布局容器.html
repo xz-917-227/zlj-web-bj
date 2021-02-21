@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Document</title>
+    <style>
+        .row {
+            /* height: 50px; */
+            border: 1px solid black;
+        }
+
+        .row div {
+            background-color: antiquewhite
+        }
+
+        /* span:nth-child(1){
+            font-size: 35px;
+            color: red;    
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- 布局容器 每一列的高度都是有内容撑起来的，所以最好设置高度-->
+    <!-- 列偏移：.col-md-offset-4 -->
+    <!-- 嵌套 -->
+    <!-- <div class="row">
+        <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+    </div> -->
+    <!-- 隐藏 -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6 visible-lg visible-xs">内容</div>
+            <div class="col-md-6 hidden">内容</div>
+        </div>
+    </div> -->
+    <!--把fonts放到项目即可，不需要引用 组件 字体图标 可以当做字体来修改-->
+    <!-- <div class="container">
+        <span class="glyphicon glyphicon-eur"></span>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+          </button>
+    </div> -->
+    <!-- 下拉组件 重点：data-toggle="dropdown"该属性是通过js代码实现下拉上拉效果 class="dropdown-menu"必须要有-->
+    <!-- <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropup
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-righ" aria-labelledby="dropdownMenu2">
+                <li class="dropdown-header">Dropdown header</li>
+                <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div>
+    </div> -->
+
+    <!-- nav tab切换 -->
+    <div class="container">
+        <ul class="nav nav-tabs nav-justified">
+            <!-- class="active"默认被选中的-->
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Profile</a></li>
+            <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Profile</a></li>
+            <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+    </div>
+
+
+    <script src="../js/jquery-1.12.4.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script>
+        $('.nav-pills a').mouseover(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+    </script>
+</body>
+
+</html>

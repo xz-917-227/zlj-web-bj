@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf=8">
+        // JS设计模式 --- 命令模式
+        // 命令模式是一种封装方法调用的方法
+        // 命令模式的目的:消除 调用命令的调用者 和 接受命令的接受者   的耦合
+        // 比如要执行一件事要调用三个方法：把这三个方法分别封装成3个命令:1(命令) 2(命令) 3(命令)
+        //  命令模式 必须每一个命令都要实现接口 (execute) 以此来判断该命令是否有效
+
+        // 命令模式的主要概念:调用者只需要执行相应的命令即可，不需要去关注命令到底怎么执行的
+                            //  执行者他才是真正的去处理这条命令的内部实现
+            //   把一个方法封装起来 变成一条命令
+
+          //  命令模式分类：1.简单命令模式  2.复杂命令模式(事务)  3.用闭包去封装命令模式(更加灵活的调用命令，随处可调用命令)
+
+    //     var CommandInterface=new BH.Interface('CommandInterface',['execute']);
+
+
+    // //    1.简单命令模式
+    //     // 有一个按钮 点击按钮 触发几个元素去执行一些动画效果
+    //     // 2个命令   (1:start)   (2:stop)
+
+    //     //  开始动画命令        //执行动画的对象(接受者)
+    //     var StratCommod=function(obj){   
+    //         this.ad=obj;
+    //     };
+    //     StratCommod.prototype.execute=function(){
+    //         // 这个start()方法才是真正实现执行操作的方法
+    //             this.ad.start();  //这个才是真正的执行方法 //这就是接受者
+    //     };
+        
+    //     // 停止动画命令
+    //     var StopCommod=function(obj){
+    //         this.ad=obj;  
+    //     };
+    //     StopCommod.prototype.execute=function(){
+    //             this.ad.stop(); //真正的实例才能调用这个方法
+    //     };
+
+    //     // 检测
+    //     var StratCommod=new StratCommod(obj);  //StratCommod是一个实例也就是调用者
+    //     StratCommod.execute();//调用者调用命令即可
+    //     var StopCommod=new StopCommod(obj);
+    //     StopCommod.execute();//调用者调用命令即可
+
+
+        // 闭包命令模式：
+        // function MakeStrat(obj){
+        //     return function(){  //最简单的闭包，就是return一个函数
+        //         obj.start();
+        //     };
+        // };
+        // function MakeStop(obj){
+        //     return function(){  //最简单的闭包，就是return一个函数
+        //         obj.stop();
+        //     };
+        // };
+
+        // // 调用
+        // var startCommand=new MakeStrat('obj');
+        // startCommand();//命令开启了
+        // var stopCommand=new MakeStop('obj');
+        // stopCommand();//命令开启了
+
+
+        // 客户  调用者  接受者   这三个的概念
+        // 客户:创建命令 ，调用者(实例):去执行(调用)这个命令   ，接受者:在命令执行时进行相应的操作
+
+
+
+
+
+
+    
+    </script>
+    
+</body>
+</html>

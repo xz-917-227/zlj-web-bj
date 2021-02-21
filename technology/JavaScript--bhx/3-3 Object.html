@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" charset="utf-8">
+        // Object 是所有类的基础类
+        
+
+        //实例化对象
+      //  var obj=new Object();//创建对象
+        var obj={};    //创建对象  （花括号） 
+        //给对象设置属性和方法
+        obj.name='张三';  //添加属性
+        obj.age=20;
+        obj['brithday']='1999-09-07'
+        obj.say=function(){    //添加方法
+            alert('hello word!');
+        }
+        // 修改属性或方法
+     //   obj.name='李四';   //直接重新赋值
+
+        // 访问对象的属性或方法
+            // alert(obj.name);  
+            // alert(obj.age);
+            // obj.say();  //调用方法
+
+            //delete 操作符  删除对象的属性或方法
+            // delete obj.age;
+            // delete obj.name; 
+          //  delete obj.say;
+
+            // alert(obj.name);   //undefined
+            // alert(obj.age);//undefined
+            // obj.say();  //调用方法无效了，因为delete了
+
+
+            // 如何去遍历一个js对象  用 for in 语句式
+//attribute是自定义的一个变量，代表数组的每一项key(也就是属性名称)
+// obj[attribute])代表的就是每一项key的值value
+            // for(var attribute in obj){
+            //     alert(attribute);  
+            //     alert(attribute + " : "+obj[attribute]);
+            // }
+
+
+
+            // Object每一个实例都会具有以下属性和方法(自带的)
+    //   1.Constructor保存对象的创建对象
+  //   alert(obj.constructor);  //对象哪个是怎么创建的
+
+    //  2.  hasOwnProperty(propertyName)用于检测给定属性在对象中是否存在
+    // alert(obj.hasOwnProperty('age'));//true(age属性存在)
+    // alert(obj.hasOwnProperty('sex'));//false（sex属性不存在）
+
+
+// 3.isPrototypeOf(Object) 检测原型
+
+
+
+// 4.propertyIsEnumerable(propertyName) 检测给定属性是否可以用for in来遍历枚举
+alert(obj.propertyIsEnumerable('name'));
+
+
+// 5.toLocaleString()
+
+// 6.toString()
+
+// 7.valueOf()
+
+
+
+
+
+    
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    // java强数据类型：定义变量前必须定义数据类型
+  //JavaScript弱数据类型： 定义变量var,根据赋值决定数据类型
+
+        // 基本数据类型
+        // Number类型：包括整数，小数，NaN(注意大小写)，正无穷(Infinity),负无穷(-Infinity)
+
+        var a1=10;
+        var a2=0.2;
+        var a3=NaN;  //NaN=not a number表示不是一个数
+        // NaN表示
+        var num=parseInt("aabbcc");//parseInt将一个不是整形的数字转换成Int，“aabbcc”明显转换不了
+        // alert(num);  //结果是NaN
+
+        var num2=parseInt("1222cc");
+        alert(num2);//结果是1222，parseInt特点：只要开头是数字，就会把后面的从第一个开始的字符包含数字都截去掉
+
+
+        var a4=1/0;    //正无穷(Infinity)
+        var a5=-(1/0);  //负无穷(-Infinity)
+       // alert(a4);
+       // alert(a5);
+
+        // number类型还可以用八进制16进制来表示
+        var a6=070;   //等于56    八进制
+       // alert(a6);
+
+        // 16进制如：0xA
+
+        // 不要用浮点数“相加”去判断，因为相加时会变大浮点精度，而JavaScript
+        // 最大浮点精度为17，会导致出错。
+
+
+        //   undefined 数据类型，它的值只有一个就是undefined 表明变量声明了，但是没有被赋值
+        var b1;  //只声明未赋值
+      //  alert(b1);
+        var b2=2; //声明并赋值
+        //alert(b2);
+
+
+        // Null空值
+        var b3=null;
+      //  alert(b3);
+
+        // String数据类型
+        var str1="我是字符串1";
+
+        //boolean类型
+        var bea1=false;
+        var bea2=true;
+
+
+        // 引用数据类型（对象）
+        var arr=[1,2,3];  //数组类型
+        var date2=new Date();   //日期类型
+        var obj={};  //空对象
+        alert(typeof str1);
+
+
+        // typeof操作符，用来判断数据类型
+    //   特殊：null类型返回的是object，因为浏览器等其他问题
+      
+
+        </script>
+</body>
+</html>

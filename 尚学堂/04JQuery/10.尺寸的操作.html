@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    div{
+        width: 200px;
+        height: 500px;
+        background-color: red;
+        margin-top: 60px;
+        /* padding: 10px;
+        border: 2px solid red;*/
+        overflow: auto; 
+    }
+    body{
+        height: 3000px;
+    }
+    </style>
+</head>
+<body>
+    
+    <div>测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本
+            测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本
+            测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本
+            测试文本测试文本测试文本
+    </div>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // 获取尺寸方法  width() height ()方法  获取的是纯高度 宽度(不包含 border padding margin 滚动条)
+        // console.log($('div').width());//获取宽度，返回的Number类型
+        // console.log($('div').height());//获取宽度，返回的Number类型
+
+        //  获取尺寸方法 innerWidth() innerHeight() 获取的是纯高度+padding 宽度+padding(不包含其他)
+        // console.log($('div').innerWidth());//获取宽度，返回的Number类型
+        // console.log($('div').innerHeight());//获取宽度，返回的Number类型
+
+        //  获取尺寸方法  outerWidth()  outerHeight()  获取的是纯高度+padding+border 宽度+padding+border(不包含其他)
+        // console.log($('div').outerWidth());//获取宽度，返回的Number类型
+        // console.log($('div').outerHeight());//获取宽度，返回的Number类型
+
+        //设置尺寸的方法
+        // $('div').width('300px');  //加单位，带引号
+        // $('div').width(400);  //不加单位，不用引号
+        //   // $('div').height('300px');  //加单位，带引号
+        //   $('div').height(400);  //不加单位，不用引号
+
+        // 位置操作  scrollLeft() scrollTop()
+        // 原生js方法
+        // var div=document.getElementsByTagName('div')[0];
+        // div.onscroll=function(){
+        //     console.log(this.scrollTop);
+        // }
+        // 原生js中 window是没有onscroll事件，body有onscroll事件
+        
+        // Jquery中 window是有onscroll事件，body也有onscroll事件
+        // $('div').scroll(function(){ //scroll()滚动方法
+        //     console.log($('div').scrollTop()); //获得距离顶部的距离
+        // });
+        $(window).scroll(function(){   //注意window和this变成Jquery对象时是不用引号的
+            console.log($(window).scrollTop()); //获得距离顶部的距离
+        });
+    
+        
+
+    </script>
+</body>
+</html>

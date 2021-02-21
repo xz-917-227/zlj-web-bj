@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     var name="xiao A";
+    //     var obj={
+    //         name:"xiao B",
+    //         getName:function(){
+    //             return function(){
+    //                 return this.name;
+    //             }
+    //         }
+    //     };
+    //     // alert(obj.getName()());  //xiao A
+    //    // alert(obj.getName());//返回一个function函数
+    //    var k=obj.getName();  //先把值赋给k   k全局作用域
+    //    alert(typeof k);  //function类型
+    //    alert(k());  //在通过k调用 (只能向上或平级找)，所以值是xiao A
+    
+       var name="xiao A";
+        var obj={
+            name:"xiao B",
+            getName:function(){
+                // this总是指向调用者
+                var o=this  //把this保存起来了
+                return function(){
+                    return o.name;
+                }
+            }
+        };
+      //  var k=obj.getName();  //这时，this指向obj
+      // alert(k()); //返回xiao B
+
+          
+        //   闭包:Closure  一个函数 可以访问到另一个函数作用域中的 变量
+        // 封闭性:private 起到一个保护变量的作用
+
+        // 最外层 一级作用域
+        function f(x){
+            // 这里是二级作用域
+            var temp=x;  //局部变量    //temp已经没有被使用了
+            return function(x){     // 这里是三级作用域
+                temp += x;     //temp又被使用了
+                alert(temp);
+            }
+        }
+        var a=f(50);
+        // alert(a);  //返回一个函数 
+         a(5);  //55  这里temp又被使用了，所以会累加
+         a(10);
+         a(20);
+
+
+
+    </script>
+</body>
+</html>

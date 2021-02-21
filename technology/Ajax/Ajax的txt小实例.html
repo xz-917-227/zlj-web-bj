@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div><h1 id="h1">Ajax小实例</h1></div>
+    <button type="button" onclick="loadAjax()">点击实现Ajax请求</button>
+    <script>
+        function loadAjax(){
+            var xmlhttp;
+            if(window.XMLHttpRequest){
+                xmlhttp=new XMLHttpRequest();
+            }else{
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById('h1').innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open('GET','test.txt',true);
+            xmlhttp.send();
+      }
+    </script>
+</body>
+</html>

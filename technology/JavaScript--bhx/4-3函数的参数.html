@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数的参数
+      // function参数
+// js中函数的参数有，形参(定义的变量)  实参(实际的数值)
+    //   形参列表   (a,b,c,d就是形参)
+    function test1(a,b,c,d){
+       // alert(test1.length);//test1.length指形参的个数
+
+    //    函数的实际参数，内部就是用一个数组去接受函数的实际参数
+    // arguments对象  可以访问实际的参数(实参)
+    // arguments 对象  只能在函数的内部访问和使用
+    //   alert(arguments.length);//实际参数个数  返回2
+    //   alert(arguments[0]);//返回实参的值  第一个是值10
+    //   alert(arguments[1]);//返回实参的值  第二个是值20
+
+    //   if(test1.length==arguments.length){
+    //     return a+b;
+    //   }else{
+    //       alert('参数不正确');  //test1.length指形参的个数  arguments.length指实参个数
+
+    //   }
+
+    } 
+     // 在js中形参和实参的个数可以不一样的，对代码的执行没有影响
+    //alert(test1(10,20));//(10,20就是实参)  只有两个实参  返回30   
+  //  alert(test1());  //没有实参  返回NaN，不会报错
+
+   // alert(test1(10,20));
+
+
+       // arguments 对象 用得最多的 还是递归操作  
+    // arguments.callee 指的是函数自己本身，函数的整体
+    // 例如:arguments.callee.length等于test1.length
+    // 一般不用test1.length来写，因为可能会出错，一般用arguments.callee.length来表示
+
+    // 案例
+    function fact(num){
+             if(num<=1){
+                 return 1;
+             }
+             else{
+                return num*fact(num-1);//这里fact最好用arguments.callee
+              //    return num*arguments.callee(num-1);
+             }
+     }
+  //   alert(fact(5));  //这里是正常的
+      var F=fact;
+     // alert(F(5));//这里也不会错
+      fact=null;//这时，就会导致函数fact();运算出错了
+      alert(F(5));  //报错  所以我们要用尽量用arguments.callee表示函数本身
+    
+    
+    </script>
+</body>
+</html>

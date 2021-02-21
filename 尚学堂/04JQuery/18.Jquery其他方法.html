@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我是第1个li</li>
+        <li>我是第2个li</li>
+        <li id="box">我是第3个li</li>
+        <li>我是第4个li</li>
+        <li>我是第5个li</li>
+        <li>我是第6个li</li>
+        <li>我是第7个li</li>
+        <li>我是第8个li</li>
+        <li>我是第9个li</li>
+        <li>我是第10个li</li>
+    </ul>
+    
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+        // $('#box').nextAll().css('color','red');//不包括#box
+        // addBack()把目标元素也选上(当前元素)  一般情况下都放在nextAll()（还有其他类似这种方法）后面
+        // $('#box').nextAll().addBack().css('color','yellow');//包括#box
+
+        // 一般情况下方法的返回者就是调用者
+        // next()[还有其他类似方法]，返回的就是下一个元素，就不是当前调用者了(链式结构就断开了)
+        $('#box').next().css('color','red');//方法的返回者变成 $('#box').next()得到的Jqu对象
+        // end()方法 返回的是链式结构被破坏前的那个Jquery对象
+        $('#box').next().end().css('color','red');//方法的返回者还是的当前调用者$('#box')
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-24 11:08:30
+ * @LastEditTime: 2021-01-05 14:42:06
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \javascript深入浅出\网站建设指南.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 菜鸟视频：https://www.runoob.com/web/web-buildingprimer.html -->
+    <!-- 网站建设指南
+        1.简介：
+            一个网站开发人员必须掌握的知识是什么？
+                HTML 和 CSS
+                客户端脚本 - JavaScript and the DOM
+                服务端脚本 - ASP, PHP
+                XML 和SQL
+        2.WWW指南-万维网
+            1.简介：
+                WWW 代表 World Wide Web(万维网)
+                万维网常常被称为 网络
+                网络是世界各地的计算机网络
+                网络中的所有电脑可以相互沟通
+                所有的计算机使用HTTP的通信标准
+                万维网联盟（W3C）制定了Web标准
+            2.万维网如何工作？
+                信息存储的文件称为网页
+                Web页面存储在Web服务器上。
+                阅读网页的计算机被称为Web客户端
+                Web客户端查看网页的程序称为Web浏览器
+                流行的浏览器有Internet Explorer，Chrome和火狐等。
+            3.浏览器如何获取网页？
+                一个浏览器通过请求从服务器上获取的网页数据
+                标准的HTTP请求包含一个网页地址
+                网页地址实例: http://www.w3cschool.cc
+            4.浏览器如何显示页面？
+                所有的网页包含如何显示的说明
+                浏览器通过过阅读这些说明显示页面。
+                最常见的显示指令被称为HTML标签
+                HTML中段落的标签为： <p>
+                在HTML中，段落是这样定义的: <p>这是段落。</p>
+            5.是谁在做Web标准？
+                Web标准并不是谷歌或微软在做
+                制定Web规则的机构是W3C
+                W3C表示万维网联盟
+                W3C 制定的web标准规范。
+                最重要的Web标准是HTML，CSS和XML
+            6.HTML指南,CSS指南,Javascript指南,XML指南,服务端脚本指南SQL指南
+                看文档内容
+            7.
+
+        
+
+
+
+     -->
+     <div>
+         <img id="img" class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+         <p>11111</p>  
+     </div>
+     <script src="/js/jquery-3.5.1.js"></script>
+     <script>
+         $(function(){  //注意： $('#img')是Jquery对象，src是Dom属性，Jquery对象不能使用DOM属性
+            $('#img').attr('src','https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%83%8C%E6%99%AF%E5%9B%BE&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=2584959088,3242845051&os=2946517898,2883149787&simid=4222899364,899151900&pn=7&rn=1&di=199320&ln=1847&fr=&fmq=1609828398606_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252Finews.gtimg.com%252Fnewsapp_match%252F0%252F11951051475%252F0.jpg%26refer%3Dhttp%253A%252F%252Finews.gtimg.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1612420398%26t%3D9a9bb1c357a34c7f08ea5cb73735bb72&rpstart=0&rpnum=0&adpicid=0&force=undefined&ctd=1609828403030^3_1144X758%1');
+            //  $('#img')[0].src='https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%83%8C%E6%99%AF%E5%9B%BE&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=2584959088,3242845051&os=2946517898,2883149787&simid=4222899364,899151900&pn=7&rn=1&di=199320&ln=1847&fr=&fmq=1609828398606_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252Finews.gtimg.com%252Fnewsapp_match%252F0%252F11951051475%252F0.jpg%26refer%3Dhttp%253A%252F%252Finews.gtimg.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1612420398%26t%3D9a9bb1c357a34c7f08ea5cb73735bb72&rpstart=0&rpnum=0&adpicid=0&force=undefined&ctd=1609828403030^3_1144X758%1';
+         });
+     </script>
+</body>
+</html>

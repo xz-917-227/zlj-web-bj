@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 语义化标签:知道其表达含义
+        正确的标签干正确的事情
+    -->
+    <!-- 实体字符：  都是以“&”开头 以“;”结尾的
+        当页面一些特殊的字符产生歧义或者HTML不识别 ，可以用实体字符来代替
+        比如:空格只能识别一个
+        空格: &nbsp;  &emsp;
+        大于号：&gt;
+        小于号:&lt;
+    -->
+    <!-- div不是语义化标签 -->
+    <!-- HTML新增的语义化 “布局” 标签
+        1、header 标题
+        2.nav导航条
+        3.aside 侧边栏
+        4.article 文章 帖子 博客  独立的一块 
+        5。section 章节
+        6.footer  页脚
+    -->
+    <!-- 新增媒体标签：1.视频：video 行内元素 必填属性：src路径 
+        其他属性:controls控制面板  autoplay自动播放 loop循环播放 muted默认静音  
+        poster视频播放前显示的一张图片(autoplay去掉才有效)
+         格式:.MP4  .ogg(移动端)   .webM(高清)  现在谷歌浏览器不支持自动播放-->
+    <video src="./vedio/pianai.mp4" width="300" controls loop muted poster="./images/img.jpg">您的浏览器不支持视频</video>
+
+    <!-- 2.音频 audio 行内元素 必填属性：src路径 
+        其他属性:controls控制面板  autoplay自动播放 loop循环播放 muted默认静音-->
+    <audio src="./audio/HandClap.mp3" controls loop></audio>
+
+    <!-- source媒介标签  当video audio 有多重格式选择时才用的 给浏览器多种选择
+          他只有src属性，其他属性仍是video audio的 -->
+    <video autoplay loop controls>
+        <source src="./vedio/pianai.mp4">
+        <source src="./vedio/pianai.ogg">
+        <source src="./vedio/pianai.webM">
+    </video>
+    <audio autoplay loop controls>
+        <source src="./audio/HandClap.mp3">
+        <source src="./audio/HandClap.mp3">
+        <source src="./audio/HandClap.mp3">
+    </audio>
+
+</body>
+
+</html>

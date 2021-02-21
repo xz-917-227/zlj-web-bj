@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        attr方法：获取或设置JQuery对象属性的方法，(也可以获取设置class属性)
+          格式:获取：JQuery对象.attr('属性名');  设置：JQuery对象.attr('属性名','属性值');
+        prop方法：获取或设置JQuery对象属性的方法，(也可以获取设置class属性)
+          格式:获取：JQuery对象.prop('属性名');  设置：JQuery对象.prop('属性名','属性值');
+
+          区别：attr方法支持自定义属性
+                prop方法不支持自定义属性
+          一般常用的是attr方法，如果是checked/selected，建议用prop方法，把值设置为true，false
+     -->
+
+     <!-- 
+         删除属性的方法(多个属性用空格隔开)
+         removeAttr方法：完全删除属性
+         removeProp方法：将属性值设置为undefined
+         格式：JQuery对象.removeAttr('属性名1 属性名2');
+               JQuery对象.removeProp('属性名1 属性名2');
+
+      -->
+
+     <div id="box" title="hello" class="ids"></div>
+     <p>123455</p>
+
+     <script src="./js/jquery-1.12.4.js"></script>
+
+     <script>
+        //  获取
+        //  console.log($('div').attr('title'));
+        //  console.log($('div').prop('title'));
+        //  设置
+        // console.log($('div').attr('title','1234'));
+        // console.log($('div').prop('title','12345'));
+        //  获取class属性
+        // console.log($('div').attr('class'));
+        //  console.log($('div').prop('class'));
+        //  //  设置class属性
+        // console.log($('div').attr('class','box1'));
+        // console.log($('div').prop('class','box2'));
+         //  设置自定义属性()
+        console.log($('div').attr('a','100'));//支持自定义属性
+        console.log($('div').prop('b','200'));//不支持自定义属性
+
+        // 如果要一次性给元素添加多个属性，可以采用如下格式:  json格式
+            //   Jquery对象.attr({
+                    // 属性名：'属性值',
+                    // 属性名：'属性值',
+                    // ......
+            //   });
+        $('p').attr({id:'box',class:'box1',title:'hahahh'});
+        $('p').prop({id:'box',class:'box1',title:'hahahh'});
+      
+    //   添加多个css样式
+    $('p').css({backgroundColor:'red',color:'blue'});
+
+    // 删除属性
+    $('div').removeAttr('title');
+    $('div').removeProp('class');//属性值变为undefined
+    // 删除多个属性
+    $('p').removeAttr('id class');//多个属性用空格隔开
+
+    
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+         // 案例
+         var ul=document.createElement('ul');
+        document.body.appendChild(ul);
+        // 
+        var styleUl=document.createAttribute('style');
+        styleUl.value="width:300px;height:100px;border:1px solid green;display:flex;margin:50px auto;padding:0;";
+        // 设置属性
+        ul.setAttributeNode(styleUl);
+        // 
+        
+        for(var i=0;i<=5;i++){
+            var li=document.createElement('li');
+            if(i==0){
+                var textLi=document.createTextNode('首页');
+            }
+            if(i==1){
+                var textLi=document.createTextNode('篮球');
+            }
+            if(i==2){
+                var textLi=document.createTextNode('足球');
+            }
+            if(i==3){
+                var textLi=document.createTextNode('羽毛球');
+            }
+            if(i==4){
+                var textLi=document.createTextNode('排球');
+            }
+            if(i==5){
+                var textLi=document.createTextNode('冰棒球');
+            }
+           var styleLi=document.createAttribute('style');
+           styleLi.value="flex:1;list-style:none;";
+           li.setAttributeNode(styleLi);
+            li.appendChild(textLi);
+            ul.appendChild(li);
+        }
+        
+    </script>
+</body>
+</html>

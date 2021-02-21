@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 所以要养成习惯，不管是链接js内容，还是js代码，都要放在html代码后面 -->
+
+    <div>hello</div>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        //   <!-- html内容要写在js代码上面，因为浏览器从上往下解析的 -->
+        // 原生js写法
+        // var div=document.getElementsByTagName('div')[0];
+        // console.log(div.innerHTML);
+        // jq写法
+        // console.log($('div').text());
+
+        // 原生js入口函数写法
+        //         window.onload = function () {
+        // //放在 window.onload函数里，默认会先执行html代码，在执行 window.onload函数里面的代码，这时html代码就可以放在js代码后面，不会产生影响
+        //             var div = document.getElementsByTagName('div')[0];
+        //             console.log(div.innerHTML);
+        //         }
+
+        // JQuery 入口函数(先解析html代码，在执行js代码，所以HTML，js代码顺序可以切换，不产生影响)  
+        // 方式一：  调用$();方法，里面可以放函数之类的参数 (是方式二的简写)
+        $(function () {
+            console.log($('div').text());
+        });
+        // 方式二： 调用$(document).ready();方法，里面可以放参数，
+        //        指给document文档绑定一个ready事件，当事件被触发时，就会执行里面的代码(当Dom渲染完毕后就会触发ready事件)
+        $(document).ready(function () {
+            console.log($('div').text());
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+    <ul>
+        <li>我是第1个li</li>
+        <li>我是第2个li</li>
+        <li id="box">我是第3个li</li>
+        <li>我是第4个li</li>
+        <li>我是第5个li</li>
+    </ul>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // 原生JS中事件是以on开头事件名结尾的
+
+        // Jquery中的事件都被封装成了方法(都是与函数一起用的)，直接调用方法名(一般就是事件名)。(里面放一个function(){}即可)
+      
+        // Jquery添加事件方式一
+        //注意： Jquery中同一个对象如果有两个或多个相同的事件，事件是不会被覆盖的
+        // 格式：Jquery对象.事件名称(function(){
+        //             //事件被触发的操作
+        // });
+        // $('div').click(function () {
+        //     console.log('333333333');
+        // });
+        // $('div').click(function () {
+        //     console.log('5555555');  //不会覆盖上面的click事件
+        // });
+
+        // Jquery添加事件方式二：bind()方法
+       //注意： Jquery中同一个对象如果有两个或多个相同的事件，事件是不会被覆盖的
+        /* 1.格式(绑定一个事件)： Jquery对象.bind('事件名称'，function(){
+                 事件触发时被执行的操作
+            });
+        2.格式(绑定多个个事件，对应操作相同时)：Jquery对象.bind('事件名称1 事件名称2 ...'，function(){
+                 事件触发时被执行的操作
+            });
+        3.格式(绑定多个个事件，对应操作不同时)：Jquery对象.bind({  //相当于JSON格式(用花括号包起来)
+                事件名称1:function(){},
+                事件名称2:function(){},
+                ....
+            });
+        4.格式(在为元素绑定事件的时候，给他传递数据)：Jquery对象.bind('事件名称',数据,function([给一个参数(代表当前对象)，调用data属性]){
+             //事件触发时被执行的操作
+             //如果要在事件处理函数据中获取到传过来的数据，可以使用事件对象的data属性来获取
+        });
+
+          */ 
+    //    $('div').bind('click',function(){  //绑定一个事件
+    //        console.log('444444');
+    //    });
+     //    $('div').bind('click',function(){  //绑定一个事件
+    //        console.log('5555555');  //bind()方法也不会被覆盖事件
+    //    });
+    //    $('div').bind('mouseover mouseout',function(){ //绑定多个事件，执行操作相同时
+    //        console.log('55555555');
+    //    });
+    //    $('div').bind({ //绑定多个事件，执行操作不同时
+    //        mouseover: function(){
+    //            console.log('11111');
+    //        },
+    //        mouseout: function(){
+    //            console.log('2222');
+    //        },
+    //     });
+
+        // $('div').bind('click',{a:10,b:20},function(e){
+        //     console.log('111111111');
+        //     //获取传进来的全部数据(用data)
+        //     console.log(e.data);
+        //     // 获取传进来的数据a的值
+        //     console.log(e.data.a);
+        // });
+
+
+        //JQuery对象添加事件方式三：delegate()方法 ：
+        // 注意 该方法在为元素添加事件的时候只能事件委托的形式绑定事件
+   /*     格式： 祖先元素.delegate(后代元素,事件名称,数据,funciotn([给一个参数(代表当前对象)，调用data属性]){
+                  事件被触发时的操作
+             });
+    */
+    //    $('ul').delegate('li','click',function(){//把delegate绑定到ul身上，当点击li时触发click事件
+    //          console.log('hello');
+    //     });
+        // $('ul').delegate('#box','click',function(){//把delegate绑定到ul身上，当点击id为box的li时触发click事件
+        //      console.log('hello Word');
+        // });
+        // $('ul').delegate('#box','click',{a:10,b:9},function(e){//把delegate绑定到ul身上，当点击id为box的li时触发click事件
+        //      console.log('hello Word');
+        //      console.log(e.data.b);
+        // });
+
+
+
+
+    /* JQuery对象添加事件方法四：on()方法
+      1.格式(一个事件)：Jquery对象.on('事件名称',function(){
+          //事件触发的执行的操作
+      })
+    2.格式(多个事件，相同操作)：Jquery对象.on('事件名称1 事件名称2 事件名称3',function(){
+          //事件触发的执行的操作
+      })
+    3.格式(多个事件，不同操作)：Jquery对象.on({
+        事件名称1:function(){},
+        事件名称2:function(){},
+        ...
+      })
+    //   前面三个格式与bind()方法一样
+
+    4.格式：祖先元素.on('事件名称','后代元素',数据,function(){ //与delegate方法类似(就是事件名称与后代元素位置不一样)
+         //事件触发的执行的操作
+        });
+    */
+    // $('div').on('click',function(){
+    //     console.log('2222');
+    // });
+    // $('div').on('mouseover mouseout',function(){
+    //     console.log('333');
+    // });
+    // $('div').on({
+    //     mouseover:function(){
+    //         console.log('2222222');
+    //     },
+    //     mouseout:function(){
+    //         console.log('4444444');
+    //     },
+    // });
+
+    // $('ul').on('click','li',{a:10,d:54},function(e){
+    //     console.log('22222');
+    //     console.log(e.data.d);
+    // });
+
+    // Jquery对象添加对象方式五：hover()方法  (包含移入移出两个件事)
+    // 作用：为元素添加移入移出件事
+   /* 1.格式：Jquery对象.hover(function(){//移入},function(){//移出});
+   */
+//    $('div').hover(
+//        function(){
+//            console.log('111111');
+//        },
+//        function(){
+//            console.log('3333333');
+//        },
+//    );
+
+    /* Jquery对象添加事件方式六：one()方法：给元素添加一次性事件
+    格式:Jquery对象.one('事件名称',function(){
+        //操作
+    });
+   */
+   $('div').one('click',function(){
+       console.log('333333');
+   });
+
+    </script>
+
+</body>
+
+</html>

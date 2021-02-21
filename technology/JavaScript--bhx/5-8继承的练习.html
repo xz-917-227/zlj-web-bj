@@ -1,0 +1,77 @@
+<script>
+
+
+    // 原型继承： 特点：既继承了父类的模板，又继承了父类的原型对象
+    // // 父类
+    //  function Person(name,age){
+    //      this.name=name;
+    //      this.age=age;
+    //  }
+    // //  父类的原型对象属性
+    // Person.prototype.id=10;
+
+    // //  子类
+    // function Boy(sex){
+    //      this.sex=sex;
+    // }
+
+    // // 子类继承了父类
+    // Boy.prototype=new Person('z3');//父类里给实参
+
+    // // 要使用父类的属性时，要在父类的实例里给实参才有用
+    // var b=new Boy();  //子类的实例
+    // alert(b.name);   //子类里没有name属性，就可以通过原型找到父类的name属性
+    // alert(b.id);   //如果子类里有name属性，就会用子类的name属性
+
+
+    //  类继承：只继承模板，不继承原型对象（又叫借用构造函数继承）
+       // 父类
+    //  function Person(name,age){
+    //      this.name=name;
+    //      this.age=age;
+    //  }
+    // //  父类的原型对象属性
+    // Person.prototype.id=10;
+
+    // //  子类
+    // function Boy(name,age,sex){  //这里要把父类的形参也写上
+    //     //  call apply（可以借用方法）//把Person当做方法来使用
+    //      Person.call(this,name,age); //this指向调用者 b,把Person绑定到当前对象 b身上
+    //      this.sex=sex;     //但是并没有把Person的原型绑定，所以只继承模板，不继承原型对象
+    // }
+
+    // var b=new Boy('z3', 23 ,'男'); //这时就可以直接在子类里传父类的参数
+    // alert(b.name);
+    // alert(b.sex);
+    // alert(b.age);
+
+
+    // 混合继承=原型继承+借用构造函数继承(可以把形参写在子类上，既继承了模板，也继承了原型对象)
+    function Person(name,age){
+         this.name=name;
+         this.age=age;
+     }
+    //  父类的原型对象属性
+    Person.prototype.id=10;
+    Person.prototype.sayName=function(){alert(this.name);};
+
+    //  子类   (这里是借用构造函数继承)
+    function Boy(name,age,sex){  //这里要把父类的形参也写上
+        //  call apply（可以借用方法）//把Person当做方法来使用
+        // 继承父类的模板
+         Person.call(this,name,age); //this指向调用者 b,把Person绑定到当前对象 b身上
+         this.sex=sex;     //但是并没有把Person的原型绑定，所以只继承模板，不继承原型对象
+    }
+        
+        // 现在就是差了原型的继承
+        // 只剩下 父类的实例  和  父类的原型对象的关系
+        Boy.prototype=new Person();   //继承父类的原型对象
+
+        var b=new Boy('z3', 23 ,'男');
+        alert(b.name);
+        alert(b.age);  //表明继承了父类模板
+        b.sayName();  //表明继承了父类原型对象
+
+
+
+</script>

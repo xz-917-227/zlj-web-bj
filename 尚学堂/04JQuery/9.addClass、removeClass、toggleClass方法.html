@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width: 200px;
+        height: 200px;
+    }
+    .sty1{
+        background-color: red
+    }
+    .sty2{
+        color:blue;
+    }
+    </style>
+</head>
+<body>
+    <button>toggleClass方法</button>
+    <div>我是div的内容</div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // addClass()添加类的方法
+        // $('div').addClass('sty1');//单个类
+        // $('div').addClass('sty1 sty2');//多个类，用空格隔开
+        // removeClass()  删除类
+        // $('div').removeClass('sty1');//单个类
+        // $('div').removeClass('sty1 sty2');//多个类，用空格隔开
+        // toggleClass() //当有这个类时就给它删除这个类，没有时就给它添加这个类
+        $('button').click(function(){
+            $('div').toggleClass('sty1');//当有这个类时就给它删除这个类，没有时就给它添加这个类
+        });
+    </script>
+</body>
+</html>

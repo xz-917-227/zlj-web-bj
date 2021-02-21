@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./CommonUtil.js"></script>
+    <script charset="utf-8">
+
+        // /享元模式：优化的设计模式 web日历 (插件有很多......)
+        // web日历: 年对象 、月对象、天对象
+
+        var CalendarInterface =new BH.Interface('CalendarInterface',['display']);
+
+        // 年份                   哪一年，父亲(就是要添加的那个元素)  
+        var CalendarYear=function(year,parent){
+            this.year=year;
+            this.element=document.createElement('div');
+            this.element.style='none';
+            parent.appendChild(this.element);
+
+            var isLeapYear =function(y){  //判断是闰年还是平年
+                  return (y>0) && !(y%4) && ((y%100) || !(y%400));
+            };
+            this.months=[];
+            // 承装当前年所有月份到底都是多少天
+            this.numDays=[31,isLeapYear(this.year)?29:28,31,30,31,30,31,31,30,31,30,31];
+             
+             for(var i=0;i<12;i++){
+               this.months[i]=new CalendarMonth(i , this.numDays[i], this.element);
+             }
+        };
+
+        CalendarYear.prototype={
+            constructor:CalendarYear,
+            display:function(){  //显示方法  显示月份
+                for(var i=0;i<this.months.length;i++){
+                     this.months[i].display();//调用月份的显示方法
+                }
+                this.element.style.display='block';//把月份显示出来
+            },
+        };
+
+        // 月份            //几月份 ，多上天 ，父亲(就是年份)
+        var CalendarMonth=function(monthNum , numDays ,parent){
+            this.monthNum=monthNum;
+            this.element=document.createElement('div');
+            this.element.style='none';
+            parent.appendChild(this.element);
+            this.days=[];//月份里应该包含一个天的数组
+            for(var i=0;i<numDays;i++){
+                  this.days[i]=calendarDaySingleInterface;  
+            }
+        };
+        CalendarMonth.prototype={
+            constructor:CalendarMonth,
+            display:function(){  //显示方法  显示月份
+                for(var i=0;i<this.days.length;i++){
+                     this.days[i].display(i+1,this.element);//调用月份的显示方法
+                }
+                this.element.style.display='block';//把天数显示出来
+            },
+        };
+
+        // 优化天数
+        // 天数               
+        var CalendarDay=function( date, parent){};//空的模板
+        CalendarDay.prototype={
+            constructor:CalendarDay,
+            display:function(date,parent){  //显示方法  显示月份
+           var element=document.createElement('div');
+            parent.appendChild(element);
+                element.style.display='inline-block';//显示出来  行内元素
+                element.innerHTML=date;
+            },
+        };
+        // 单例模式
+        var calendarDaySingleInterface=new CalendarDay();//就像实例化一次
+
+        
+
+        window.onload=function(){
+            var mydiv=document.getElementById('mydiv');
+            // 现在 new一次年相当于new了12次月份，1次 天对象
+            var myyear1=new CalendarYear(2017,mydiv);
+            // var myyear2=new CalendarYear(2018,mydiv);
+            // var myyear3=new CalendarYear(2019,mydiv);
+            // var myyear4=new CalendarYear(2020,mydiv);
+            // var myyear5=new CalendarYear(2021,mydiv);
+            // var myyear6=new CalendarYear(2022,mydiv);
+            myyear1.display();
+            // myyear2.display();        
+            // myyear3.display();        
+            // myyear4.display();     
+            // myyear5.display();        
+            // myyear6.display();
+        
+        };
+
+    
+    
+    
+    </script>
+</head>
+<body>
+    <div id="mydiv"></div>
+    
+</body>
+</html>

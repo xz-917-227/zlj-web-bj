@@ -1,0 +1,6 @@
+﻿1.修改git.path--保存--关闭IDEA(要关闭所有的窗口才有效)
+2.git clone 克隆的是主分支master的内容
+3.用git push origin test(分支名) (当前是什么分支就推送到什么分支上)
+4.在GitHub远程仓库修改文件后提交后--在本地用git fetch拉取代码库后，
+还要用 git merge 把远端仓库提取数据并尝试合并到当前分支
+菜鸟教程：https://www.runoob.com/git/git-server.html

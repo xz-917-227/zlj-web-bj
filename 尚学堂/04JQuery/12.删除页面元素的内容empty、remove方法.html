@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我是第1个li</li>
+        <li>我是第2个li</li>
+        <li>我是第3个li</li>
+        <li>我是第4个li</li>
+        <li id="box">我是第5个li</li>
+        <li>我是第6个li</li>
+        <!-- 下面是第7个li节点 -->
+        <li>我是第7个li</li>
+        <li>我是第8个li</li>
+        <li>我是第9个li</li>
+        <li>我是第10个li</li>
+    </ul>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        /*
+           empty方法
+            1.作用：清空某个容器"里面"的"所有"的内容(包括注释节点，内容等)
+            2.格式：容器.empty();
+
+           remove方法
+            1.作用：删除页面中某个Jquery对象(删除后还存在内存里，还可以再找回来的)
+            2，格式：要被删除的JQuery对象.remove('选择器'); (选择器是可选的)
+            3.注意：如果被删除的元素有事件，事件也会被删除
+        */ 
+        // 一般情况下，谁调用方法，返回者就是谁
+        // var res=$('ul').empty();
+        // console.log(res);//ul
+
+        // $('#box').remove();//删除id为box(id是唯一的)
+        // $('li').remove();//删除所有li
+        // $('li').remove('#box');//删除带有id为box的li
+
+        $('li').click(function(){
+            console.log(100);
+        });
+
+          // 一般情况下，谁调用方法，返回者就是谁
+        $('#box').remove().appendTo('ul');//删除后还存在内存里，可以在被添加回来，但是事件是被完全删除掉了的
+
+    </script>
+</body>
+</html>

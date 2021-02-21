@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ECMA5新特性 Object.getPrototypeOf():根据实例对象获得原型对象
+
+        function Person(){
+
+        }
+      Person.prototype.name="z3";
+      Person.prototype.age=21;
+      Person.prototype.sayName=function(){alert("我是原型对象的方法！");};
+    //  var p1=new Person();
+    // alert(p1.name);
+    // var prototypeObj=Object.getPrototypeOf(p1);  //根据实例对象获得原型对象
+ //   alert(prototypeObj==Person.prototype);//true
+
+//   每次代码读取一个对象的属性时，首先会进行一次搜索:搜索实例对象里面name属性，看看有没有
+// 如果有就返回实例对象里的name属性值
+// 如果没有，再去搜索实例对象对应的原型对象里面去搜索name属性，原型对象里有就返回，没有就返回undefined
+   //  var p2=new Person();
+    // p2.name='w5';  
+    // alert(p2.name);//w5
+    // delete p2.name;   //直接删除实例对象里的name属性(delete 不能删除原型对象里的属性)  
+   //  alert(p2.name);//就想获得原型对象里的name属性，
+
+    //  判断一个对象属性 是属于原型属性   还是实例属性
+    // var p3=new Person();
+    // alert(p3.name);
+    // alert(p3.hasOwnProperty('name')); //hasOwnProperty('name')方法，判断属性是不是属于对象自己的(就不是原型的)
+
+
+        //in 操作符  判断属性是不是属于实例对象或原型对象的
+     //   var p3=new Person();
+    // alert(p3.name);
+    // alert('name' in p3);  //true  原型
+    // p3.name='lili';
+    // alert('name' in p3);   //true  实例对象
+
+
+    // (自己模拟的一个函数)就是判断一个属性  是否存在于原型中
+    // 在原型对象中  是否存在这个属性  第一个参数:当前对象 第二个参数:要判断的属性
+//     function hasprototyprProperty(object,name){
+//         return !object.hasOwnProperty(name)  &&  name  in  object;//为true表明是原型的
+//     }
+//    var p4=new Person();
+//   // alert(hasprototyprProperty(p4,'name')); //true
+//    p4.name="xiao1";
+//    alert(hasprototyprProperty(p4,'name'));
+
+    // ECMA5新特性   Object.keys();可以取到当前对象的所有keys,返回一个数组
+    var p1=new Person();
+    p1.name='z3';
+    p1.age=20;
+    var attributes=Object.keys(p1); //name age
+ //   alert(attributes);
+
+    var attributes2=Object.keys(Person.prototype);
+ //   alert(attributes2);  //name age  sayName
+
+    // // ECMA5新特性  constructor属性:该属性不能被枚举(遍历)(因为它的eable默认是false)
+//    Object.getOwnPropertyNames 枚举对象所有的属性，不管内部属性是否能补枚举
+   var attributes3=Object.getOwnPropertyNames(Person.prototype);
+   alert(attributes3);
+    
+
+    </script>
+</body>
+</html>

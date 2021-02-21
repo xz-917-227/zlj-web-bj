@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 只要是函数都会自带有call和apply方法
+        //call apply 方法  简单的用法:绑定一些函数 用于传递参数  调用
+        
+        // function sum(x,y){  //求和方法
+        //     return x+y;
+        // }
+
+        // function call1(num1,num2){
+        //     //  sum函数通过call方法绑定call1函数并且可以传递参数
+        //       return sum.call(this,num1,num2);
+        //     }
+
+        // function apply1(num1,num2){
+        //      //  sum函数通过apply方法绑定apply1函数并且可以传递参数，只不过这里的参数是以数组的形式
+        //     return sum.apply(this,[num1,num2]);
+        // }    
+
+        // alert(call1(20,30));  //这里调用call1函数，同时也调用了sum函数
+        // alert(apply1(30,50));//这里调用apply1函数，同时也调用了sum函数
+
+        // call apply 方法  强大的功能:扩充作用域(跟)
+        window.color='red';
+        var obj={color:'blue'};
+        function showColor(){
+            alert(this.color);
+        }
+//传递window，表明this指向window，call方法就会从window里寻找color的值
+     //   showColor.call(window);
+  //传递obj，表明this指向obj,call方法就会从obj对象中寻找color的值
+     //   showColor.call(obj); 
+        // 也就是说call方法通过传递的参数，来改变作用方位
+        // apply方法也一样使用
+
+
+
+        // call方法的简单模拟和实现(apply也一样)
+            function test1(a,b){
+                  return a+b;
+            }
+            // 在js中自己定义一个对象就相当于自己定义一个函数，只不过在定义函数时，
+            // 函数名大写就相当于是一个对象
+            // 自定义的对象
+            function Obj(x,y){
+                this.x=x;//相当于外部传过来的x的值赋给内部这个变量x的值
+                this.y=y;
+                return x*y;
+            }
+
+            var o=new Obj(10,20);
+            o.method=test1;//把test1赋给o.method
+            alert(o.method(o.x,o.y));//这里就可以直接调用（o.x指调用内部的变量）
+            delete o.method;//调用完之后就删除(就只是临时的)
+            // test1.call(o,10,20);
+            //相当于test1通过call方法绑定了o这个对象，并调用了它的参数
+            alert(test1.call(o,o.x,o.y)) ;
+
+    </script>
+
+
+</body>
+</html>

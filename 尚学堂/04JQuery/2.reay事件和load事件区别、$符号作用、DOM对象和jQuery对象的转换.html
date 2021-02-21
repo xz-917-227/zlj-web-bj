@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        load事件:是原生js的事件 (js中事件:以 on开头，事件名结尾，如onload onclick)
+        ready事件:是Jquery中的事件
+        入口函数的区别
+        1.ready事件的触发时间要早于load事件，ready事件是在DOM树渲染完毕后触发的，而load事件
+        是在页面中的节点加载完毕后触发的，如页面中的图片都加载完毕了才会触发load事件
+        (DOM树渲染完毕:指知道DOM里面的结构就行了，而load事件不仅要渲染完DOM还要把里面的每个节点内容都加载显示到浏览器上才触发的)
+        2.页面中可以有多个ready事件，而且不会出现覆盖现象，而load事件只能有一个，后面的会把前面的覆盖掉
+     -->
+     <!-- 
+         $符号的作用
+         1.$符号 他指向了一个函数，就是JQuery的构造函数，他可以用来选取页面中的元素，
+           也可以将DOM对象转换为JQuery对象，还可以用来写入口函数
+        2.注意:JQuery中除了用$代表JQuery构造函数，还可以用"JQuery"关键字(注意有大小写区分)来代表(即 $==JQuery)
+        3.使用情况:如果项目中还有其他的框架里面也有$符号，那么为了避免冲突，我们这时就不要使用$符号，而改用Jquery关键字
+      -->
+      <!-- DOM对象和JQery对象
+        DOM对象:用原生js的方式选取的页面元素称为DOM对象
+        JQuery对象：用JQuery方式获取到的页面元素称为JQuery对象(里面包含DOM对象)
+
+        DOM对象不能用JQery对象的方法，JQery对象不能用DOM对象的方法(但是相互转换后就可以用对方的方法了)
+        DOM对象和JQuery对象的相互转化
+        DOM对象转换为JQuery对象：$(DOM对象)
+        JQuery对象转换为DOM对象：JQuery对象[下标]
+        
+    -->
+     <img src="https://image.so.com/view?q=%E5%9B%BE%E7%89%87&listsrc=sobox&listsign=51f0ece886910cb2c0a791c735e64e3f&src=360pic_new_strong&correct=%E5%9B%BE%E7%89%87&ancestor=list&cmsid=70997ac175ccf823dc912615c9337191&cmras=6&cn=0&gn=0&kn=50&crn=0&bxn=20&fsn=130&cuben=0&pornn=0&manun=0&adstar=0&clw=285#id=51f0ece886910cb2c0a791c735e64e3f&currsn=0&ps=96&pc=96" alt="">
+     <img src="./images/img2.webp" alt="">
+     <script src="./js/jquery-1.12.4.js"></script>
+     <div id="box">哈哈哈哈</div>
+     <script>
+        //  把网速调慢就可以看出区别了
+     $(document).ready(function(){   //$();是简写的入口函数
+        console.log('ready事件触发了');
+     });
+     $(document).ready(function(){
+        console.log('ready事件没有被覆盖了');
+     });
+     window.onload=function(){
+         console.log('load事件触发了');
+     }
+     window.onload=function(){
+         console.log('load事件被覆盖了了');
+     }
+
+     console.log($);
+     console.log(jQuery);
+     console.log($==jQuery);
+
+    //  DOM对象
+    var div=document.getElementById('box');
+    //  JQuery对象(包含)
+    $div1=$('#box');
+    
+    // console.log(div);
+    // console.log(div.innerHTML);//DOM对象获取获取文本，
+    console.log($(div).text());
+
+    // console.log($div1);
+    // console.log($div1.text());//JQuery对象获取获取文本，
+    console.log($div1[0].innerHTML);
+
+     </script>
+    
+</body>
+</html>

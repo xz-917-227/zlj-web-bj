@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        #box{
+            width:800px;
+            margin: 50px auto;
+        }
+
+        #tab {
+            width: 800px;
+            height: 100px;
+            display: flex;
+            border: 2px solid pink;
+         
+        }
+
+        #tab li {
+            flex: 1;
+            height: 100px;
+            line-height: 100px;
+            background-color: plum;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin: 0 3px;
+        }
+
+        #content {
+            width: 800px;
+            height: 500px;
+            border: 2px solid green;
+            position: relative;
+        }
+
+        #content div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #tab .active{
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 39个Jquery小练习
+    http://www.bluestep.cc/39个web经典常用jquery实例/
+    https://blog.csdn.net/weixin_42507756/article/details/85100553
+ -->
+
+    <div id="box">
+        <ul id="tab">
+            <li>我是第1个li</li>
+            <li>我是第2个li</li>
+            <li>我是第3个li</li>
+        </ul>
+
+
+        <div id="content">
+            <div>我是第1个内容</div>
+            <div>我是第2个内容</div>
+            <div>我是第3个内容</div>
+        </div>
+    </div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+            $('#tab li').click(function(){
+               $(this).addClass('active').siblings().removeClass('active');
+               console.log(1111111111);
+               $('#content div').eq($(this).index()).css('display','block').siblings().css('display','none');
+            });
+    
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="red">
+        <div id="green">
+            <div id="pink">
+                <div id="blue"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        /*
+           parent方法：返回（上一级）父节点
+           parents方法：返回所有的祖先节点
+           parentsUntil方法:返回指定到哪个祖先节点之前的所有祖先节点(不包含被指定的祖先节点)
+        */
+        console.log($('#pink').parent());//返回（上一级）父节点
+        console.log($('#pink').parents());//返回所有的祖先节点
+        console.log($('#blue').parentsUntil('#red'));//返回#red祖先节点之前的所有祖先借点
+    </script>
+
+</body>
+</html>

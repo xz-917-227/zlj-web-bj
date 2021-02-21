@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+    }
+    body{
+        background-color: #cccccc
+    }
+    .box{
+        margin:0 auto;
+        position: relative;
+    }
+    .box .item{
+        position: absolute;
+    }
+    .box .item img{
+        border-radius: 10px;
+        border: 1px solid #999999;
+        padding:10px;
+        background-color: white;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- <div class="item"><img src="../img/i1.jpg" alt=""></div>
+        <div class="item"><img src="../img/i2.jpg" alt=""></div> -->
+    </div>
+
+
+  
+    <script>
+        // /原理：图片的宽度一样，高度不一样，通过定位来设置图片的位置
+        // 1.第一行是按顺序排列的，第二行开始就从最小高那一列开始排
+        // 2.获取视口宽度和item的宽度，判断当前视口一行可以放多少列
+    // 3.给每一个item设置位置
+    // 4.要先把图片加载好在调用方法，当视口改变时，重新渲染，调用方法
+    // 5.当滚动到最后一张图片时，要重新添加新的内容
+        
+        // 获取图片数据(这里是自己定义的数据)
+        var imgData = `{
+            "data": [
+                { "src": "i1.jpg" },
+                { "src": "i2.jpg" },
+                { "src": "i3.jpg" },
+                { "src": "i4.jpg" },
+                { "src": "i5.jpg" },
+                { "src": "i6.jpg" },
+                { "src": "i7.jpg" },
+                { "src": "i8.jpg" },
+                { "src": "i9.jpg" },
+                { "src": "i10.jpg" },
+                { "src": "i11.jpg" },
+                { "src": "i12.jpg" },
+                { "src": "i13.jpg" },
+                { "src": "i14.jpg" },
+                { "src": "i15.jpg" }
+            ]
+        }`;
+        // 将json数据转变为json对象
+      var imgData=JSON.parse(imgData);
+       
+       var str='';
+       for(var i=0;i<imgData.data.length;i++){
+          str += `<div class="item"><img src="../img/${imgData.data[i].src}" alt=""></div>`;
+       }
+       
+    //    将图片渲染到容器中
+    var box=document.querySelector('.box');
+    box.innerHTML=str;
+    window.onload=function(){
+        waterfall();
+    }
+    window.onresize=function(){
+        waterfall();
+    }
+    window.onscroll=function(){
+        var res=scrollFn();
+        if(res){//为真表明小显示到了最后一张图片，要添加新的内容了
+             var box=document.querySelector('.box');
+                 for(var i=0;i<imgData.data.length;i++){
+                    var img=new Image();
+                    img.src='../img/'+imgData.data[i].src;
+                    console.log(img);
+                    var div=document.createElement('div');
+                    div.className='item';
+                    div.appendChild(img);
+                    box.appendChild(div);
+                  }
+             waterfall();
+
+        }
+    }
+  
+  
+    //   定义一个方法 对item进行排列
+        function waterfall(){
+            // 将所有的item获取到
+            var items=document.querySelectorAll('.item');
+            // 获取到一个item的宽度
+            var itemWidth=items[0].offsetWidth;
+            // 获取视口视口的宽度 
+            var bodyWidth=document.documentElement.clientWidth | document.body.clientWidth;
+            // 判断一行可以放多少个item
+            var num=Math.floor(bodyWidth/itemWidth);
+            // 设置box容器的宽度，使它可以水平居中
+            box.style.width= num*itemWidth +'px';
+
+            // 定义一个数组 防止每一列的高度
+            var itemHeight=[];
+            // 对每一个item进行位置的排列
+            for(var i=0;i<items.length;i++){
+                if(i<num){//表明是在第一行
+                    items[i].style.top=0;
+                    items[i].style.left=i*itemWidth+'px';
+                    // 获取每一列的高度
+                    itemHeight.push(items[i].offsetHeight);
+                }else{
+                    // 获取高度最小的那一列
+                    var minItemHeight=Math.min.apply(null,itemHeight);
+                    // 获取最小高度那一列对应的下标
+                    var index=itemHeight.indexOf(minItemHeight);
+                    // 将当前的item进行设置
+                    items[i].style.left=items[index].offsetLeft+'px';
+                    items[i].style.top=minItemHeight+'px';
+                    // 重新设置列的高度
+                    itemHeight[index]=minItemHeight+items[i].offsetHeight;
+                }
+            }
+        }
+        // 定义一个方法 判断最后一张图片是否显示了，如果显示就需要往页面中的添加新的内容
+        function scrollFn(){
+            // 获取滚动时卷上去的内容的高度
+            var bodyScrollHeight=document.documentElement.scrollTop || document.body.scrollTop;
+            // 获取当前的视口高度
+            var bodyHeight=document.documentElement.clientHeight || document.body.clientHeight;
+            // 获取最后一张图片的距离顶端的距离
+            var items=document.querySelectorAll('.item');
+            var lastItem=items[items.length-1].offsetTop;
+            // 判断拉动滚动条时是否显示到了最后一张图片
+            if(bodyHeight+bodyScrollHeight > lastItem){
+                return true;
+            }
+        }
+      
+        
+
+    
+    
+    </script>
+</body>
+</html>

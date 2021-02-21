@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 设计模式：不是说代码一定会很复杂，主要看思想，逻辑
+        // 桥接模式：应用实例二：特权函数
+        // var PuplicClass=function(){
+        //     // private variable
+        //     var name='张三';  //私有变量
+        //     // getName 访问私有变量
+        //     this.getName=function(){   //对外方法==> 就是一个特权函数
+        //         return name;
+        //     };
+        // };
+        // var p1=new PuplicClass();
+        // alert(p1.getName());
+
+
+        // 所以说桥模式，就是可以独立开来 ，通过中转函数进行连接
+        // var PuplicClass=function(){
+        //     var privateMethod=function(){  //私有的方法
+        //         alert('自己实行了一个很复杂的操作。。。');
+        //     };
+
+        //     // 单元测试 这个很复杂的函数
+        //     privateMethod();//可以直接独立调用，与外界隔离开来
+
+        //     //外部通过 特权函数 访问私有的方法
+        //     this.brigeMethod=function(){
+        //         return privateMethod();
+        //     };
+        // };
+        // var p1=new PuplicClass();
+        // p1.brigeMethod();
+
+        // // 桥接模式：应用实例三：用桥把多个单体组织在一起
+        // // 使每个单元度可以独立化，可以实现自己的变化
+        // var Class1=function(a,b,c){
+        //     this.a=a;
+        //     this.b=b;
+        //     this.c=c;
+        // };
+        // var Class2=function(d,e){
+        //      this.d=d;
+        //      this.e=e;
+        // };
+        // // 利用桥模式把Class1和Class2组织起来，并且他们也可以独立实现开发
+        // var BrigeClass=function(a,b,c,d,e){
+        //         this.class1=new Class1(a,b,c);
+        //         this.class2=new Class2(d,e);
+        // };
+
+
+
+     
+   </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script charset="utf-8" src="CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+        // JS设计模式---组合模式
+
+       //    传统模式
+        // 模拟一个场景
+        //  --> 公司
+        //          -->财务部
+        //                  -->张一
+        //                  -->张二
+         //                  -->张三
+         //         -->销售部
+         //                 -->张四
+         //                -->张五
+         //                 -->张六     
+        //    实际任务具体是落实到人上去实施的，也就是说只有人才具有具体的方法实现
+
+   // 公司
+      var Org=function(name){
+          this.name=name;
+          this.depts=[];//放公司里的部门的数组
+      };
+      Org.prototype={
+          constructor:Org,
+          addDepts:function(child){  //向公司去添加一些部门的方法
+              this.depts.push(child);
+              return this;//链式调用编程
+          },
+          getDepts:function(){   //取到公司的所有部门
+              return this.depts;
+          },
+      };
+
+    //   部门
+    var Dept=function(name){
+        this.name=name;
+        this.persons=[];//放部门里的人的数组
+
+    };
+    Dept.prototype={
+        constructor:Dept,
+        addPersons:function(child){
+            this.persons.push(child);
+            return this;//链式调用编程
+        },
+        getPersons:function(){   //取到部门的所有人员
+              return this.persons;
+          },
+    };
+    
+    // 人员
+    var Person=function(name){
+        this.name=name;
+
+    };
+    Person.prototype={
+        constructor:Person,
+        hardworking:function(){
+            document.write(this.name+'...努力工作');
+        },
+        sleeping:function(){
+            document.write(this.name+'...努力睡觉');
+        },
+    };
+
+    // 人员
+    var p1=new Person('张1');
+    var p2=new Person('张2');
+    var p3=new Person('张3');
+    var p4=new Person('张4');
+    var p5=new Person('张5');
+    var p6=new Person('张6');
+
+    // 部门，把人员添加到部门里去
+    var dept1=new Dept('开发部门');
+    dept1.addPersons(p1).addPersons(p2).addPersons(p3);//链式调用
+    var dept2=new Dept('销售部门');
+    dept1.addPersons(p4).addPersons(p5).addPersons(p6);//链式调用
+
+    // 公司 把部门添加到公司里去
+    var org=new Org('bjsxt');
+    org.addDepts(dept1).addDepts(dept2);
+
+    // 这样 公司 -- 部门  --  人员  就关联起来了
+
+    // 需求：具体让一个人（张3）去努力工作
+
+    //   这种写法会导致需求不一样，需要改动的地方很大，或许要重新编写，所以不好
+    // org.getDepts();
+    for(var i=0,depts=org.getDepts();i<depts.length;i++){
+    //    depts[i];//取到具体的每个部门
+        for(var j=0 , persons=depts[i].getPersons() ;j<persons.length;j++){ //把每个部门的人取到
+             if(persons[j].name==='张6'){  //要换人的话，要手动修改
+                  persons[j].hardworking();
+             }
+        }
+    }
+
+
+
+
+
+    
+    </script>
+    
+</body>
+</html>

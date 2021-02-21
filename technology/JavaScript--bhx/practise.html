@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./CommonUtil.js"></script>
+</head>
+<body>
+  <script charset="utf8">
+
+    // 简单命令模式
+
+    var StartCommand=function(obj){
+        this.ad=obj;
+    };
+    StartCommand.prototype.execute=function(){
+            this.ad.start();
+    };
+
+    
+    var StopCommand=function(obj){
+        this.ad=obj;
+    };
+    StopCommand.prototype.execute=function(){
+            this.ad.stop();
+    };
+
+    // 检测
+    var StartCommand=new StartCommand(obj);
+    StartCommand.execute();
+    var StopCommand=new StartCommand(obj);
+    StopCommand.execute();
+
+
+    // 闭包命令模式
+    function MakeStart(obj){
+      return function(){
+           obj.start();
+      }
+    };
+    function MakeStop(obj){
+      return function(){
+           obj.stop();
+      }
+    };
+
+    // 检测
+   var StartCommand=new MakeStart('obj');
+   StartCommand();
+   var StopCommand=new MakeStop('obj');
+   StopCommand();
+
+   
+  
+  
+  
+  </script>
+  
+</body>
+</html>

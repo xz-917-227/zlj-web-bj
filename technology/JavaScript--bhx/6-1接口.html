@@ -1,0 +1,187 @@
+<script charset="utf-8">
+     // 接口是面向对象JavaScript程序员的工具箱中最有用的工具之一，但是JavaScript没有定义接口的概念
+    // 我们就通过模拟高级程序语言的方式来创建JavaScript中的接口
+    
+    // 接口的概念:提供一种以说明一个对象应该有哪些方法的手段
+
+    // 定义接口有三种方式
+
+    // 1.注释解析法(就是通过手写的方式把接口写到注释里面去)不能判断那些接口是否都实现了
+    // 优点：程序员可以有一个参考
+    // 缺点：还是属于文档的范畴，这种方式太松散了，没有检查接口的方法是否被完全实现
+    // 定义接口关键字 interface
+    /**   //这里是注释，注释是不会被解析的
+      interface Composite{
+          function add(obj);
+          function remove(obj);
+          function update(obj);
+      }
+    */
+
+    // 2.属性检测法(结合注释解析法+检测接口) 可以检测接口是否都实现了，但是不能检测接口里的方法是否都实现了
+    // 定义接口关键字 interface
+    /**  //这里是注释，注释是不会被解析的
+      interface Composite{
+          function add(obj);
+          function remove(obj);
+      }
+      interface FormItem{
+          function update(obj);
+          function select(obj);
+      }
+    */
+
+    // 自己定义一个类，把自己要实现的接口放在自定义的固定的数组里
+//     var CompositeImpl =function(){
+//         // 显示在类的内部，接受所有接口
+//    this.implementsInterfaces=['Composite','FormItem'];
+//     }
+//      //  方法
+//     CompositeImpl.prototype.add=function(obj){  
+//         // do something 
+//         alert('add... ');
+//     }
+//     CompositeImpl.prototype.remove=function(obj){
+//         // do something
+//     }
+//     CompositeImpl.prototype.update=function(obj){
+//         // do something
+//     }
+
+//     // 检测当前对象是否实现了这些接口  instance参数 指 实例
+//     function CheckCompositeImpl(instance){
+//  // 判断当前实例对象instance 有没有实现Composite和FormItem接口，没有就抛出异常 
+//        if(!IsImplements(instance,'Composite','FormItem')){
+//           throw new Error('Object does not implements a required interface!');
+//        }
+//     }
+
+//     // 定义一个公有的检测方法 返回值类型为 Boolean
+//     // 这个方法的主要目的就是判断 实例类 有没有  实现相关的接口
+//     function IsImplements(object){  //object参数 指  实例
+//         // arguments 对象  获得函数的实际参数（这里获得是接口名称）
+//         for(var i=1;i<arguments.length;i++){
+//             // 接受每一个接口的名称
+//           var instanceName=arguments[i];
+//         //   判断此方法到底是成功还是失败
+//         var instanceFound=false;
+
+//         for(var j=0;j<object.implementsInterfaces.length;j++){
+//             // 判断自己实现了接口是不是与自己内部定义的接口名一致
+//             if(object.implementsInterfaces[j]==instanceName){
+//                 instanceFound=true;
+//                 break;
+//             }
+//             }
+//             if(!instanceFound){
+//                 return false;   //如果有接口没实现就返回false
+//             }
+//         }
+//         return true;//如果所有接口都实现了就返回true
+//     }
+
+    // // 测试检测方法
+    // var c1=new CompositeImpl();
+    // CheckCompositeImpl(c1);
+    // c1.remove();  //调用方法，没有抛出异常就表明成功了
+
+
+    // 3.鸭式辩型法 (最完美的JavaScript实现接口的方法)
+    //鸭式辩型法核心: 一个类实现接口的主要目的:把接口里的方法都实现(检测方法)
+    //  优点：完全面向对象 代码也统一了 也解耦了 等...
+
+    // 步骤
+    // 一. 定义一个接口类Interface ==> 去实例化N多个接口
+    // 接口类需要两个参数吗？
+    // 参数1：接口的名称
+    //参数2：接受接口所有方法名称的集合(数组 Array)
+    var Interface=function(name,methods){
+    //判断接口的参数个数(判断是不是传进来两个参数，不能多，也不能少) 否则就抛出异常
+           if(arguments.length !=2){ //arguments对象 获得函数的实际参数
+             throw new Error('this interface interface constructor arguments must be 2 lenght!');
+         }
+         this.name=name;
+         this.methods=[]; //定义一个内置的空函数对象，等待接收methods里的元素(方法名称)
+         for(var i=0,len=methods.length;i<len;i++){
+              if(typeof methods[i] !== 'string'){  //方法名称必须是字符串
+                    throw new Error('the Interface menthod name is error');
+              }
+              this.methods.push(methods[i]);
+         }
+    }
+
+    // 二. 准备工作
+    // 1. 调用Interface方法去实例化接口对象   //字符串要用单引号后双引号括起来
+    var CompositeInterface=new Interface('CompositeInterface',['add','remove']);
+    var FormItemInterface=new Interface('FormItemInterface',['select','update']); 
+    
+    // 2. 具体的实现类
+    // CompositeImpl implements CompositeInterface,FormItemInterface
+      var  CompositeImpl=function(){
+
+      }
+
+      // 3.实现接口的方法  implements methods
+      CompositeImpl.prototype.add=function(obj){  
+        // do something 
+        alert('add... ');
+    }
+    CompositeImpl.prototype.remove=function(obj){
+        // do something
+        alert('remove... ');
+    }
+    CompositeImpl.prototype.update=function(obj){
+        // do something
+        alert('update... ');
+    }
+    CompositeImpl.prototype.select=function(obj){
+        // do something
+        alert('select... ');
+    }  
+
+
+    // 三. 检测接口的方法
+    // 如果通过不做任何操作 不通过 抛出异常
+    // 定义一个ensureImplements 方法：检测接口的方法是否都实现了
+    Interface.ensureImplements=function(object){
+        // 如果检测方法接收的参数小于 2  参数传递失败  传递的参数是接口的实例对象
+        if(arguments.length<2){ //因为必须要有的参数有 至少一个接口
+            throw new Error('Interface.ensureImplements methods constructor argumrnts must be > 2 !');
+        }
+        // 获取接口的实例对象
+        for(var i=1,len=arguments.length;i<len;i++){
+           var instanceInterface=arguments[i];
+          //    判断拿到的参数 是不是接口类 的类型
+            if(instanceInterface.constructor !== Interface){
+                throw new Error('the arguments construcotr not be Interface Class!');
+           }
+        //    循环接口实例化的每一个方法
+            for(var j=0;j<instanceInterface.methods.length;j++){
+               // 用一个临时变量接受每一个方法的名称 （注意是字符串）
+                var methodName=instanceInterface.methods[j];
+               //object[menthodName] 就是方法 判断方法是否存在 如果它不存在 或者存在但不是一个方法来的 就抛出异常
+               if(!object[methodName] || typeof object[methodName] !=='function'){
+                   throw new Error('the method name '+ methodName +' is not found');
+               }
+            }
+        }
+    }
+
+
+    // 四.测试
+    var c1=new CompositeImpl();//参数：实例 接口1名称 接口2名称
+    Interface.ensureImplements(c1,CompositeInterface,FormItemInterface);
+    c1.add();  //如果调用不抛出异常就表明成功了
+
+  // 接口的利弊
+// 1.对于小型项目来说，使用接口很显然是不明智的，对于项目来说的好处也不明显，只是徒增
+// 其复杂程度而已。
+// 2.对于接口的好处，首先促进代码的重用，对于开发来讲，还可以告诉程序员那些类度使用什么方法
+// 如果你事先知道接口那么就减少了你在编码时对类与类之间冲突，实现解耦，对于测试和调试也会变得轻松
+// 用于JavaScript弱类型语言，类型不匹配经常出现，那么使用接口，这一点会变得容易些。
+
+
+
+
+
+</script>

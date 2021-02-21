@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //  Function类型 即函数的类型
+        //  简单的一个函数:function关键字+函数的名字,里面可以带参数(没有规定返回值的类型)
+       
+    //    参数相当于函数的入口，return相当于函数的出口
+        function test(a,b){
+            // alert(a,b)
+          //  alert(a+b);
+              //执行到return语句时，就表明结束函数，所以return后面语句就不会执行了
+            return a+b;
+            a-b;
+             
+        }
+     //   test(10,20);
+      //  var c=test(10,20);//调用函数，并把函数赋给变量c
+      //   alert(c);
+
+    //    函数也是一种数据类型，是function类型
+    //     alert(typeof test);
+         function test1(aa){
+             aa();
+         }
+        function test2(){
+            alert("执行了");
+        }
+      //  test1(test2());        //也就是说函数可以当做参数
+     //   test1(function(){alert("我也执行了")});
+
+        //  函数可以嵌套(尽量少用,没有实际的意义)
+        function test3(){
+            // 嵌套函数只能在里面调用
+            function test4(){
+                 alert('我是test4');
+            }
+            test4();
+            }
+           test3();
+
+
+    
+    </script>
+</body>
+</html>

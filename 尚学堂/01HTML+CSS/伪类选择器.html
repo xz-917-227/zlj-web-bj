@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    a:link{
+        color: black;
+    }
+    a:visited{
+        color: blue;
+    }
+    a:hover{
+        color: pink;
+    }
+    a:active{
+        color: yellow;
+    }
+   .box>div:first-child{
+        /* color: red; */
+    }
+    .box>div:nth-child(2n){
+        color: blue;
+    }
+    .two::before{
+        content: "hahahhaha";
+    }
+   
+    </style>
+</head>
+<body>
+    <!-- 
+        伪类选择器：都是通过冒号:去连接的 ，表示元素的一个状态，比如鼠标悬停，鼠标按下等
+        1、  :link 点击之前(只适用a标签)
+        2.  :visited  点击之后(只适用a标签)
+        3.  :hover 鼠标悬停（所有标签）
+        4.  :active 鼠标点击（所有标签）
+         当上面四个选择器同时存在一个元素身上时：先实现 :link 和 :visited(LV)  再 :hover 和 :active（HA）  要现在浏览器清除缓存才有效
+        5.       :first-child  第一个子元素  
+        6.       :last-child 最后一个子元素  
+        7.       :nth-child(number | odd[指的是所有奇数] | even[指的是所有偶数] | (n)倍数)   第几个子元素。。。
+                    例如：nth-child(2n)：指的是所有2的倍数  
+        8.       :only-child 唯一个子元素
+        9.       :empty 空的子元素是。。。(里面什么度不能包含，空格度不行)
+        10         :not(选择器)  否定 
+               比如： .box>div:not(.two){   //指否定选中的.two选择器，其他独设置为red
+                   color:red;
+               }
+         11.  :checked   被选中时的样式
+         12.   :focus  获取焦点时的样式
+     -->
+
+     <!-- 透明度
+        1.元素的透明度 opacity 范围0-1  设置的是整个元素的透明度
+        2.属性的透明度  rgba 范围0-1   比如background-color:rgba();设置的是背景颜色的透明度，color:rgba();设置的是颜色的透明度
+    -->
+
+    <!-- 伪对象选择器：  可以用一个或两个冒号:连接   也叫伪元素(用css写的一个假的元素)  是行内元素来的
+        1、在。。。之前插入    ::before | :before   里面一定要有content属性，也可以添加其他属性，跟标签一样使用
+        2.在什么之后插入       ::after  | :after   里面一定要有content属性，也可以添加其他属性，跟标签一样使用
+        例子：1.插入文字(在盒子里面的内容之前插入(盒子的最前面)，不是在盒子外面插入的)
+                .two::before{
+                    content: "文字";
+                }
+                2.插入图片(在盒子里面的内容之前插入，不是在盒子外面插入的)
+                   .two::before{
+                    content: url("");
+                }
+                3.自定义内容(在盒子里面的内容之前插入，不是在盒子外面插入的)
+                 .two::before{
+                    content: "自定义";(可以写多个)
+                }
+    -->
+    <!-- 属性选择器：利用HTML的属性
+          1.  [属性]  
+                 [class]{ //选中含有class属性的
+                  color: red;
+                  }
+          2.[属性=属性值]
+                  [class=box]{//选中含有class属性的并且属性为box
+                      color: yellow;
+                  }
+          3.元素[属性=属性值]
+                  div[class=box]{  //选中div元素并且含有class属性的并且属性为box
+                      color: blue;
+                  }
+          4.元素[属性=属性值]
+                  div[class^=f]{  //选中div元素并且含有class属性的并且属性值是以f开头的
+                      color: pink;
+                  }
+           5.元素[属性=属性值]
+                  div[class$=e]{  //选中div元素并且含有class属性的并且属性值是以e结尾的
+                      color: pink;
+                  }
+           6.元素[属性=属性值]
+                  div[class*=o]{  //选中div元素并且含有class属性的并且属性值是包含o的
+                      color: palegreen;
+                  }
+
+    -->
+    <!-- 堆叠性：z-index:必须和定位一起使用才有效果，可以为正负值 -->
+
+     <a href="#">123</a>
+
+     <div class="box">
+         <div class="two">1111</div>
+         <div>43242</div>
+         <div>43242</div>
+         <div>43242</div>
+         <div>43242</div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+              
+
+            //   模拟Java里的Map
+
+             // Java中的Map容器 有put方法(添加元素)  ，size方法(查询容器的个数) ，
+         //  get方法 (根据key 得到 value)  remove方法(删除元素) ，eachMap遍历方法 等等
+            // 用js模拟出这些方法      
+
+        //    自己要写一个Map函数，里面添加一些Java中Map容器的方法
+        function Map (){
+
+         //用private,保存对象，防止外部访问
+         var obj={};  //空对象容器，承装键值对
+
+        //  put方法
+          this.put=function(key,value){
+          obj[key]=value;   //把键值对绑定在obj对象上
+          }
+
+//  size方法  获得map容器个数
+          this.size=function(){
+              var count=0;
+              for(var attr in obj){
+                  count++;
+              }
+              return count;
+          }
+
+
+        //   get方法 根据key得到value
+        this.get=function(key){
+            //  因为0和false会自动转换，所以要特别声明，防止出错
+          if(obj[key] || obj[key]===0 ||  obj[key]===false){
+              return obj[key];
+        }else{
+            return null;
+        }
+        }
+
+        // remove删除方法 
+        this.remove=function(key){
+            if(obj[key] || obj[key]===0 ||  obj[key]===false){
+                 delete obj[key];
+            }
+        }
+
+        // eachMap方法 遍历map容器的方法
+        this.eachMap=function(fn){   //fn是一个回调函数
+            for(var attr in obj){
+                fn(attr,obj[attr]);
+                
+            }
+        }
+
+         
+
+
+        }
+
+
+
+        //    然后再new一个Map对象，调用这些方法，看是否能实现
+             var m=new Map();
+             m.put('01','abc');   //用put添加
+             m.put('02',120);   //这是Java中的写法，要想有效果，就要用js模拟出来
+             m.put('03',true);
+             m.put('04',new Date());
+           //  alert(m);
+           //  alert(m.size());//成功获取个数，表明put方法和size方法有效了
+          
+         //    alert(m.get('02'));//得到数值，表明get方法有效了
+           //  alert(m.remove('02'));//为undefined表明remove有效了
+             m.eachMap(function(key,value){
+                 alert(key+" : "+value)
+             })
+    
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .Box {
+            width: 1226px;
+            height: 460px;
+            margin: 50px auto;
+            position: relative;
+           
+        }
+
+        .item,
+        #img {
+            width: 100%;
+            height: 100%;
+            transition:all 0.5s linear;
+        }
+     
+
+        .prev,
+        .next {
+            width: 40px;
+            height: 60px;
+            background-color: pink;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .tabs {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tabs li {
+            width: 10px;
+            height: 10px;
+            background: green;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        .active {
+            border: 1px solid #fff;
+            background: transparent !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 轮播 -->
+    <div class="Box">
+        <!-- 轮播内容 -->
+        <div class="item"><img src="./images/img1.webp" alt="" id="img"></div>
+        <!-- prev next 按钮 -->
+        <div class="prev" onclick="prev()"></div>
+        <div class="next" onclick="next()"></div>
+        <!-- 指示点  tab切换 -->
+        <ul class="tabs">
+            <li class=" active" onclick="func(0)"></li>
+            <li class="" onclick="func(1)"></li>
+            <li class="" onclick="func(2)"></li>
+            <li class="" onclick="func(3)"></li>
+            <li class="" onclick="func(4)"></li>
+        </ul>
+    </div>
+
+    <script>
+        // 定义一个数组，放图片的名称
+        var imgNames = ['img1.webp', 'img2.webp', 'img3.jpg', 'img4.webp', 'img5.webp'];
+        // console.log(imgNames[2]);
+        // 表示第几项
+        var i = 0;
+        // 获取img
+        var img = document.getElementById('img');
+  
+        // js实现next效果
+         function next() {
+            i++;
+            if (i > imgNames.length - 1) {
+                i = 0;
+            }
+            img.src = './images/' + imgNames[i];
+            var index = i;
+            this.tabs(index);
+        }
+        // js实现prev效果
+       function prev() {
+            i--;
+            if (i < 0) {
+                i = imgNames.length - 1;
+            }
+            img.src = './images/' + imgNames[i];
+            var index = i;
+            this.tabs(index);
+        }
+        // js实现tabs效果
+        function func(index) {
+            img.src = './images/' + imgNames[index];
+            i = index;//给i赋值
+            this.tabs(index);
+        }
+        // tabs变化效果
+        function tabs(index) {
+            var list = document.getElementsByTagName('li');
+            for (var i = 0; i < list.length; i++) {
+                if (i == index) {
+                    list[i].className = 'active';
+                }
+                else {
+                    list[i].removeAttribute('class');
+                }
+            }
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

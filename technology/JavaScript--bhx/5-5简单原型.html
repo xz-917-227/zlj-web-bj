@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      
+        
+        //   // 一般情况下，给原型添加属性，方法，是这样的，每次读要写Person.prototype.属性名/方法名
+        //   Person.prototype.name='z3';
+        //   Person.prototype.say=function(){};
+    
+
+    // 简单原型
+    // function Person(){
+
+    //   }
+     
+    // //   直接赋值给一个空对象，在里面直接添加属性，方法，就可以省略写Person.prototype.属性名/方法名
+    //   Person.prototype={   //如果要用简单函数（因为通过这种方法，constructor已经变了，所以要自己定义）
+    //       constructor:Person ,//此处必须先定义原型对象的构造器(一般默认是构造函数Person,)，
+    //          name:'z3',    //书写格式要注意    //但是原本constructor是不能被枚举的，这样定义的会被枚举，所以也不太行
+    //          age:23,
+    //          jop:'程序员',
+    //          say:function(){
+    //              alert('我是原型的函数！');
+    //          },
+
+    //   };
+    //   var p1=new Person();  //实例对象
+    //   alert(p1.age);   //可以直接调用属性，方法
+    //   p1.say();
+
+    //   原型对象的构造器
+    // alert(Person.prototype.constructor);  //输出的是Object而不是Person
+
+    // 但是  ECMA5  添加了一个给原型对象重新设置构造器的方法：Object.definePropety();(注意浏览器要兼容ECMA5)
+    // 3个参数  参数1：重设构造器的对象  参数2：设置什么属性  参数3：options配置项(怎么设置)
+        //   Object.defineProperty(Person.prototype, 'constructor',{
+        //       enumerable:false,//不能枚举
+        //       value:Person
+        //   });
+//   alert(Person.prototype.constructor); 
+//   这时 constructor  就不能被枚举了
+// for(attr in p1){
+//     alert(attr);
+// }
+
+// 原型的动态特性(要注意原型和实例对象创建的顺序)
+ //一般情况下  实例对象可以创建在原型对象之前
+//   function Person(){   //一个对象
+
+//   }
+//   var p1=new Person();   // 实例对象   因为这里的原型对象的构造器就是Person
+//    Person.prototype.name="z3";  //所以在这添加的方法依然可以调用
+//     alert(p1.name);
+
+    // 但是 简单原型   不行
+    function Person(){
+
+      }
+     var p1=new Person();  //这里的实力对象的构造器是Person
+      Person.prototype={   //但是在这里Person.prototype赋值给一个空的对象时，构造器变成了Object，
+                    //    切断了连接，然后再定义constructor为Person，已经发生了动态变化
+          constructor:Person ,//此处必须先定义原型对象的构造器(一般默认是构造函数Person,)，
+             name:'z3',    //书写格式要注意    
+             age:23,
+             jop:'程序员',
+             say:function(){
+                 alert('我是原型的函数！');
+             },
+      }
+     // 所以这里 
+     //    alert(p1.name);  //会报错
+
+    // 但是这里是先创建原型对象，在创建实例对象的（构造器没有发生动态变化，所以不会报错）
+    var p2=new Person();
+    alert(p2.name);
+
+
+
+    </script>
+</body>
+</html>

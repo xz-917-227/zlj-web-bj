@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+        
+        // 时间和空间上是不可能同时优化好的
+
+        // 享元模式：优化的设计模式（优化：时间(代码运行的时间) 空间(web浏览器的内存)）
+        // 享元模式：1.内在数据:static(出厂商、型号、出厂日期)   公共的static抽取出来 只单独实例化一次
+        //          2.外在数据:可变化的(拥有者、车牌号 登记日期)
+        // 利用享元模式 把内在数据和外在数据用代码进行划分，然后再去实例化，这样对于程序有很大的优化
+
+        // 模拟汽车的  ：出厂商、型号、出厂日期、拥有者、车牌号 最近登记日期
+
+        // 内在数据
+        var Car=function(make , model , year ){
+            this.make=make;  
+            this.model=model;
+            this.year=year;
+        };
+        Car.prototype={
+            constructor:Car,
+            getMake:function(){
+                return this.make;
+            },
+            getModel:function(){
+                return this.model;
+            },
+            getYear:function(){
+                return this.year;
+            },
+        };
+
+        // 工厂模式(闭包工厂) ：把内在数据封装好
+        var CarFactory=(function(){
+            // 用于承装已经生产好的car(也就是一辆车只生产一次)
+            var createdCars={};
+            return {
+                createdCar:function(make , model , year){
+                    // 如果createdCars对象里已经存在当前的make,model,year
+                    if(createdCars[make+model+year]){// 表明这辆车已经生产了
+                           return createdCars[make+model+year];
+                    }else{
+                        var car=new Car(make,model,year);
+                        createdCars[make+model+year]=car;
+                        return car;
+                    }
+                }
+            };
+        })();
+
+        // 单体模式(把外在数据和内在数据 结合在一起)
+        var CarRecordManager=(function(){
+            // 把登记好的汽车放到这个对象里
+            var carRecordDateBase={};
+            return {
+                addCarRecord:function(make , model , year,owner , tag , renewDate){
+                    var car=CarFactory.createdCar(make , model , year);//调用静态数据
+                    carRecordDateBase[tag]={  //登记
+                        owner:owner,
+                        renewDate:renewDate,
+                        car:car,//相当于把静态对象也添加进来了
+                    };
+                },
+                renewRegistration:function(tag,newRenewDate){   //重新修改登记时间
+                     carRecordDateBase[tag].renewDate=newRenewDate;
+                }
+            };
+        })();
+
+        var arr=[];
+
+        var stime =new Date().getTime();  //开始时间
+        for(var i=0;i< 5000000;i++){
+            // 用时 runtime 1661ms   内存 web 680
+            // arr.push(new Car('上海大众','迈腾','2012-02-03','zlj','xj001','2020-10-17'));
+            // 享元模式测试  15m 230
+            arr.push(CarRecordManager.addCarRecord('上海大众','迈腾','2012-02-03','zlj','xj001','2020-10-17'));
+        } 
+
+        var etime =new Date().getTime(); //结束时间
+        alert(etime-stime);
+
+        
+        
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的订单</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            overflow-y: hidden;
+       /* 记得要去除inline-block带来的空格 方法三，在body里加font-size: 0;(这个方法一般对所有浏览器都有效)
+       然后在其它需要的每个元素上(不要放在父元素上设置，会失效)再重新设置font-size即可*/
+            font-size: 0;
+        }
+
+        /* 横向滚动 tabs*/
+        #ulBox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 9vw;
+            background-color: pink;
+            /* 横向滚动的关键 注意最好不要用display:flex;,滚动会失效*/
+            white-space: nowrap;
+            /*放在最外层box里，因为里面那层要移动*/
+            overflow-x: hidden;
+            overflow-y: hidden;
+            z-index: 88;
+        }
+
+        #ulBox ul {
+            width: 100%;
+            height: 9vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.5s linear;
+          
+            /*过渡效果*/
+        }
+
+        #ulBox ul li {
+            /* 横向滚动的关键 */
+            /* 记得要去除inline-block带来的空格 */
+            /* margin-right: -4px; */
+            display: inline-block;
+            width: 22vw;
+            height: 9vw;
+            text-align: center;
+            line-height: 9vw;
+            color: #777777;
+            border: 1px solid red;
+            margin: 0;
+        }
+
+        #ulBox ul li span {
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .noActive {
+            color: #777777;
+            border: none;
+        }
+
+        .active {
+            color: #0084bf;
+            border-bottom: 0.5vw solid #0084bf;
+        }
+
+        /* 轮播内容 */
+        #swiperContentBox {
+            width: 100vw;
+            height: 100vh;
+            margin-top: 9vw;
+            position: relative;
+            top:0;
+            left: 0;
+            /* 横向滚动的关键 注意最好不要用display:flex;,滚动会失效*/
+            white-space: nowrap;
+            /*放在最外层box里，因为里面那层要移动*/
+            overflow-x: hidden;
+
+        }
+
+        #swiperContent {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.6s linear;
+            /*过渡效果*/
+        }
+
+        .swiperItem {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+/* 记得要去除inline-block带来的空格 方法二 给每个设置了display: inline-block;元素添加 margin-right: -4px;*/
+            /* margin-right: -4px; */
+            text-align: center;
+            box-sizing: border-box;
+            padding-top: 3vw;
+        }
+        .swiperItem div{
+            color: #8f8f92;
+        }
+    </style>
+</head>
+
+<body class="">
+    <!-- 我的卡卷页面 -->
+    <!-- 方法一：用空白注释代替回车是为了去除inline-block带来的空格,记住，这个方法不能格式化，或则无效-->
+    <!-- 方法四: 通过给设置了display: inline-block元素去除闭合标签(但是要留住最后一个的闭合标签)，来去除inline-block带来的空格 -->
+    <div id="myCardVolume">
+        <!--滚动轮播 -->
+        <div id="ulBox">
+            <ul id="listBox">
+                <li class="h4"><span class="active">全部</span>
+                <li class="h4"><span>待付款</span></li>
+                <li class="h4"><span>待发货</span></li>
+                <li class="h4"><span>待收货</span></li>
+                <li class="h4"><span>已完成</span></li>
+                <li class="h4"><span>已关闭</span></li>
+                <li class="h4"><span>已取消</span></li>
+            </ul>
+        </div>
+        <!-- 轮播内容 -->
+        <div id="swiperContentBox">
+            <div id="swiperContent">
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+                <div class="swiperItem h4"><div>暂无数据</div></div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- bootstrap -->
+    <script src="../js/jquery-1.12.4.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script>
+        // swiper内容
+        var swiperContentBox = document.getElementById('swiperContentBox');//最外层box
+        var swiperContent = document.getElementById('swiperContent');//里面那层box
+        var swiperItemList = document.getElementsByClassName('swiperItem');//所有的swiperItem集合
+        // tabs切换
+        var ulBox = document.getElementById('ulBox');//获取最外层的box
+        var listBox = document.getElementById('listBox');//获取ul层大盒子,主要是移动ul的left值
+        var halfWidth = ulBox.clientWidth / 2;//获取最外层大盒子的一半，为了判断是左滑还是右滑
+        var list = document.getElementsByTagName('li');//获取所有的li
+        var totalWidth = 0;//存放所有li的总宽  为了获取偏移量
+        var swiperItemtotalWidth = 0;//存放所有swiperItem的总宽   为了获取偏移量
+        for (let i = 0; i < list.length; i++) {
+            totalWidth = totalWidth + list[i].offsetWidth;  //与下面for循环要分开写，因为要先获取总宽
+            swiperItemtotalWidth = swiperItemtotalWidth + swiperItemList[i].offsetWidth;
+        }
+        // 最好用let 声明变量
+        for (let i = 0; i < list.length; i++) {
+            var _offset = totalWidth - ulBox.clientWidth;//获取一开始隐藏的li的总宽(右边的偏移量)
+            list[i].addEventListener('click', function (e) {
+                var liWidth = list[i].offsetWidth;//获取当前li的宽度，为了判断是否到临界值了
+                // console.log(liWidth);
+                // 修改轮播滑动
+                var swiperContentBoxWidth = swiperContentBox.clientWidth;//获取当前视口的宽度
+                var swiperOffset = swiperItemtotalWidth - swiperContentBox.clientWidth;//存放swiperContent右边的偏移量
+                if (i == 0) {
+                    swiperContent.style.left = 0;
+                } else if (i == (swiperItemList.length - 1)) {
+                    swiperContent.style.left = -swiperOffset + 'px';
+                } else {
+                    swiperContent.style.left = -(swiperContentBoxWidth * i) + 'px';
+                }
+                // 修改当前li的css样式
+                var span = document.getElementsByTagName('span');
+                for (var j = 0; j < list.length; j++) {
+                    span[j].className = 'noActive';//给选中的span添加active样式
+                }
+                span[i].className = 'active';//给没有选中的span添加noActive样式
+
+                //修改tabs的滑动 获取剩下的右边的偏移量
+                var offset = totalWidth - (Math.abs(listBox.offsetLeft) + ulBox.clientWidth);
+                // e.pageX指当前点击的li左边距离视口最左侧的大小,如果e.pageX > halfWidth 表明点击的是右侧，左滑
+                if (e.pageX > halfWidth  && offset > liWidth) { //并且剩下的右边的偏移量大于一个li的当前宽度
+                    // 注意：设置 元素.style.left值时，必须再html里面css设置left值才有效
+                    listBox.style.left = (listBox.offsetLeft - liWidth-10) + 'px'; //左滑，让整个ul往左移(移一个li的当前宽度+10px即可)  
+                } else if (e.pageX > halfWidth && offset < liWidth) {  //临界位置，，右侧滚动到末尾
+                    listBox.style.left = -(_offset) + 'px'; //最末尾位置
+                }
+                // e.pageX指当前点击的li左边距离视口最左侧的大小,如果e.pageX < halfWidth 表明点击的是左侧，右滑
+                if (e.pageX < halfWidth && listBox.offsetLeft < (-liWidth)) {
+                    listBox.style.left = (listBox.offsetLeft + liWidth) + 'px';
+                } else if (e.pageX < halfWidth && listBox.offsetLeft < 0) {  //临界位置，左侧滚到开始的位置
+                    listBox.style.left = 0;  //最开始位置
+                }
+                console.log(_offset,listBox.offsetLeft);
+
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>

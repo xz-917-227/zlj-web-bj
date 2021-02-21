@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        /*
+            $.each()方法
+            1.该方法是$的一个静态方法，可以用该方法去处理数组或对象
+            2.格式：$.each(数组/对象名称,function(index,ele){
+                index是下标(或属性名)，ele是对应下标(或属性名)的值
+            })
+        */
+        var arr=[10,20,30,40,50];
+        var obj={
+            a:1,b:2,c:3
+        }
+        $.each(obj,function(index,ele){
+            console.log(index+'.........'+ele);
+        });
+    </script>
+</body>
+</html>

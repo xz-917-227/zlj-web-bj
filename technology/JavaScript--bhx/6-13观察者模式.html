@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+
+        // 观察者模式:对程序中的某一个对象进行实时的观察，当该对象状态发生改变的时候 进行通知(可以用if--else，但是相当麻烦)
+        // 有两个重要角色:观察者、被观察者
+        // 经典案例：订报纸：(报社[也叫发布者]，订阅者)
+        
+        // 发布者(被观察者)
+        var Publish=function(name){
+            this.name=name;
+            this.subscribers=[];//接受所有的订阅者(每一个元素应该是函数类型fn)
+        };
+        // Publish类实例对象去发布消息的方法
+        Publish.prototype.deliver=function(news){  
+            var publish=this; //当前的实例 当前报社
+               this.subscribers.forEach(function(fn){//this指向调用者，也就是Publish的实例
+                      fn(news,publish);  //把新消息发给订阅者  并且返回当前报社
+               });
+               return this;//链式编程
+        };
+
+        //  因为观察者是fn类型，所以可以直接在Function的原型上添加方法
+        // 订阅者  具体的一个订阅者去订阅报纸的方法    // 参数:出版社
+        Function.prototype.subscriber=function(publish){
+               var sub=this;//取得具体订阅者这个人
+            //  some方法：循环遍历数组的每一个元素，每一个元素都去执行一个函数，如果其中有一个返回true，那么整体就返回true
+              var alreadyExists= publish.subscribers.some(function(item){
+                //    if(item === sub){
+                //          return true;//表示张三已经订阅过了
+                //    }
+                //    return false;//否则返回false
+                // 简写
+                return item===sub;
+               });
+               if(!alreadyExists){ //如果没有订阅，就给它订阅
+                   publish.subscribers.push(this);
+               }
+               return this;//链式编程
+        };
+
+        // 具体的一个订阅者去取消订阅报纸的方法
+        Function.prototype.unsubscriber=function(publish){
+            var sub=this;//取得具体取消订的这个人
+            // filter:过滤函数 循环遍历数组的每一个元素，每一个元素都去执行一个函数，如果不匹配就删除该元素
+            publish.subscribers=publish.subscribers.filter(function(item){
+                   return item !== sub; //满足的就返回，不满足就去除
+            });
+            return this;//链式编程
+        }
+
+        window.onload=function(){
+            //实例化发布者对象(报社对象 被观察者)
+            var pub1=new Publish('第一报社');
+            var pub2=new Publish('第二报社');
+            var pub3=new Publish('第三报社');
+           
+        //    观察者 订阅者
+            var sub1=function(news){
+                document.getElementById('sub1').innerHTML += arguments[1].name+ ":" + news + "\n";
+            };
+            var sub2=function(news){
+                document.getElementById('sub2').innerHTML += arguments[1].name+ ":" + news + "\n";
+            };
+
+        //   观察者 订阅报纸 执行方法
+            sub1.subscriber(pub1).subscriber(pub2).subscriber(pub3);
+            sub2.subscriber(pub1).subscriber(pub2);
+
+            // 事件绑定
+            BH.EventUtil.addHandler(document.getElementById('pub1'),'click',function(){
+                   pub1.deliver(document.getElementById('text1').value);//取到发布的消息
+            });
+            BH.EventUtil.addHandler(document.getElementById('pub2'),'click',function(){
+                   pub2.deliver(document.getElementById('text2').value);//取到发布的消息
+            });
+            BH.EventUtil.addHandler(document.getElementById('pub3'),'click',function(){
+                   pub3.deliver(document.getElementById('text3').value); //取到发布的消息
+            });
+
+            // 取消订阅
+            sub2.unsubscriber(pub2);
+
+        };
+    
+    
+    </script>
+
+    <input id="pub1" type="button" value="第1报社" /><input id="text1" /><br/>
+    <input id="pub2" type="button" value="第2报社"  /><input id="text2" /><br/>
+    <input id="pub3" type="button" value="第3报社"  /><input id="text3" /><br/>
+     
+    <textarea id="sub1" cols="30" rows="5"></textarea>
+    <textarea id="sub2" cols="30" rows="5"></textarea>
+
+</body>
+</html>

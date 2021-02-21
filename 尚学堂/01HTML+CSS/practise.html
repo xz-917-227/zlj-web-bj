@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #ccc;
+    }
+
+    .box {
+        margin: auto;
+        position: relative;
+    }
+
+    .box .item {
+        position: absolute;
+    }
+
+    .box .item img {
+        border-radius: 10px;
+        border: 1px solid #999999;
+        background-color: white;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <!-- <div class="item"><img src="" alt=""></div> -->
+    </div>
+</body>
+
+<script>
+    // 获取图片数据
+    var imgData = `{
+            "data": [
+                { "src": "i1.jpg" },
+                { "src": "i2.jpg" },
+                { "src": "i3.jpg" },
+                { "src": "i4.jpg" },
+                { "src": "i5.jpg" },
+                { "src": "i6.jpg" },
+                { "src": "i7.jpg" },
+                { "src": "i8.jpg" },
+                { "src": "i9.jpg" },
+                { "src": "i10.jpg" },
+                { "src": "i11.jpg" },
+                { "src": "i12.jpg" },
+                { "src": "i13.jpg" },
+                { "src": "i14.jpg" },
+                { "src": "i15.jpg" }
+            ]
+        }`;
+        //将json数据转换为json对象
+        var imgData=JSON.parse(imgData);
+        // console.log(imgData);
+
+        // 将图片渲染到页面中
+        var str='';
+        for(var i=0;i<imgData.length;i++){
+            str += `<div class="item"><img src="./images/${imgData.data[i].src}" alt=""></div>`;
+            console.log(imgData.data[i].src);
+        }
+
+</script>
+
+</html>

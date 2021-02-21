@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        margin-bottom: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+      /*
+         clone方法
+          1.作用：克隆页面中的元素
+          2.格式：要被克隆的元素.clone(true/false);false为默认值表示不克隆元素事件，true表示克隆元素的事件
+          3.返回值：被克隆出来的节点 (一般方法的返回者就是调用者，注意clone的返回者是被克隆出来的节点，不是调用者了)
+      */
+      $('div')
+        .click(function(){  //给原元素添加点击事件
+            console.log('hello World!');
+        })
+        .clone(true)    //克隆   返回值：被克隆出来的节点  true表示克隆元素事件
+        .appendTo('body')   //把被克隆出来的节点添加到body里面去
+        .html('我是被克隆出来的div');  //添加内容
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script type="text/javascript">
+ 
+        //javascript中判断相等只有“==”这个操作符
+        var a1=10;
+        var a2=10.0;
+        var a3=true;
+        var a4=1;
+        // 自动转换指的是可以转为”数值“进行比较  比如  true==1   ”1“==true 都是对的
+        // ==表示 可以经过自动转换  比较的是数值
+        if(a1==a2){
+            alert("相等")
+        }
+        
+        //   ===表示 可以经过自动转换  先比较数值，再比较数据类型
+         if(a4===a3){
+            alert("是严格相等")
+        }
+        else{
+            alert("不是严格相等")
+        }
+
+// 三元运算符
+var c=10/5>4?4:2;
+alert(c);
+
+
+
+
+// 重点去百度查看一下“自动转换”！！！！！
+             /*
+             javascript逻辑非或者if条件判断或都数字运算等都会发生自动转换，分类总结如下：
+            [b]1、逻辑非的自动转换[/b]
+            事实上跟!Boolean(v)的结果一样
+            (1)Boolean:true->true,false->false
+            (2)String:任何非空字符->true,""->false
+            (3)Number:任何非零字符(包括无穷大)->true,0和NaN->false
+            (4)Object:任何对象->true,null->false
+            (5)Undifined:undefined->false
+            alert(!false);//true
+            alert(!true);//false
+            alert(!null);//true
+            alert(!undefined);//true
+            alert(!"");//true
+            alert(!"abc");//false
+            alert(!{});//false
+            alert(!function(){});//false
+            alert(!0);//true
+            alert(!NaN);//true
+            alert(!Infinity);//false
+            alert(!123);//false
+
+
+            [b]2、数字与字符串的自动转换[/b]
+            (1)加号“+”，只要有一个操作数是字符串，会并接起来
+            alert(5+5);//10
+            alert("the sum of 5 and 5 is :"+(5+5));//the sum of 5 and 5 is :10
+            alert(5+"5");//55
+            alert("the sum of 5 and 5 is :"+5+5);//the sum of 5 and 5 is :55
+
+            (2)减号“-”，只要有一个操作数是字符串、布而值、null、undefined,后台自动调用Number()转换再进行计算
+            alert(8-true);//7,true自动转为1
+            alert(NaN-1);//NaN,只要有一个操作数为NaN,结果为NaN
+            alert(5-4);//1
+            alert(5-"");//5,""自动转为0
+            alert(5-"2");//4,"2"自动转为1
+            alert(5-null);//5,null自动转为0
+             */
+
+
+  
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

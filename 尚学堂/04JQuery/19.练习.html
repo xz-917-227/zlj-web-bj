@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        /* 练习一 */
+        /* div{
+            width: 400px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: gold;
+        }
+        ul li{
+            float: left;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #cccccc;
+            font-size: 72px ;
+            text-align: center;
+            line-height: 100px;
+            opacity: .5;
+            box-sizing: border-box;
+            }
+            .red{
+                color: red;
+                border-color: red;
+            } */
+
+            /* 练习二 */
+            #wrap{
+                width: 690px;
+                margin: 50px auto;
+            }
+            h2{
+                text-align: center;
+                font-size: 35px;
+                font-weight: bold;
+                color: #333333;
+            }
+            ul{
+                overflow: hidden;
+            }
+            ul li{
+                float: left;
+                margin-right: 10px;
+            }
+            li img{
+                width: 130px;
+                opacity: 0.5;
+            }
+            ul li:first-of-type img{
+                opacity: 1;
+            }
+            #show{
+                height: 300px;
+                overflow: hidden;
+            }
+            #show img{
+                width: 690px;
+            }
+            #content{
+                text-align: center;font-size: 14px
+            }
+
+    </style>
+</head>
+
+<body>
+    <!-- 练习一 -->
+    <!-- <div>
+        <ul>
+            <li class="red">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+        </ul>
+    </div> -->
+
+    <!-- 练习二 -->
+    <div id="wrap">
+        <h2>王者荣耀合集</h2>
+        <div id="title">
+            <ul>
+                <li>
+                    <img src="./img/1.jpg" alt="">
+                    <img src="./img/2.jpg" alt="">
+                    <img src="./img/3.jpg" alt="">
+                    <img src="./img/4.jpg" alt="">
+                    <img src="./img/5.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div id="show"><img src="./img/1.jpg" alt=""></div>
+        <div id="content">图一：韩信</div>
+    </div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+        //练习一
+        $('li').mouseover(function(){
+            $(this).addClass('red');
+        });
+        $('li').mouseout(function(){
+            $(this).removeClass('red');
+        });
+
+
+    </script>
+
+</body>
+
+</html>

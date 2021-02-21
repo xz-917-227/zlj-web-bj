@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: powderblue;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            position: fixed;
+            right: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div></div>
+    <button type="button">启动动画</button>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        /*  
+            animate方法 (注意Jquery中animate方法不可以直接操作颜色，主要是操作尺寸，位置)(如果要操作颜色时可以使用插件)
+            1.作用：Jquery中用来创建自定义动画的方法
+            2.格式：Jquery对象.animate(参数1，参数2，参数3，参数4);
+            3.参数说明：
+                参数1：该参数通常是一个对象，里面以键值对的形式封装了要达到的css样式，
+                       注意：animate的修改样式时只对属性值中包含数值的样式敏感，属性值可以不带单位。
+                参数2：动画执行所需的时间，单位为毫秒，该参数也可以是字符串，如fast(200毫秒)，
+                      normal(默认，400毫秒)，slow(600毫秒)，如果是任意的字符串，如‘abc’表示normal。
+                参数3：动画执行时的状态(即是匀速的，还以慢-快-慢)，只支持两个值liner,swing(默认)(字符串要用引号括起来)
+                参数4：回调函数，动画执行完毕后执行该回调函数
+
+        */
+
+        $('button').click(function(){
+            // alert('点击');
+            $('div')  
+                .animate(
+                  { top:400 },
+                   '3000ms','swing',function(){   //(字符串要用引号括起来)
+                       console.log('动画执行完了');
+                   }
+                ).animate(
+                  { left:400 },
+                   3000,'swing',function(){
+                       console.log('动画执行完了');
+                   }
+                ).animate(
+                  { top:0 },
+                   3000,'swing',function(){
+                       console.log('动画执行完了');
+                   }
+                ).animate(
+                  { left:0 },
+                   3000,'swing',function(){
+                       console.log('动画执行完了');
+                   }
+                )
+                 
+        });
+    
+    </script>
+</body>
+</html>

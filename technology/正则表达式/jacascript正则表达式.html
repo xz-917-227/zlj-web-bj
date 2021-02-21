@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+           window.onload=function(){
+            // javascript正则表达式:Regular Expression(简写:RegExp)
+            //一。 语法   pattern(模式)指正则表达式的式子  modifiers指修饰符
+            //    var patt=new RegExp(pattern,modifiers);
+            //    或更简单的方法
+            //    var patt=/pattern/modifiers;
+            //    注意：当使用构造函数创造正则对象时，需要常规的字符转义规则
+            //  （在前面加反斜杠 \）。比如，以下是等价的：
+                //  var re = new RegExp("\\w+");
+                //  var re = /\w+/;
+
+            /*
+              二。 RegExp 修饰符   （放在正则表达式 "//"的后面）
+               修饰符用于执行不区分大小写和全文的搜索。
+               i - 修饰符是用来执行不区分大小写的匹配。
+               g - 修饰符是用于执行全文的搜索（而不是在找到第一个就停止查找,而是找到所有的匹配）。
+            */
+
+            // 实例 1
+            // 在字符串中不区分大小写找"runoob"
+            // var str = "Visit RUnoob";
+            // var patt1= /runoob/i;
+            // document.write(str.match(patt1));
+
+            //全文查找 "is" 
+            // var str="Is this all there is?";
+            // var patt1= /is/g;
+            // document.write(str.match(patt1));
+            // 全文查找和不区分大小写搜索 "is"
+            // var patt2= /is/ig;
+            // document.write(str.match(patt2));
+         
+            //  匹配以数字开头，并以 abc 结尾的字符串。 
+            //  var str = "123abc";
+            //  var patt1=/^[0-9]+abc$/;
+            //  document.write(str.match(patt1));
+
+            // 三。test()方法:test()方法搜索字符串指定的值，根据结果并返回真或假。
+            //  下面的示例是从字符串中搜索字符 "e" ：
+            // var patt1=new RegExp("e");//构造函数创建正则对象(如果是确定的字符串，就不用加反斜杠"\",因为不需要转义了)
+            // document.write(patt1.test("The best things in life are free"));     
+            // 由于该字符串中存在字母 "e"，以上代码的输出将是：true  
+
+            // 当使用构造函数创造正则对象时，需要常规的字符转义规则（在前面加反斜杠 \）
+            // var patt1=new RegExp("\\W+"); //需要转义
+
+            // 四。exec()方法：exec() 方法检索字符串中的指定值。返回值是被找到的值。如果没有发现匹配，则返回 null。
+            // 下面的示例是从字符串中搜索字符 "e" ：
+            // var patt1=new RegExp("e");
+            // document.write(patt1.exec("The best things in life are free"));//返回值是被找到的值（指定的值）
+            // 由于该字符串中存在字母 "e"，以上代码的输出将是：e
+
+            var ppt=/(\w{3})\d+/;
+            var isNot=ppt.test('fgs234ghfg3fhsd4');
+            var a=ppt.exec('fgs234ghfg3fhsd4');
+            console.log(isNot);
+            console.log(a[2]);
+
+        };
+
+    </script>
+</body>
+</html>

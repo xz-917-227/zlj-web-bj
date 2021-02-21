@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>注册信息</h2>
+    <form action="">
+        <p>账号：<input type="text" id="uname"></p>
+        <p>密码：<input type="text" id="upwd"></p>
+        <button type="button" id="zhuce">注册</button>
+    </form>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // 点击按钮 获取用户输入的值
+        $('#zhuce').click(function(){
+            var uname=$('#uname').val();
+            var upwd=$('#upwd').val();
+            console.log('用户输入',uname,upwd);
+            // 创建Ajax方法
+            $.ajax({
+                type:'get',//请求方式get/post  前后端要一致(看后端怎么定义接受变量)
+                url:'zhuce.php',//本地连接
+                data:{
+                    username:uname,
+                    password:upwd,
+                },
+                success:function(res){//请求成功后的回调函数  res是形参
+                    console.log(res);
+
+                },
+            });
+        });
+
+    </script>
+</body>
+</html>

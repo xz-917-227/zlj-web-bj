@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     div {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div><span>111111111</span></div>
+    
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+        /*  unbind()方法
+        作用:删除Jquery对象身上的事件(主要是删除bind方法添加的事件)
+        1.格式1(删除所有的事件)：Jquery对象.unbind();
+        2.格式2.(删除指定事件)：Jquery对象.unbind('事件名称');
+        
+        */
+        // $('div').bind({
+        //     click:function(){
+        //         console.log('1111111');
+        //     },
+        //     mouseover:function(){
+        //         console.log('233333333');
+        //     },
+        // });
+        // // $('div').unbind();
+        // $('div').unbind('mouseover');
+
+        /*  undelegate()方法
+        作用：删除Jquery对象身上的事件(主要是删除undelegate方法添加的事件)
+        格式1.Jquery对象.undelegate();
+        */
+        // $('div').delegate('span','click',function(e){
+        //     console.log(e.target.innerHTML);
+        // });
+        // $('div').undelegate();
+
+        /* off()方法  (可以删除所有不同方法添加的事件)
+        作用:删除Jquery对象身上的事件
+        1.格式1(删除所有的事件)：Jquery对象.off();
+        2.格式2.(删除指定事件)：Jquery对象.off('事件名称');
+        
+        */
+          $('div').on({
+            click:function(){
+                console.log('1111111');
+            },
+            mouseover:function(){
+                console.log('233333333');
+            },
+        });
+        // $('div').off();
+        $('div').off('click');
+    </script>
+</body>
+</html>

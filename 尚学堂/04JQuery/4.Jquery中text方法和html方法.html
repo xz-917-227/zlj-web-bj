@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        text方法
+          1.作用：获取或设置JQuery对象中的内容(文本)；  获取到的内容拼接成字符串是一个字符串类型
+          2.格式：获取 JQuery对象.text()  [会把该元素下所有节点的内容度获取到(包括子元素的内容)]    
+                 设置  JQuery对象.text(文本内容) [注意文本内容是写在括号里的] (不解析标签)
+                     
+        html方法
+          1.作用：获取或设置JQuery对象中的内容(文本)；   获取到的内容拼接成字符串是一个字符串类型
+          2.格式：获取 JQuery对象.html()  [会把该元素下所有节点的内容和标签度获取到(包括子元素的内容和标签)]    
+                  设置  JQuery对象.html(文本内容) [注意文本内容是写在括号里的](会解析标签)
+        区别：1.text方法返回的是所有的文本内容，HTML方法放回的是所有的文本内容的后代节点(标签)
+              2.text方法不解析标签，html方法会解析标签
+              3.如果JQuery对象有多个元素构成的，那么text方法在执行时会有隐式迭代，
+                 而html方法只会获取第一个元素的内容
+     -->
+     <div>
+        我是div内容
+     <h1>我是一级标题</h1>
+     <h2>我是二级标题</h2>
+     </div>
+     <ul>
+       <li>我是第1个li</li>
+       <li>我是第2个li</li>
+       <li>我是第3个li</li>
+       <li>我是第4个li</li>
+       <li>我是第5个li</li>
+     </ul>
+     <!-- jquery链接要写在js代码前面否则会出错 -->
+     <script src="./js/jquery-1.12.4.js"></script>
+     
+     <script>
+        //  console.log($('div').text());
+        // console.log(typeof $('div').text()); //查看类型==string
+        //  console.log($('div').html());
+        //  console.log($('div').text('<i>hello</i>'));
+        //  console.log($('div').html('<i>hello</i>')); //会解析标签，所以有斜体效果
+
+         console.log($('ul').text());
+         console.log($('li').text()); //隐式迭代(调用text方法时会自动对所有的li进行遍历)
+         console.log($('li').html()); //只会获取第一个li的内容
+     </script>
+
+
+</body>
+</html>

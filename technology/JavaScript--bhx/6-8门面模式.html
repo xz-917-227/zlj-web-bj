@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script charset="utf-8" src="CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+        // JS设计模式 -- 门面模式---最简单的设计模式
+
+        // 门面模式的概念:只是简化API接口   最经典的例子就是事件
+
+        // 做一件事情，必须要调用函数a和函数b
+        // function a(x){
+        //     //do something..
+        // };
+        // function b(y){
+        //     //do something..
+        // };
+        // // 这就是最简单的门面模式
+        // function ab(x,y){  //那我把函数a和函数b组合起来，直接调用ab函数就可以实现，就可以简化代码
+        //     a(x);
+        //     b(y);
+        //  }
+
+
+        // 现在有一个需求：获得页面上的元素 给的得到元素设置css样式
+          window.onload=function(){
+            //1. 给一个元素设置一个样式  
+              var element =document.getElementById('div1');
+            //   element.style.color='red';
+            //   element.style['color']='red';  //还可以这样写
+
+       //   2. 需要同时给多个元素设置一个样式
+         setStyle(['div1','div2','div3'],'color','blue');
+
+        //  3.给多个元素设置多种样式
+        // setCss(['div1','div2','div3'],{
+        //     // position:'absolute',
+        //     background:'green',
+        //     fontSize:'18px',
+        //     // left:'100px'
+        // });
+
+          };
+
+    
+         //简单的门面模式：把重复的代码封装到一个函数中，这样就可以简化代码
+
+                //   参数：获得id的数组，改变的属性名称，改变的属性值
+           function setStyle(elementsId,prop,val){ 
+                 for(var i=0;i<elementsId.length;i++){
+                     document.getElementById(elementsId[i]).style[prop]=val;
+
+                 }
+           };
+
+        //    门面模式CSS方法
+        //     参数：获得id的数组，改变的属性名称对应的属性值(是一个对象来的)
+        function setCss(elementsId,options){
+            for(var prop in options){ //遍历循环  prop是指对象的key值
+                //严谨的判断  判断属性key是不是自己本身的 
+                if(!options.hasOwnProperty(prop)) continue;  
+                  setStyle(elementsId,prop,options[prop]); //options[prop]值对应key的值
+                } 
+            };
+
+    
+    
+    </script>
+
+           <div id="div1">我是div1</div>
+           <div id="div2">我是div2</div>
+           <div id="div3">我是div3</div>
+
+</body>
+</html>

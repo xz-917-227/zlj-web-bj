@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        position: relative;
+    }
+    .box1,.box2{
+        width: 100px;
+        height: 100px;
+        /* border: 1px solid green; */
+        margin: 50px auto;
+        position: absolute;
+        top: 100px;
+        left: 40%;
+    }
+    .box2{
+        transform: rotate(45deg);
+    }
+    .box1 div,.box2 div{
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .box1 div:nth-child(1),.box2 div:nth-child(1){
+        top: 0;
+        left: 0;
+        animation: loading 1s linear infinite;
+    }
+    .box1 div:nth-child(2),.box2 div:nth-child(2){
+        top: 0;
+        right: 0;
+        animation: loading 1s linear 0.5s infinite;
+    }
+    .box1 div:nth-child(3),.box2 div:nth-child(3){
+        bottom: 0;
+        right: 0;
+        animation: loading 1s linear 1s infinite;
+    }
+    .box1 div:nth-child(4),.box2 div:nth-child(4){
+        bottom: 0;
+        left: 0;
+        animation: loading 1s linear 2s infinite;
+    }
+  @keyframes loading{
+      0%{
+          transform: scale(0)
+      }
+      100%{
+          transform: scale(1)
+      }
+  }
+</style>
+
+<body>
+    <!-- display属性是每一个元素独自带有的属性
+        取值：
+            块元素：block
+            行内元素：inline
+            行内块元素：inline-block  例如：img
+            表格  :table
+            弹性盒模型:flex
+            表格单元:table-cell 
+            隐藏：none 隐藏后原位置不保留（不占据位置）
+            网格布局：gird
+
+          display:none; 隐藏后原位置不保留 
+           visibility: hidden;  隐藏后原位置保留
+           opacity:0 透明度为0 隐藏后原位置保留
+           overflow:hidden;溢出部分隐藏
+     -->
+    <!-- 兼容性问题：
+         1.厂商前缀:解决浏览器对CSS3新特性的支持
+         浏览器           内核              厂商前缀
+          谷歌         blink内核            -webkit-
+          IE          trident内核           -ms-
+          火狐         gecko内核            -moz-
+          苹果         webkit内核           -webkit
+          欧朋         blink内核             -o- 
+      -->
+
+    <!--   2.解决IE 6 7 8  浏览器问题  写在HTMl位置，不是写在CSS位置的   -->
+    <!-- 如果是IE7浏览器，就会显示执行里面的操作 -->
+    <!-- [if IE 7]>
+        <style>
+           body{
+             visibility: hidden;
+           }
+        </style>
+        呵呵呵
+       <![endif]-->
+
+       <!-- 属性后缀： !important(优先级最高)
+     -->
+
+     <!-- 动画
+        1、创建动画：
+              @keyframes name{
+                      from{
+              
+                      }
+                      to{
+                          
+                      }
+              }
+        2.调用动画：(有顺序要求)
+       animation: 动画名称 持续时间  速度变化类型(ease|ease-in|ease-out|ease-in-out|liner) 延迟时间(可取负值:把效果跳过去) 播放次数(number|infinite无限循环) 
+       播放方向(alternate反向播放) 动画停在最后一帧(forwards)
+       animation-play-state: paused;动画播放状态：暂停；一般不写在简写样式里
+    -->
+    <div class="box1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="box2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+
+</html>

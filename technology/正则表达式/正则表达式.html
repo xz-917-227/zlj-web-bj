@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script charset="utf-8">
+        
+        //  菜鸟教程:正则表达式：https://www.runoob.com/regexp/regexp-syntax.html
+         
+
+
+        // 正则表达式写法 都写在 “//” 里面   正则表达式(Regular Expression)是一种文本模式，包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为"元字符"）
+        // 正则表达式:描述了一种字符串匹配的模式可以用来检查一个串是否含有某种子串、
+        // 将匹配的子串替换或者从某个串中取出符合某个条件的子串等。
+
+       window.onload=function(){
+        //    正则表达式的写法
+        //    var str="<h1>菜鸟教程</h1>"
+        //    var z1=str.match(/<\w+?>/);
+        //    alert(z1);
+
+        //    var str="123456runoob123runoob456"
+        //    var n=str.match(/([1-9])([a-z]+)/g); //n是一个对象，因为他匹配了多个值，组合在一起变成数组
+        //    alert(typeof n);
+            //   alert(n);
+            //   alert(n[0]);
+            //   alert(n[1]);
+
+        //   正则表达式后面的全局标记 g 指定将该表达式应用到输入字符串中能够查找到的尽可能多的匹配。
+        //   表达式的结尾处的不区分大小写 i 标记指定不区分大小写。
+        //    var str = "Is is the cost of of gasoline going up up";
+        //    var patt1 = /\b([a-z]+) \1\b/ig;
+        //    document.write(str.match(patt1));
+
+
+
+        //    var str = "http://www.runoob.com:80/html/html-tutorial.html";
+        //    var patt1 = /(\w+):\/\/([^/:]+)(:\d*)?([^# ]*)/;
+        //    arr = str.match(patt1);
+        //    for (var i = 0; i < arr.length ; i++) {
+        //    document.write(arr[i]);
+        //    document.write("<br>");
+        //     }
+
+            //   实例
+        //    从字符串 str 中提取数字部分的内容(匹配一次)：
+
+            //   var str = "abc123def";
+            //   var patt1 = /[0-9]+/;
+            //  document.write(str.match(patt1));
+
+            // 一。修饰符
+            // 1.  g 修饰符：g 修饰符可以查找字符串中所有的匹配项：
+            // 在字符串中查找 "runoob":
+            // var str="Google runoob taobao runoob"; 
+            // var n1=str.match(/runoob/);   // 查找“第一次”匹配项
+            // var n2=str.match(/runoob/g);  // 查找所有匹配项
+            // document.write(n1+'<br>'+n2);
+
+            //2.  i 修饰符为不区分大小写匹配，实例如下：
+            // 在字符串中查找 "runoob":
+            // var str="Google runoob taobao RUNoob"; 
+            // var n1=str.match(/runoob/g);   // 区分大小写
+            // var n2=str.match(/runoob/gi);  // 不区分大小写
+            // document.write(n1+'<br>'+n2);
+
+            // 3.  m 修饰符可以使 ^ 和 $ 匹配一段文本中每行的开始和结束位置。
+                // 使用^或$中匹配时 g 只匹配第一行，添加 m 之后实现多行。
+                // 在字符串中查找 "runoob":
+                // var str="runoobgoogle\ntaobao\nrunoobweibo";
+                // var n1=str.match(/^runoob/g);   // 匹配一个 
+                // var n2=str.match(/^runoob/gm);  // 多行匹配
+                // document.write(n1+'<br>'+n2);
+
+             //4. s 修饰符: 默认情况下的圆点 . 是 匹配除换行符 \n 之外的任何字符，加上 s 之后, . 中包含换行符 \n。 
+            //  在字符串中查找:
+            // var str="google\nrunoob\ntaobao";
+            // var n1=str.match(/runoob./);   // 没有使用 s，无法匹配\n  输出null
+            // var n2=str.match(/runoob./s);  // 使用 s，匹配\n
+            // document.write(n1+'<br>'+n2);
+
+            // 二。元字符(也就是除字母，下划线，数字0-9，连接符之外的特殊符号)
+            // 看文档内容
+
+            // var str="a7M";
+            // var ptt1=/a7M/;//只匹配带有连续的“a7M”
+            // alert(str.match(ptt1))
+             
+            //  中括号表达式只匹配“的单个字符”
+            // var str="chapter12345";
+            // 括在中括号表达式中的字符“只能”匹配处于正则表达式中该位置的“单个字符”。
+            // var ptt1=/chapter[12345]/;//可以配chapter1，chapter2，chapter3，chapter4，chapter5
+            // alert(str.match(ptt1))
+            
+            // 替换和分组
+            // “|”  是“或” 他会把该条表达式的 前后 分开来算
+            // 比如 /^Chapter|Section [1-9][0-9]{0,1}$/
+            // 两条式子  ^Chapter 或  Section [1-9][0-9]{0,1}$
+            // 再比如  /^(Chapter|Section) [1-9][0-9]{0,1}$/
+            // 指  Chapter 或 Section  其他不变
+
+        //   \1 指匹配与第一个()匹配的内容相同，\2指匹配与第二个()匹配的内容相同。\3,\4以此类推
+        //  注意: 正则表达式中的小括号"()"。是代表分组的意思。  \1 这种写法 必须与小括号配合使用
+	      //  var str =  "Is is the cost of of gasoline going up up";
+         //   var pattern =  /\b([a-z]+) \1\b/gi;
+            // console.log(pattern.test(str));
+          //  alert(str.match(pattern));
+           
+
+        //  用正则表达式表达链接URL
+        // var str = "http://www.runoob.com:80/html/html-tutorial.html";
+        var exp=/(\w+):\/\/([^/:]+)(:\d*)?([^#]*)/;
+        // var patt1 = /(\w+):\/\/([^/:]+)(:\d*)?([^# ]*)/;
+        // arr = str.match(patt1);
+        // for (var i = 0; i < arr.length ; i++) {
+        //   document.write(arr[i]);
+        //   document.write("<br>");
+        // }
+        // alert(arr);
+
+        
+        //正向先行断言 ?=   比如：re(?=gular)  要匹配"gular"前面的“re”
+        //正向后行断言 ?<=  比如：(?<=\w)re    要匹配“re”,而且“re”前面必须‘是’“\w”格式的
+
+        // 负向先行断言 ?!  比如: re(?!g)      要匹配“re”，并且“re”后面不能是"g"
+        // 负向后行断言 ?<! 比如: (?<!\w)re    要匹配“re”,而且“re”前面必须‘不能是’“\w”格式的
+       
+
+          //1. 求非负整数： /^\d+$/
+            var str ="123";
+            var patt=/^\d+$/;
+            alert(str.match(patt));
+         
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+        
+
+
+
+       };
+
+
+       
+
+
+
+    </script>
+
+   
+    
+</body>
+</html>

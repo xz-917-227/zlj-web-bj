@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        ul{
+            width: 200px;
+            margin: auto;
+        }
+        li{
+            widows: 200px;
+            height: 200px;
+            margin: 30px 0;
+            border: 2px solid black;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li>
+            <div></div>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        $divTop=$('div').offset().top;//元素距离顶部的距离
+        console.log($divTop);
+        $(window).scroll(function(){
+            if($(this).scrollTop() >= $divTop){  //滚动上去的大小
+                $('div').css({position:'fixed',top:0});
+            }else{
+                $('div').css('position','static');//static是position中的默认值，没有定位，元素出现在正常的流中
+            }
+        });
+    </script>
+</body>
+</html>

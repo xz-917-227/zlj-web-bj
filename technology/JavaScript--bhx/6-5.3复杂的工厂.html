@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入的核心 Js 公共文件 -->
+    <script src="CommonUtil.js" type="text/javascript"></script>
+</head>
+<body>
+    <script>
+        // javascript设计模式
+
+        // 一.工厂模式(复杂工厂:在细粒度化)
+
+        // 细粒度模式(更精确)  和  粗粒度模式(比较粗略)
+
+        // 万事万物都是Object ：买什么牌的车--就是买什么牌子车的商店 --商店  -> 卖车  -> 生产车--Factory
+        
+
+        // 搭建一个工厂的环境 (这里是细粒度模式(更精确)的实现) 分工明确
+        // 卖车的商店可能有 奥迪4s店 奔驰4s店 宝马4s店
+
+
+        // 这里只是卖车的方法
+        // abstract Class == ? Java抽象类（）==>只能被继承
+        // this CarShop is a abstract(抽象类)
+        function CarShop(){}; //这种写法就变成了抽象类
+ //把方法都放在原型对象上，就不会每次new实例度重新创建一次，可以直接调用原型里的公共方法
+        CarShop.prototype={  //简单原型对象
+             constructor:CarShop,  //还原构造器
+             sellCar:function(type){  //这里应该只有卖车的方法
+                // 销售人员。。。
+            //   var car=CarFactory.createCar(type);
+            // //   保险 相关的售后服务
+            //   return car;
+            this.abstractSellCarr(type);//方法
+             },
+             abstractSellCarr:function(){
+                 throw new Error('this method is a abstract');
+             },
+        }; 
+
+        // 奔驰4s店
+        function BenzCarShop(){};
+        BH.extend(BenzCarShop,CarShop);//继承抽象类
+        BenzCarShop.prototype={
+            constructor:BenzCarShop,
+            sellCar:function(type){
+                var car;//声明一个变量，访客户要买的车
+                var types=['Benz']; //放的是所有奔驰类型的车
+                for(t in types){
+                    // 如果我的商店有你想要的汽车型号
+                   if(types[t] === type){
+                            car = CarFactory.createCar(type);
+                   }else{
+                       alert('没有你要的型号');
+                   }
+                }
+                 return car;
+            },
+        };
+
+       // 宝马4s店
+        function BmwCarShop(){};
+        BH.extend(BmwCarShop,CarShop);
+        BmwCarShop.prototype={
+            constructor:BmwCarShop,
+            sellCar:function(type){
+                var car;//声明一个变量，访客户要买的车
+                var types=['Bmw']; //放的是所有宝马类型的车
+                for(t in types){
+                    // 如果我的商店有你想要的汽车型号
+                   if(types[t] === type){
+                            car = CarFactory.createCar(type);
+                   }else{
+                       alert('没有你要的型号');
+                   }
+                }
+                 return car;
+            },
+        };
+
+
+        // 生产车的工厂  目的就是为了生产车
+        // 单体模式
+        var CarFactory={
+            createCar:function(type){
+                // var car = new Benz(); 
+                // 利用eval动态创建传入类型的实例对象
+                  var car=eval('new '+type+'()');
+                    //    检验接口实现
+                 BH.Interface.ensureImplements(car,CarInterface);
+                return car;
+            }
+
+        };
+
+
+
+
+        //  通过调用接口类 实例化CarInterface接口对象  添加两个方法名称
+          var CarInterface=new BH.Interface('CarInterface',['start','run']);  
+          
+        //   SuperClass  一个父类放公共的 start run 方法
+        function BaseCar(){};
+        BaseCar.prototype={
+            constructor:BaseCar,
+            start:function(){
+                alert(this.constructor.name+'...start');
+            },
+            run:function(){
+                alert(this.constructor.name+'...run');
+            },
+        };
+
+        // 车的类型 Class Benz Bmw Audi  （本质都是车）
+        // 先在prototype加方法，在继承时，原型上的方法就会找不到了，原型的动态特性
+        // Benz.prototype.driverBenz=function(){alert('Benz..drive ');};
+
+  // 也就是子类一定要先继承父类，然后子类再去扩展子类特有的方法，这样才不会把子类特有的方法给冲掉
+
+        function Benz(){};  //特殊的方法就加在自己身上
+        // Benz.prototype=new BaseCar(); //继承模板和原型
+        BH.extend(Benz,BaseCar);  //调用方法继承  
+        Benz.prototype.driverBenz=function(){alert('Benz..drive ');};
+        // Benz.prototype.start=function(){alert('Benz..start');};
+        // Benz.prototype.run=function(){alert('Benz..run');};
+
+        function Bmw(){};
+        BH.extend(Bmw,BaseCar);  //调用方法继承
+        Bmw.prototype.driverBmw=function(){alert('Bmw..drive ');};
+        // Bmw.prototype.start=function(){alert('Bmw..start');};
+        // Bmw.prototype.run=function(){alert('Bmw..run');};
+
+        function Audi(){};
+        BH.extend(Audi,BaseCar);  //调用方法继承
+        Audi.prototype.driverAudi=function(){alert('Audi..drive ');};
+        // Audi.prototype.start=function(){alert('Audi..start');};
+        // Audi.prototype.run=function(){alert('Audi..run');};
+
+
+        // 检测
+        // var shop = new CarShop();
+        // var car=shop.sellCar('Benz');
+        // car.start();
+        // car.run();
+        // car.driverBenz();
+
+
+        // var car2=shop.sellCar('Bmw');
+        // car2.start();
+        // car2.run();
+        // car2.driverBmw();
+
+        // 检测
+        var shop1=new BenzCarShop();
+        var car1=shop1.sellCar('Benz');
+        car1.run();
+
+        var shop2=new BmwCarShop();
+        var car2=shop2.sellCar('Bmw');
+        car2.run();
+
+    
+    
+    </script>
+</body>
+</html>

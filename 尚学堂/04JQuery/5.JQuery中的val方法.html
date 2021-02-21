@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        val方法：
+          1.作用：获取或者设置表单元素中的值(value)
+          2.格式:获取 表单元素封装成JQuery对象.val()； (不管是数字还是字符串，返回的值都是string类型)
+                设置  表单元素封装成JQuery对象.val(值)；(值写在括号里面)
+     -->
+
+     <input type="text" id="user">
+     <button type="button">按钮</button>
+
+     <script src="./js/jquery-1.12.4.js"></script>
+     <script>
+         $('button').click(function(){
+            //  console.log($('input').val());//获取
+            //  console.log(typeof $('input').val());//返回的是string类型
+             console.log($('input').val('100'));//设置
+         });
+     </script>
+</body>
+</html>

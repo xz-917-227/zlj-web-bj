@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="CommonUtil.js"></script>
+</head>
+<body>
+    <script>
+        // js设计模式 --- 责任链模式
+        // 责任链模式responsibility  目的:消除  发送者 和 接受者的耦合
+        /*  流程：
+        发送者知道链中的第一个接受者，它向这个接受者发出请求
+        每一个接受者都对请求进行分析，要么处理它，要么往下传递
+        每一个接受者知道的其他对象只有一个，即它的下家对象
+        如果没有任何接受者处理请求，那么请求将从链上离开，不同的实现对此有不同的反应。
+        */
+
+        // 案例 做项目-> :项目经理给一个人物->task  项目组有[小A 小B 小C 小D]，最后谁会做给谁做
+        
+
+        // 责任链模式
+        //有一个任务的类(发送者)
+        var Assign=function(task ){
+            this.task=task;
+        };
+
+        // 接受任务的类
+        var WorkFlow=function(assgin){
+            this.assgin=assgin;    
+        };
+        WorkFlow.prototype={
+            constructor:WorkFlow,
+         //参数，当前过滤函数只接受一个接受者 (链中的第一个接收者)
+            filterHandler:function(executor){ 
+                // 如果当前任务适合 就直接执行
+              if(this.assgin.task === executor.cando){//this永远指向调用者，会改变
+                    return executor.todo();
+              }else{
+                //   call apply大显身手
+                  arguments.callee.call(this,executor.sussessor);//绑定作用域，this永远指向wf
+                //   arguments.callee(executor.sussessor);//调用函数本身  这里不能用，因为this在改变
+              }
+            },
+        };
+
+        // 处理者
+        var Executor=function(name,cando){
+            this.name=name;//接受者的姓名
+            this.cando=cando;//擅长的任务
+            this.sussessor=null;//保留当前接受者的下一个对象的引用
+        };
+        Executor.prototype={
+            constructor:Executor,
+            todo:function(){
+                document.write(this.name + "开发" + this.cando);
+            },
+            // 设置责任链的配置函数
+            setSuccessor:function(sussessor){
+               this.sussessor=sussessor;//等于传进来的sussessor
+            },
+        };
+
+        // 检测
+        // 实例化四个处理对象
+        var e1=new Executor('小A','javascript编程');
+        var e2=new Executor('小B','CSS编程');
+        var e3=new Executor('小C','Java编程');
+        var e4=new Executor('小D','MySQL编程');
+        // 设置对象之间的责任链关系、
+        e1.setSuccessor(e2);
+        e2.setSuccessor(e3);
+        e3.setSuccessor(e4);
+
+        // 实例化任务对象
+        var assgin=new Assign('MySQL编程');
+        // 实例化接受任务的对象
+        var wf =new WorkFlow(assgin);
+        wf.filterHandler(e1);//只传递一个人
+
+
+    </script>
+    
+</body>
+</html>

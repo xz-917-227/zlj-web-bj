@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我是第1个li</li>
+        <li>我是第2个li</li>
+        <li id="li3">我是第3个li</li>
+        <li>我是第4个li</li>
+        <li id="box">我是第5个li</li>
+        <li>我是第6个li</li>
+        <li>我是第7个li</li>
+        <li>我是第8个li</li>
+    </ul>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <!-- 创建DOM对象 -->
+    <script>
+        var div=document.createElement('div');//再添加属性等
+    </script>
+
+    <!--  // 一。创建Jquery对象 只是创建没有添加到页面中 -->
+    <script>
+       
+        // 1.格式一：$('<开始标签名>')  创建的是空标签
+        // var $div=$('<div>');//相当于<div></div>这种格式，中间没有内容
+        // console.log($div);
+
+        // 格式二:$('<开始标签名>内容</结束标签名>')
+        // var $div=$('<div>hello</div>');//相当于<div>hello</div>这种格式，中间有内容
+        // console.log($div);
+
+        // 格式三:$('<开始标签名 属性名="属性值" 属性名="属性值" ...>内容</结束标签名>')
+        // var $div=$('<div id="div" class="box" title="哈哈哈哈">内容</div>');
+        // console.log($div);
+
+    </script>
+
+    <!-- // 二。内部追加jQuery对象的方法(把创建的Jquery对象添加引导页面中去)
+        方法一：将Jquery对象以尾部追加的方式添加到容器内部
+        1.append方法 ：格式 父容器.append(被添加JQuery对象或标签形成的字符串)
+        2.appendTo方法  格式  被添加对象.appendTo(代表父容器的JQuery对象或父容器选择器)
+        方法二：将Jquery对象添加到容器内部的前端
+          prepend()方法  格式 父容器.append(被添加JQuery对象或标签形成的字符串)
+          prependTo()方法  格式  被添加对象.appendTo(代表父容器的JQuery对象或父容器选择器)
+    -->
+    <script>
+        // 创建一个新的li
+        // var $newLi=$('<li>');
+        // var $newLi=$('<li>hello Li</li>');
+        // var $newLi=$('<li id="li">hello Li</li>');
+        // console.log($newLi);
+        // 方法一
+        // $('ul').append($newLi);//JQuery对象
+        //  $('ul').append('<li id="li">hello Li</li>');//字符串
+        // $newLi.appendTo($('ul'));//JQuery对象
+        // $newLi.appendTo(('ul'));//选择器
+
+       // 创建一个新的li
+        // var $newLi=$('<li id="li">我是新 Li</li>');
+        // $('ul').prepend($newLi);
+        // $newLi.prependTo($('ul'));
+        // $newLi.prependTo('ul');
+    </script>
+
+    <!-- 三。外部追加jQuery对象的方法 (把创建的Jquery对象添加引导页面中去)
+        方法一：在目标元素的后面插入新的JQuery对象
+            after方法  格式 目标元素.after(要插入的新的JQuery对象或标签形成的字符串)
+            insertAfter方法  格式 要插入的新的JQuery对象.insertAfter(目标元素或目标选择器)
+        方法二：在目标元素的前面插入新的JQuery对象
+            before方法  格式 目标元素.before(要插入的新的JQuery对象或标签形成的字符串)
+            insertBefore方法   格式 要插入的新的JQuery对象.insertBefore(目标元素或目标选择器)
+     -->
+
+     <script>
+           // 创建一个新的li
+         var $newLi=$('<li>123</li>');
+        // $("#box").after($newLi);//JQuery对象
+        // $("#box").after('<li>123</li>');//字符串
+        // $newLi.insertAfter($('#box'));//JQuery对象
+        // $newLi.insertAfter('#box');//选择器
+
+        // $("#box").before($newLi);//JQuery对象
+        // $("#box").after('<li>123</li>');//字符串
+        $newLi.insertAfter($('#box'));//JQuery对象
+        // $newLi.insertAfter('#box');//选择器
+
+        // 如果要操作的节点是页面中已有的节点时，append,appendTo,prepend,prependTo
+            // after,insertAfter,before,insertBefore这些方法都具有移动节点的功能
+        //如： 把li3放到li5的后面  
+        var $li3=$('#li3');
+        $('#box').after($li3);
+
+        
+
+
+
+     </script>
+
+
+</body>
+</html>

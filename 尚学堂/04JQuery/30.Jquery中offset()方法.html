@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // offset()方法
+        /*
+        1、返回偏移坐标
+            $(selector).offset();
+            top: $(selector).offset().top;
+            left: $(selector).offset().left;
+
+        2、设置偏移坐标：
+            $(selector).offset({top:value,left:value});
+            参数的含义：{top:value,left:value}     当设置偏移时是必需的。规定以像素为单位的 top 和 left 坐标。
+            可能的值：(1)、名/值对，比如 {top:100,left:100} ， 
+             (2)、一个带有 top 和 left 的对象（实例）
+                如：
+                $(document).ready(function(){
+                 $("button").click(function(){
+                    newPos=new Object();
+                    newPos.left="0";
+                    newPos.top="100";
+                    $("p").offset(newPos);
+                  });
+                });
+
+        3、使用函数设置偏移坐标：
+            $(selector).offset(function(index,currentoffset));
+            可选。规定返回包含 top 和 left 坐标的对象的函数。
+            index - 返回集合中元素的 index 位置。
+            currentoffset - 返回被选元素的当前坐标。
+            如：
+            $("p").offset(function(n,c){
+                newPos=new Object();
+                newPos.left=c.left+100;
+                newPos.top=c.top+100;
+                return newPos;
+            });
+        
+        注意：offset() 方法设置或返回被选元素 相对于文档的偏移坐标
+            1、当用于返回偏移时：
+               该方法返回第一个匹配元素的偏移坐标，它返回一个带有2个属性( 以像素为单位的 top 和 left 位置)的对象
+            2、当用于设置偏移时：
+              该方法设置所有匹配元素的偏移坐标，
+        */
+
+        console.log($('div').offset());//返回top和left值
+        console.log($('div').offset().top);//返回top值
+        console.log($('div').offset().left);//返回left值
+
+        console.log($('div').offset({top:600,left:500}));
+
+        
+    </script>
+</body>
+</html>

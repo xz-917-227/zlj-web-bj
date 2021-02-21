@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class='box' id="box" name='box' ></div>    
+</body>
+    <!--  1.获取标签的方法
+             通过class： document.getElementsByClassName('class名');返回数组
+             通过name： document.getElementsByName('name名');返回数组
+             通过id： document.getElementById('id名')；返回一个对象
+             通过标签名： document.getElementsByTagName(‘标签名’);返回数组
+             通过通用选择器：document.querrySelector('可以写任何选择器 只能选择一个');返回一个
+             通过通用选择器：document.querrySelectorAll('可以写任何选择器，可以选择多个');返回数组
+          2.获取html（浏览器窗口）
+             console.log(document.documentElement)
+          3.获取body（浏览器窗口）
+           console.log(document.body)
+           var body=document.getElementsByTagName('body')[0];
+      -->
+    <script type="text/javascript">
+        var div1 = document.getElementsByClassName('box')[0];
+                //利用class名获取元素
+        var div2 = document.getElementsByName('box')[0];
+        var div3 = document.getElementById('box');\\获取到了div
+        var div4 = document.getElementsByTagName('div')[0];
+         //获取到了div 
+         //element加了s表示是集合 获取的是一组元素 是伪数组
+         //可以在获取元素后面加[写你想要的那个元素 数字表示 下标是0];
+         var div5 = document.querySelector('.box')[0];
+        //获取class 要加 . //获取id    要加#
+        var div6 = document.querySelectorAll('.box')[0];
+        //是个集合可以选择多个        
+        console.log(div);//console.log(document.querySelector('.class'))
+    </script>
+</html>
+​

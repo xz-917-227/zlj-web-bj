@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script charset="utf-8" src="CommonUtil.js"></script>
+    <script type="text/javascript" src="jquery/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+        // JS设计模式 
+
+        // 2.桥接模式:主要作用就是把抽象和现实分离开来，使他们可以完全独立变化
+
+        // 模接拟应用场景一:如：事件监听回调机制（用户点击一个按钮，向服务器端发送信息）
+        
+        // 当页面加载完毕之后执行函数体(不需要调用) 就是window.onload事件
+
+        // classic 传统模式  前台和后台耦合在一起 一定要前台点击了才会调用后台
+        // $(function(){   //jQuery方法 
+        //     //  1.前台业务逻辑：这一段代码处理前台的事件注册和绑定的
+        //     var inp=document.getElementById('inp');  
+        //     //   用事件注册的方式 像元素上添加事件
+        //     BH.EventUtil.addHandler(inp,'click',sendReq);//直接调用后台函数
+
+
+        //     // 2.后台业务逻辑：这一段代码处理后台发送请求的
+        //     //  处理后台的函数
+        //     function sendReq(){
+        //         //ajax  //向服务器发送异步的post请求
+        //         // 参数：后台服务器的地址，是一个对象或者一个字符串(参数),回调函数
+        //         // $.post('URL',{msg:this.value},function(result){ //this指 inp
+        //         //      //CallBack......处理
+        //         // });  
+        //         alert('发送了指定的数据到后台： '+this.value);
+        //     }
+
+
+        // });
+
+   // 利用桥模式 把前台和后台这两个逻辑分开
+        // $(function(){   //jQuery方法
+        //     //  1.前台业务逻辑
+        //     var inp=document.getElementById('inp');  
+        //     //   用事件注册的方式 像元素上添加事件
+        //     BH.EventUtil.addHandler(inp,'click',bridgeHandler); //把函数换成中转函数
+
+        //     // 利用桥模式 分开（中转函数）
+        //     function bridgeHandler(){
+        //         var msg=this.value;  //把前台的数据获取到传给后台
+        //         sendReq(msg);
+
+        //     }
+
+
+        //     // 2.后台业务逻辑
+        //     //  处理后台的函数
+        //     function sendReq(msg){
+        //         //ajax  //向服务器发送异步的post请求
+        //         // 参数：后台服务器的地址，是一个对象或者一个字符串(参数),回调函数
+        //         // $.post('URL',{msg:this.value},function(result){ //this指 inp
+        //         //      //CallBack......处理
+        //         // });  
+        //         alert('发送了指定的数据到后台： '+msg);
+        //     }
+
+        //     // 单元测试(不用通过前台就可以直接调用测试)，前后台就分离开了
+        //     sendReq('我也是数据。。');
+
+        // });
+
+
+
+
+
+    
+    </script>
+    
+</body>             <!-- onclick="test()"传统事件-->
+<input type="button" id="inp" value="我是数据。。。"/>
+</html>

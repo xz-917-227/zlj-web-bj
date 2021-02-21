@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我是第1个li元素</li>
+        <li>我是第2个li元素</li>
+        <li class="sty">我是第3个li元素</li>
+        <li>我是第4个li元素</li>
+        <li>我是第5个li元素</li>
+        <li>我是第6个li元素</li>
+        <li id="box">我是第7个li元素</li>
+        <li class="sty">我是第8个li元素</li>
+        <li>我是第9个li元素</li>
+        <li>我是第10个li元素</li>
+    </ul>
+    
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+        //$('li')[0]是Dom对象  DOM对象不能调用JQuery方法
+        // $('li').css('color','red'); //选中所有li
+        // $('li:first-child').css('color','blue');  //通过选择器选中
+        // 过滤方法
+        //1.fist()方法：从JQuery对象集合中选出第一个Jquery对象 （返回的类型还是JQuery对象）
+        // $('li').first().css('color','yellow');
+         //1.last()方法：从JQuery对象集合中选出最后一个Jquery对象 （返回的类型还是JQuery对象）
+        // $('li').last().css('color','yellow');
+        // eq(index)方法 从JQuery对象集合中选中第几个Jquery对象  index是下标
+        // $('li').eq(5).css('color','yellow');
+        // filter()方法 从JQuery对象集合中选中指定选择器的Jquery对象，选择器之前用逗号隔开
+        $('li').filter('#box,.sty').css('color','yellow');
+        
+
+    </script>
+
+</body>
+</html>

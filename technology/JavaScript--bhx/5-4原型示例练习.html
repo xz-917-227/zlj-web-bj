@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型的另一个作用就是扩充对象的属性和方法
+
+        // Array  each方法
+        // 案例 ：用原型模拟数组的forEach  循环遍历数组的每一项(只适合遍历一维数组)
+        
+        // var arr=[1,2,3,[4,[5]]];
+        // arr.forEach(function(item,index,array){
+        //     alert(item);
+        // });
+
+        // 自己实现一个Array each方法  能遍历多维数组
+        var arr=[1,2,3,[4,[5,[6]]]];  //四维数组    //arr.length
+// 通过原型对象添加each方法，自己写代码实现效果
+        Array.prototype.each=function(fn){
+            try{
+           // 1.目的:遍历数组的每一项    //计数器  记录当前遍历的元素位置
+               this.i || (this.i=0);  //(i如果不存在就赋值0)这样写防止这个变量出现重复(更严谨)
+                //2.严谨的判断什么时候去走each核心方法 
+                // 当数组的长度大于0的时候  && 传递的参数必须为函数
+                if(this.length>0 && fn.constructor==Function){
+                    //   循环遍历数组的每一项  (最好不要用 for in 来循环)
+                    while(this.i<this.length){   //while循环的范围
+                    //    获取数组的每一项
+                    var e=this[this.i];
+                    // 如果当前元素获取到了  并且当前元素是一个数组(多维数组)
+                    if(e && e.constructor==Array){
+                        //直接做递归操作
+                        e.each(fn);//直到当前元素不是数组时为止
+                    }else{
+                        // 如果不是数组 那就是单个元素
+                        // 这儿的目的就是为了把数组的当前元素传递给fn函数  并让函数执行一下
+                        fn.apply(e,[e]);   //fn.call(e,e);
+                    }
+
+                       
+                       this.i++;
+                    }
+                    this.i=null;   //释放内存  垃圾回收机制回收变量
+                }
+
+
+            }catch(ex){
+                //do something
+            }
+           return this;//this指向调用者arr,,,所以直接返回arr
+        }
+
+// 调用each方法
+        arr.each(function(item){
+            alert(item);
+        });
+
+    
+    </script>
+</body>
+</html>

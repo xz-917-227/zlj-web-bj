@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./CommonUtil.js"></script>
+</head>
+<body>
+    <script charset="utf-8">
+        // 搭建环境
+
+        // 享元模式：优化的设计模式（优化：时间(代码运行的时间) 空间(web浏览器的内存)）
+        // 享元模式：1.内在数据:static(出厂商、型号、出厂日期)   公共的static抽取出来 只单独实例化一次
+        //          2.外在数据:可变化的(拥有者、车牌号 登记日期)
+        // 利用享元模式 把内在数据和外在数据用代码进行划分，然后再去实例化，这样对于程序有很大的优化
+
+        // 模拟汽车的  ：出厂商、型号、出厂日期、拥有者、车牌号 登记日期
+        var Car=function(make , model , year  ,owner , tag , renewDate){
+            this.make=make;  //前三个属性是静态属性，是固定的，后三个属性是可以更换的
+            this.model=model;
+            this.year=year;
+            this.owner=owner;
+            h=this.tag=tag;
+            this.renewDate=renewDate;
+        };
+        Car.prototype={
+            constructor:Car,
+            getMake:function(){
+                return this.make;
+            },
+            getModel:function(){
+                return this.model;
+            },
+            getYear:function(){
+                return this.year;
+            },
+            renewRegistration:function(newRenewDate){   //重新修改登记时间
+                this.renewDate=newRenewDate;
+            },
+        };
+
+        var arr=[];
+
+        var stime =new Date().getTime();  //开始时间
+        for(var i=0;i< 5000000;i++){
+            // 用时 runtime 1661ms   内存 web 680
+            arr.push(new Car('上海大众','迈腾','2012-02-03','zlj','xj001','2020-10-17'));
+        } 
+
+        var etime =new Date().getTime(); //结束时间
+        alert(etime-stime);
+
+        
+        
+    
+    </script>
+    
+</body>
+</html>

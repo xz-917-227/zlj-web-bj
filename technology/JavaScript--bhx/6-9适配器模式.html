@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script charset="utf-8">
+
+        // JS设计模式 --- 适配器模式
+
+        // 适配器： 日常生活中：PS2接口(圆口)
+        //    新电脑 ：USB  《---  ps2-to-usb  ----》  鼠标和键盘(圆口)
+
+        // 程序中：简单的适配器
+        // var obj={      //以前的PS2的 (圆口)的鼠标和键盘
+        //     str1:'111',
+        //     str2:'222',
+        //     str3:'333',
+        // };
+
+        // // 适配器      参数：就是上面的那个对象
+        // function adapter(obj){
+        //     interfaceMethod(obj.str1,obj.str2,obj.str3);//这样就把原先的与新的适配一下，让他们可以使用
+        // };
+
+        // // 新电脑  USB的  
+        // function interfaceMethod(x,y,z){   //想要用以前的圆口的鼠标和键盘
+        // //   复杂的操作，实现适配
+        // };
+
+
+
+        // 企业开发中：JavaScript库(extjs , jquery , yui , prototype ... ded...)
+
+        // YAHOO  //有一部人会
+        // Prototype   //有一部人会
+
+        // YAHOO (我们用雅虎的框架，但是以前Prototype程序眼该怎么写代码，还是怎么去写就行了！)
+ 
+        //  模拟：根据id 获得指定的dom元素(以下两种方法度可以实现，只是写法不一样)
+        // Prototype 有一个 $ function (不需要传递任何的"形参"：一个id写一个参数，多个id写多个参数)
+        function $ (){
+            var elements=[];  //接受传进来所有的id
+            for(var i=0;i<arguments.length;i++){  //arguments.length获取"实参"数的长度
+                var element=arguments[i];//获得的实参
+                if(typeof element === 'string'){
+                    element=document.getElementById(element);
+                }
+                if(arguments.length == 1){
+                     return element;
+                } 
+                elements.push(element);
+               
+            } 
+            return elements;
+        };
+        // YUI 有一个 get function   (传递了一个参数)
+        var YAHOO ={};
+        YAHOO.get=function(el){ //窗体了一个形参：类型不是字符串就是数组
+             if(typeof el == 'string' ){ //如果是一个参数时
+                 return document.getElementById(el);
+             }
+             if(el instanceof Array){
+                 var elements=[];
+                  for(var i=0;i<el.length;i++){
+                         elements[elements.length]=YAHOO.get(el[i]);
+                  }
+                  return elements;
+             }
+             if(el){  //存在但既不是字符创 也不是数组时
+                   return el;
+             }
+             return null;
+
+        };
+
+        // 写一个prototype和YUI都可以使用的方法  适配器
+         YAHOO.get = YUIToPrototypeAdapter ;
+
+         function YUIToPrototypeAdapter(){
+            //  对于YUI开发人员来说 永远传递一个参数
+            if(arguments.length==1){
+                var e=arguments[0];
+                return $.apply(window,e instanceof Array? e : [e]);;
+            }else{  //多个参数就是prototype开发人员写的
+                return $.apply(window,arguments); //apply传的是一个数组
+            }
+
+         };
+        
+        
+        window.onload=function(){
+
+            // Prototype开发人员习惯的写法
+            // var domarr = $('inp1','inp2');
+            // alert(domarr);
+
+            // // YUI开发人员习惯的写法
+            // var domarr=YAHOO.get(['inp1','inp2']);
+            // alert(domarr);
+
+            // 来写YUI  我是一个prototype开发人员 用项目经理的说法
+            var domarr= YAHOO.get('inp1','inp2');
+            alert(domarr);
+
+        };
+
+
+
+    </script>
+
+    <input id="inp1" />
+    <input id="inp2" />
+    
+</body>
+</html>

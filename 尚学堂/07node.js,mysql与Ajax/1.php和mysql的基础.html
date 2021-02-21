@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        php mysql 后端操作语言：Java PHP。。。
+        1.php(理解)
+            1.1 变量
+                $变量名=赋值；
+            1.2 字符串
+                "" '' 单双引号嵌套  区别：""会解析里面的变量 ''直接当做字符串输出
+            1.3 数组
+                $arr=array(key=>value,...);    //一维数组
+                $arr=array(array(key=>value,...),array(key=>value,...),...);//二维数组
+            1.4 预定义变量(获取前端传过来的变量)
+                $_GET['定义的变量'];
+                $_POST['定义的变量'];
+        2.mysql(理解 --掌握四条语句：增删改查)
+            1.查询语句
+                $sql="select 信息/* from 表名 where 条件";
+                $sql="select * from userinfo where name='zhangsan'";
+            2.增添语句
+                $sql="insert into 表名(字段1,...) values(值1,...)";
+                $sql="insert into userinfo(id) values(1)"
+            3.修改语句
+                 $sql="update 表名 set 字段='新值' where 条件";
+                 $sql="update userinfo id=2 where name='zhangsan'";
+            4.删除语句
+                $sql="delete from 表名 where 条件"；
+                $sql="delete from userinfo where id=2"
+        -->
+</body>
+</html>

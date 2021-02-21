@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+*{
+    padding: 0;margin: 0;list-style: none;
+}
+li{
+    line-height: 3em;
+    background: darkorchid;
+    color: white;
+    margin-bottom: 5px;
+}
+</style>
+<body>
+    <!-- 闭包练习
+        在页面中创建一个ul列表，点击li打印该li的下标
+     -->
+     <ul>
+         <li>我是第1个li</li>
+         <li>我是第2个li</li>
+         <li>我是第3个li</li>
+         <li>我是第4个li</li>
+         <li>我是第5个li</li>
+     </ul>
+
+     <script src="./js/jquery-1.12.4.js"></script>
+     <script>
+        //  获取页面中所有的li
+        // 下面的代码是有问题的，打印的i都是5
+        // var lis=document.querySelectorAll('li');
+        // for(var i=0;i<lis.length;i++){
+        //     lis[i].onclick=function(){//全局作用域  window  i是全局的
+        //         console.log(i);//因为这个点击事件里没有i，所以就会往上找i,
+        //             //   所以就会在for循环里找i,但是当for循环执行完i已经等于5了(之前的都被覆盖掉了)，所以不管点击那个li，i都是5
+        //     }
+        // }
+
+        // 正确的方法1：为li节点绑定属性
+        // var lis=document.querySelectorAll('li');
+        //    for(var i=0;i<lis.length;i++){
+        //     //  为每个li绑定一个属性，该属性的值就是下标
+        //     lis[i].id=i;//(每循环一次保存当前的i值)
+        //     lis[i].onclick=function(){
+        //         console.log(this.id);
+        //     }
+        // }
+
+        // 正确方法2：利用闭包
+        var lis=document.querySelectorAll('li');
+           for(var i=0;i<lis.length;i++){
+            // lis[i].onclick=function(){
+            //     console.log(i);
+            // }
+
+            lis[i].onclick=(function(j){
+                return function(){  //闭包函数
+                    console.log(j);
+                }
+            })(i);//把i当做实参调用
+        }//整个函数执行完时含有5个闭包
+
+        // 匿名自执行函数  里面再套的一个函数就是闭包函数(最简单的闭包格式)
+        // (function(形参){
+        //    return function(){   //闭包函数
+            // console.log(j);
+            //     }
+        // })(实参);
+     </script>
+</body>
+</html>

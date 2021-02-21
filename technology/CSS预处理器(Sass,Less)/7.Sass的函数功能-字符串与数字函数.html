@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 函数的功能
+         1.简介：在 Sass 中除了可以定义变量，具有 @extend、%placeholder 和 @mixin 等特性之外，
+                还自备了一系列的函数功能。其主要包括：
+                    1.字符串函数
+                    2.数字函数
+                    3.列表函数
+                    4.颜色函数
+                    5.Introspection 函数
+                    6.三元函数等
+            当然除了自备的函数功能之外，我们还可以根据自己的需求定义函数功能，常常称之为“自定义函数”。
+            下面将给大家详细介绍前 4 种最常用的函数。
+      -->
+    
+    <!-- 一。字符串函数
+         简介: 字符串函数顾名思意是用来“处理字符串”的函数。Sass 的字符串函数"主要"包括两个函数：
+             1.unquote($string)：删除字符串中的引号；
+                unquote() 函数主要是用来删除一个字符串中的引号，如果这个字符串没有带有引号，将返回原始的字符串。
+                简单的使用终端来测试这个函数的运行结果：
+                    //SCSS
+                        .test1 {
+                          content:  unquote('Hello Sass!') ;
+                        }
+                        .test2 {
+                           content: unquote("'Hello Sass!"); //注意：字符串 "'Hello Sass!"'  这样是错误的写法
+                        }
+                        .test3 {
+                           content: unquote("I'm Web Designer");
+                        }
+                        .test4 {
+                           content: unquote("'Hello Sass!'");
+                        }
+                        .test5 {
+                           content: unquote('"Hello Sass!"');
+                        }
+                        .test6 {
+                           content: unquote(Hello Sass);
+                        }
+                编译后的 css 代码：
+                        //CSS
+                        .test1 {
+                          content: Hello Sass!; }
+                        .test2 {
+                         content: 'Hello Sass!; }
+                        .test3 {
+                          content: I'm Web Designer; }
+                        .test4 {
+                          content: 'Hello Sass!'; }
+                        .test5 {
+                          content: "Hello Sass!"; }
+                        .test6 {
+                         content: Hello Sass; }
+                注意：从测试的效果中可以看出，unquote( ) 函数“只能删除字符串最前和最后的引号”（双引号或单引号），
+                而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身。
+             2.quote($string)：只能给字符串添加双引号。
+               quote() 函数刚好与 unquote() 函数功能相反，主要用来给字符串添加引号。
+               如果字符串，自身带有引号(单引号或双引号)都会统一换成双引号 ""。如：
+                 //SCSS
+                    .test1 {
+                      content:  quote('Hello Sass!');
+                    }
+                    .test2 {
+                       content: quote("Hello Sass!");
+                    }
+                    .test3 {
+                       content: quote(ImWebDesigner);
+                    }
+                    .test4 {
+                       content: quote(' ');
+                    }
+                编译出来的 css 代码：
+                    //CSS
+                    .test1 {
+                     content: "Hello Sass!";
+                    }
+                    .test2 {
+                     content: "Hello Sass!";
+                    }
+                    .test3 {
+                     content: "ImWebDesigner";
+                    }
+                    .test4 {
+                     content: "";
+                    }
+                使用 quote() 函数只能给字符串增加双引号，而且字符串中间有单引号或者空格时，
+                需要用"单引号或双引号括"起，否则编译的时候将会报错。
+                    如：.test1 {
+                          content:  quote(Hello Sass);
+                         }
+                    这样使用，编译器马上会报错：
+                    error style.scss (Line 13: $string: ("Hello""Sass") is not a string for `quote')
+                解决方案就是去掉空格，或者加上引号：
+                        .test1 {
+                           content:  quote(HelloSass);
+                        }
+                        .test1 {
+                          content:  quote("Hello Sass");
+                        }
+                同时 quote() 碰到特殊符号，比如： !、?、> 等，除了中折号 - 和 下划线_ 都需要使用双引号括起，
+                否则编译器在进行编译的时候同样会报错：
+        其它字符串函数：
+            3. To-upper-case()函数：将字符串小写字母转换成大写字母(只改变字母不改变中文)。如：
+               //SCSS   
+                    .test {
+                     text: to-upper-case(aaaaa);
+                     text: to-upper-case(aA-aAAA-aaa);
+                    }
+                编译出来的 css 代码：
+                    //CSS
+                    .test {
+                     text: AAAAA;
+                     text: AA-AAAA-AAA;
+                    }
+            4.To-lower-case()函数：与 To-upper-case() 刚好相反，将字符串转换成小写字母(只改变字母不改变中文)：
+                //SCSS
+                    .test {
+                     text: to-lower-case(AAAAA);
+                     text: to-lower-case(aA-aAAA-aaa);
+                    }
+                编译出来的 css 代码：
+                    //CSS
+                    .test {
+                     text: aaaaa;
+                     text: aa-aaaa-aaa;
+                    }
+
+
+     -->
+
+    <!-- 二。数字函数 （只比较数字，不比较单位）
+        简介:Sass 中的数字函数主要"针对数字"方面提供一系列的函数功能：
+            1.percentage($value)：将一个“不带单位的数""转换成百分比值"；（百分比值=数字*100%）
+               percentage()函数主要是将一个不带单位的数字转换成百分比形式：如：
+                  percentage(.2)  ==》》  20% （.2  指  0.2）
+                  percentage(2px / 10px)  ==》》  20%（因为出发会把相同单位除去，所以就变成不带单位）
+                  percentage(2em / 10em)  ==》》  20%
+                  percentage(2)  ==》》  200%  注意转换值
+                  如果带单位了就会报错
+                  percentage(2px / 10em)  //不符合触发规则，有单位
+                  percentage(0.2px)     有单位
+                .footer{
+                    width : percentage(.2);
+                }
+            编译后的 css 代码：
+                .footer{
+                    width : 20%;
+                }
+
+            2.round($value)：将"数值"四舍五入，转换成一个最接近的整数；(可带单位可不带单位)
+              round() 函数可以将一个数四舍五入为一个最接近的整数：(带单位了可以把先单位提出来再对数字进行四舍五入计算)
+                    round(12.3)  ==》 12
+                    round(12.5)  ==》 13
+                    round(1.49999)  ==》 1
+                    round(2.0)  ==》 2
+                    round(20%)  ==》 20%    (%是一个百分比单位来的)
+                    round(2.2%)  ==》 2%
+                    round(3.9em)  ==》 4em
+                    round(2.3px)  ==》 2px
+                    round(2px / 3px)  ==》 1
+                    round(1px / 3px)  ==》 0
+                    round(3px / 2em)  ==》 2px/em  (这个是3/2=1.5,四舍五入等于2，单位照写)  但是这不符合除法运算，会报错
+                .footer {
+                 width:round(12.3px)
+                }
+            编译后的 css 代码：
+                .footer {
+                  width: 12px;
+                }
+            在round() 函数中可以携带单位的任何数值。（只是对数字操作，与单位无关）
+
+            3.ceil($value)：将大于自己的小数转换成下一位整数；
+              ceil() 函数将一个数转换成“最接近于自己的整数”，会将一个“大于自身”的“任何小数”转换成大于本身 1 的整数。
+              也就是只做入，不做舍的计算：(只要数字后面的小数大于0，就向上取整)（单位照写）
+                    ceil(2.0)  ==》  2
+                    ceil(2.01) ==》  3
+                    ceil(2.1)  ==》  3
+                    ceil(2.6)  ==》  3
+                    ceil(2.3%)  ==》 3%
+                    ceil(2.3px)  ==》 3px
+                    ceil(2.5px)  ==》  3px
+                    ceil(2px / 3px)  ==》 1
+                    ceil(2% / 3px)  ==》  1%/px  但不符合除法运算
+                    ceil(1em / 5px)  ==》 1em/px  但不符合除法运算
+                  .footer {
+                    width:ceil(12.3px);
+                   }
+                编译后的 css 代码：
+                    .footer {
+                     width: 13px;
+                   }
+                
+            4.floor($value)：将一个数去除他的小数部分；
+              floor() 函数刚好与 ceil() 函数功能相反，其主要将一个数去除其小数部分，并且不做任何的进位。
+              也就是只做舍，不做入的计算(把这数的小数部位去掉即可，相当于向下取整，单位照写)
+                 floor(2.1)  ==》  2
+                 floor(2.5)  ==》  2
+                 floor(3.5%)  ==》  3%
+                 floor(10.2px)  ==》  10px
+                 floor(10.8em)  ==》  10em
+                 floor(2px / 10px)  ==》  0
+                 floor(3px / 1em)  ==》  3px/em  但不符合除法运算
+                   .footer {
+                     width:floor(12.3px);
+                    }
+                 编译后的 css 代码：
+                    .footer {
+                     width: 12px;
+                    }
+
+            5.abs($value)：返回一个数的绝对值（正数）；
+               abs( ) 函数会返回一个数的绝对值。（只对数字操作，单位不受影响）
+                    abs(10)  ==》 10
+                    abs(-10)  ==》 10
+                    abs(-10px)  ==》10px
+                    abs(-2em)  ==》 2em
+                    abs(-.5%)  ==》 0.5%   注意小数的写法多样
+                    abs(-1px / 2px)  ==》 0.5
+                  .footer {
+                     width:abs(-12.3px);
+                    }
+                 编译后的 css 代码：
+                    .footer {
+                     width: 12.3px;
+                    }
+              
+            6.min($numbers…)：找出几个数值之间的最小值；（不能出现两种单位以上的比较，会报错）
+              min() 函数功能主要是在多个数之中找到最小的一个，这个函数可以设置任意多个参数：
+              注意：(1,2,1%,3,300%) 默认没有的单位的数字，他们的单位自动变成有单位数字的单位，在这里就是 % ；
+                     min(1,2,1%,3,300%)  ==》 1%  (比较时与单位无关)
+                     min(1px,2,3px)  ==》 1px
+                     min(1em,2em,6em)  ==》 1em
+                     min(1em,2%,6em)  ==》 有两种单位，报错
+
+            7.max($numbers…)：找出几个数值之间的最大值；（不能出现两种单位以上的比较，会报错）
+              max() 函数和 min() 函数一样，不同的是，max() 函数用来获取一系列数中的最大那个值：
+              注意：(1,2,1%,3,300%) 默认没有的单位的数字，他们的单位自动变成有单位数字的单位，在这里就是 % ；
+                     max(1,5px) ==》 5     (比较时与单位无关)
+                     max(1px,5px) ==》 5px
+                     max(1,3px,5%,6) ==》 有两种单位，报错
+
+            8.random(): 获取随机数 范围 (0-1)  开区间(不会等于0，也不会等于1)
+                random() 函数是用来获取一个随机数：
+                      random()  ==》 0.0893
+                      random()  ==》 0.097
+                      random()  ==》 0.96
+                      random()  ==》 0.532
+                      [random()*7,random()*8]  ==》7-8之间
+
+    -->
+
+    </body>
+</html>

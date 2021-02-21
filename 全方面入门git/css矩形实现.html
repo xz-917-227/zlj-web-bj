@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS矩形</title>
+    <style>
+       
+       .content{
+           width: 100%;
+           position: relative;
+           border: 1px solid red;
+           box-sizing: border-box;
+           height: 10rem;
+           top: 0;
+           left: 0;
+       }
+        .leftbox,
+        .shadowbox1,
+        .shadowbox2,
+        .radiusbox,
+        .rightbox{
+            position: absolute;
+            top: 0;
+            height: 0;
+        }
+       .leftbox{
+           width: 60%;
+           border-top-left-radius: 0.5rem;
+           border-bottom-left-radius: 0.5rem;
+           border-bottom: 10rem solid skyblue;
+           left: 0;
+       }
+      
+       .radiusbox{
+           width: 1rem;
+           right:0;
+           border-top-right-radius: 0.5rem;
+           border-bottom-right-radius: 0.5rem;
+           border-bottom: 10rem solid pink;
+       }
+       .shadowbox1{
+           width: 37%;
+            /* width: 47%;不同布局上，值不一样  */
+           right: 1rem;
+           border-bottom: 10rem solid #cdcdcd;
+           border-left:2rem solid transparent ;
+       }
+       .shadowbox2{
+           border-left: 2rem solid transparent;
+            width: 36%;
+          /* width: 46%;不同布局上，值不一样  */
+            border-bottom: 10rem solid #d4d5d6;
+            right: 1rem;
+       }
+       .rightbox{
+           width: 38%;
+           /* width: 48%;不同布局上，值不一样 */
+           border-bottom: 10rem solid pink;
+           right: 0.5rem;
+           border-left: 2rem solid transparent;
+       }
+    </style>
+</head>
+
+<body style="
+    padding: 1rem;
+    background-color: rgb(240,240,240);
+">
+    <div class="content">
+        <div class="leftbox"></div>
+        <div class="shadowbox1"></div>
+        <div class="shadowbox2"></div>
+        <div class="radiusbox"></div>
+        <div class="rightbox">2333</div>
+    </div>
+
+    <script>
+        // 适配
+        (function () {
+            var newFontSize = window.getComputedStyle(document.documentElement)['font-size'];
+            var fontSizeScale = 16 / parseFloat(newFontSize.replace('px', ''));
+            //获取屏幕大小
+            var html = document.documentElement;
+            document.addEventListener('DOMContentLoaded', function () {
+                resetRem();
+                resetScreen();
+            });
+            window.addEventListener('load', function () {
+                setTimeout(resetRem, 300);
+                resetScreen();
+            });
+            window.addEventListener('resize', function () {
+                setTimeout(resetRem, 300);
+                resetScreen();
+            });
+    
+            function resetRem() {
+                html.style.fontSize = html.clientWidth / 20 * fontSizeScale + 'px';
+                console.log(html.clientWidth);
+                console.log(html.style.fontSize);
+            }
+    
+            function resetScreen() {
+                window.scrollTo(0, 0);
+                // 初始化padding、margin为0
+                // var height = html.clientHeight || window.innerHeight;
+                // var width = html.clientWidth || window.innerWidth;
+                // document.querySelector('body').style.height = height + 'px';
+                // document.querySelector('body').style.width = width + 'px';
+                // document.querySelector('body').style.margin = 0;
+                // document.querySelector('body').style.padding = 0;
+            }
+            resetRem();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        div{
+            width: 300px;height: 300px;
+            background-color: palevioletred;
+            display: none;
+        }
+        button{
+            width: 90px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button">show</button>
+    <button type="button">hide</button>
+    <button type="button">toggle</button>
+    <div></div>
+
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // Jquery内置动画  (宽高透明度同时改变，最后变成block或者none状态(也就是none为不占位状态))
+            //   [两个参数是可选的，回调函数是在动画时间过后实行的的,动画时间单位为毫秒ms] 
+        // 1.显示动画(没有参数时动画是瞬间完成的)  Jquery对象.show(动画时间,回调函数fn(){})方法  
+        // 2.隐藏动画(没有参数时动画是瞬间完成的)  Jquery对象.hide(动画时间,回调函数fn(){})方法
+        // 3.切换动画(隐藏变显示，显示变隐藏 )     Jquery对象.toggle(动画时间,回调函数fn(){})方法
+
+        // 获取所有的button
+        var $btns = $('button');
+        // console.log($btns[0]);//注意用下表获取到的是DOM对象，不能用Jquery的方法
+        // 获取第一个button  用过滤器方法 first()  eq(index)  last()
+        $btns.first().click(function(){
+            // $('div').show();//没有参数时动画是瞬间完成的
+            $('div').show(2000);//参数是动画时间
+        });
+        // 获取中间的button
+        $btns.eq(1).click(function(){
+            // $('div').hide();//没有参数时动画是瞬间完成的
+            $('div').hide(3000);//参数是动画时间
+            $('div').hide(3000,function(){//参数是动画时间，回调函数
+                console.log('隐藏完成了');
+            });
+        });
+        // 获取最后一个button
+        $btns.last().click(function(){
+            $('div').toggle(3000,function(){//参数是动画时间，回调函数
+                console.log('动画执行完毕了');
+            });
+        });
+    
+    </script>
+</body>
+</html>

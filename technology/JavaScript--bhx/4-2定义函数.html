@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //  三种方式定义函数
+
+        // 1. function语句式
+        function test1(){
+            alert('我是函数的执行体');
+        }
+    //    function test(){;}//里面给一个;分号，表明是空函数
+      //  test1();//调用
+
+        // 2.函数的直接量 ECMAScript
+        var test2=function(){
+            alert('我是test2');
+        }
+      //  test2();//调用
+
+   // 3.Function构造函数式   参数(可以多个)  函数执行体(;结束)  
+        var test3=new Function("a","b","return a+b;")
+      //  alert(test3(10,20));//调用函数
+        var test=new Function();//空函数
+
+        
+        // 效率对比
+
+
+        // 解析顺序问题  对于function语句式的函数，JavaScript解析器会优先的解释
+       // 按顺序解析
+        // function test1(){
+        //     alert('1111');
+        //     }
+        //     test1();
+
+        //     var test2=function(){
+        //       alert('22222222');
+        //         }
+        //     test2();
+    //  这时JavaScript会先去找function语句式函数执行，然后再从头按顺序执行，
+    // 所以test1()有效 
+         //  test1();
+          function test1(){
+            alert('1111');
+            }
+        //   这里是按顺序执行的，所以test2()无效，
+          //  test2();  //表示变量声明了，但是没有被赋值
+            var test2=function(){
+              alert('22222222');
+                }
+
+         //例子  重点，好好理解
+        //  因为JavaScript会先执行function语句式函数，所以会先把所有的function语句式函数执行一遍
+        // 当有重复是会被覆盖掉(唯一性),然后在从头开始执行，执行过的就不会在执行了
+        // 所以结果是  4  2 3 3  5 6
+         function f(){return 1;} 				// 函数1 	
+         alert(f());		//返回值为4 说明第1个函数被第4个函数覆盖	
+         var f = new Function("return 2;");		// 函数2 
+         alert(f());		//返回值为2 说明第4个函数被第2个函数覆盖
+         var f = function(){return 3;}			// 函数3 
+         alert(f());	       //返回值为3 说明第2个函数被第3个函数覆盖	
+         function f(){return 4;} 				// 函数4 
+         alert(f());		//返回值为3 说明第4个函数被第3个函数覆盖
+         var f = new Function("return 5"); 		// 函数5 
+         alert(f());	//返回值为5 说明第3个函数被第5个函数覆盖	
+         var f = function(){return 6 ;}			// 函数6 
+         alert(f());		//返回值为6 说明第5个函数被第6个函数覆盖
+ 
+
+         //  函数作用域的概念
+         var k = 1 ; 
+        function t1(){
+	         var k = 2 ;   //局部变量 k
+	        function test(){return k ;}   //function语句 t1();调用函数返回2
+	       //var test = function(){ return k}; //函数直接量  t1();调用函数返回2
+	       //var test = new Function('return k;');   //函数构造式  t1();调用函数返回1(因为这种函数是动态的，new找的就是顶级的变量)
+	        alert(test());
+       }
+         t1();
+
+           
+    </script>
+</body>
+</html>

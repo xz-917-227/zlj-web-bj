@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="box">112233</div>
+    <div class="sty">223</div>
+    <div class="sty">444</div>
+    <p>1</p>
+    <p>2</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul> -->
+    <!-- <div>
+        <span>1</span>
+        <p>
+            <span>3</span>
+        </p>
+    </div>
+    <span>2</span> -->
+    <!-- <ul>
+        <p>454</p>
+        <li>
+            <span>234445</span>
+        </li>
+        <li>我是第2个选择器</li>
+        <li>我是第3个选择器</li>
+        <li id="li4">我是第4个选择器</li>
+        <li>我是第5个选择器</li>
+        <li>我是第6个选择器</li>
+        <li>我是第7个选择器</li>
+        <p>234</p>
+        <p>3455</p>
+        <li>我是第8个选择器</li>
+        <li>我是第9个选择器</li>
+        <li>我是第10个选择器</li>
+    </ul>
+     -->
+
+    <!-- <div>
+        <p>1</p>
+        <h2>2</h2>
+        <p>3</p>
+        <h5>4</h5>
+        <p>5</p>
+        <h1>1</h1>
+        <h3>7</h3>
+        <h1>6666</h1>
+        <h1>8</h1>
+        <h1>9</h1>
+    </div> -->
+
+    姓名：<input type="text"><br>
+    密码：<input type="password" name="" id=""><br>
+    性别：<input type="radio">男<input type="radio">女
+    爱好：<input type="checkbox" checked>篮球<input type="checkbox">羽毛球<input type="checkbox">足球
+    <button type="submit">提交</button>
+    <button type="reset">重置</button>
+    <button type="button">普通</button>
+    <select name="" id="">
+        <option value="">1</option>
+        <option value="">2</option>
+        <option value="" selected>3</option>
+    </select>
+
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        //html快捷写法 li{我是第$个选择器}*10==》按回车，会按顺序得到文本内容为1-10的10个li
+                //    {}里面放的是文本内容 $指数字
+    // css选择器
+    //  1.id选择器
+        // $('#box').css('backgroundColor','red');
+    // class选择器
+        // $('.sty').css('backgroundColor','yellow');
+    //同时选中多个选择器(中间用逗号隔开) 如：同时选中id和class选择器
+        // $('#box,.sty').css('backgroundColor','blue');
+        // 标签选择器
+        // $('p').css('color','red');
+        // 特殊选择器  this (this指的就是当前的选择器(调用者)，是DOM对象，但是要用JQuery对象形式才能调用JQuery方法，所以 this==>$(this))
+        // $('li').click(function(){ 
+        //     console.log($(this).text());  //点击li打印当前li的内容
+        // });
+        // 特殊选择器 * (全局选择器，选中所有)
+        // console.log($('*'));
+        // 后代选择器(用空格隔开)
+        // $('div span').css('color','red');
+        // 子选择器(用大于号)
+        // $('div>span').css('color','blue');
+        // 兄弟选择器 +(表示当前紧挨着#li4后面的第一个li) ~(表示后面所有的li)
+        // $('#li4+li').css('color','red');
+        // $('#li4~p').css('color','red');
+        // 过滤选择器(重点)(只拿第一级的孩子)
+        // $('ul :first').css('color','blue'); //拿到ul里面的第一个孩子
+        // $('ul li:first').css('color','blue'); //拿到ul里面的第一个li孩子
+        // $('ul :last').css('color','blue'); //拿到ul里面的最后一个孩子
+        // $('ul p:last').css('color','blue'); //拿到ul里面的最后一个p孩子
+        // $('ul :even').css('color','red');//拿到ul里面的所有下表为偶数的孩子
+        // $('ul li:even').css('color','red');//拿到ul里面的所有下表为偶数的li孩子
+        // $('ul :odd').css('color','red');//拿到ul里面的所有下表为奇数的孩子
+        // $('ul li:odd').css('color','yellow');//拿到ul里面的所有下表为奇数的li孩子
+        // $('ul :eq(0)').css('color','blue');//拿到ul里面的下表为0的孩子(eq(下标))
+        // $('ul li:eq(0)').css('color','blue');//拿到ul里面所有li里面中下表为0的li孩子(相当于拿到第一个li)
+        // $('ul li:eq(5)').css('color','blue');//拿到ul里面所有li里面中下表为5的li孩子(相当于拿到第六个li)
+        // $('ul li:lt(3)').css('color','blue');//拿到ul里面所有li里面中下表小于3的li孩子(相当于拿到前三li)
+        // $('ul li:gt(3)').css('color','blue');//拿到ul里面所有li里面中下表大于3的li孩子
+
+            // 结构选择器
+            // 1.(按位置算)(拿到所有父级元素的孩子)
+         // 注意区别 :first(只拿第一级的第一个孩子)  和  :first-child(拿到所有父级元素的第一个孩子)
+        // $('ul :first-child').css('color','yellow');//拿到所有父级元素里面的第一个孩子(如果里面的子元素还有嵌套的，还会继续过滤找到第一个孩子)
+        // $('ul li:first-child').css('color','yellow');//判断拿到所有父级元素里面的第一个孩子是不是li，是的话就设置样式，不是就不设置
+        // $('ul :last-child').css('color','yellow');//拿到所有父级元素里面的最后一个孩子
+        // $('ul li:last-child').css('color','yellow');//判断拿到所有父级元素里面的最后一个孩子是不是li，是的话就设置样式，不是就不设置
+        // $('ul :nth-child(2)').css('backgroundColor','red');//拿到从位置上的第二个孩子(不是下标)
+        // $('ul p:nth-child(2)').css('backgroundColor','red');//拿到从位置上的第二个孩子(不是下标),判断是不是p元素，是就匹配，不是就不匹配
+        // $('ul :nth-child(even)').css('backgroundColor','red');//拿到从位置上算的所有位置为偶数的孩子(不是下标)
+        // $('ul li:nth-child(even)').css('backgroundColor','red');//拿到从位置上算的所有位置为偶数的孩子(不是下标),判断是li就匹配
+        // $('ul :nth-child(odd)').css('backgroundColor','red');//拿到从位置上算的所有位置为奇数的孩子(不是下标)
+        // $('ul li:nth-child(odd)').css('backgroundColor','red');//拿到从位置上算的所有位置为奇数的孩子(不是下标),判断是li就匹配
+        // $('ul :nth-child(3n)').css('backgroundColor','red');//拿到从位置上算的所有位置为3的倍数的孩子(不是下标)
+        // $('ul li:nth-child(3n)').css('backgroundColor','red');//拿到从位置上算的所有位置为3的倍数的孩子(不是下标),判断是li就匹配
+        // $('ul :nth-child(2)').css('color','blue');//拿到从位置上正方向的第二个孩子(不是下标)
+        // $('ul :nth-last-child(5)').css('color','blue');//拿到从位置上反方向的第5个孩子(不是下标)
+
+        // 2.按照类型找()
+        // $('div h1:first-of-type').css('color','blue');//拿到div里面类型为h1的第一个h1
+        // $('div h1:last-of-type').css('color','blue');//拿到div里面类型为h1的最后一个h1
+        // $('div h1:nth-of-type(2)').css('color','blue');//拿到div里面正方向类型为h1的第二个h1
+        // $('div h1:nth-last-of-type(2)').css('color','blue');//拿到div里面反方向类型为h1的第二个h1
+
+        // 表单过滤选择器(重点)
+        // $(':input').css('background','red');//拿到所有的input(输入框)
+        // $(':text').css('background','red');//拿到所有的文本框text
+        // $(':password').css('background','red');//拿到所有的密码框password
+        // console.log(  $(':radio'));//拿到所有的单选框radio
+        // console.log(  $(':checkbox'));//拿到所有的复选框checkbox
+        // $(':button').css('color','blue');//拿到所有的button
+        // $(':reset').css('color','red');//拿到所有的重置button
+        // $(':submit').css('color','yellow');//拿到所有的提交button
+        console.log($(':checked'));//拿到含有checked属性的元素
+        console.log($(':selected').text());//拿到含有selected属性的元素
+
+
+
+    </script>
+</body>
+
+</html>

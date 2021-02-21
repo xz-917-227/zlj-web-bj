@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 外部样式 -->
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+    <!-- 引入图标 -->
+      <link rel="icon" href="./images/img.jpg">
+     
+    <style>
+    /* <!-- 导入式(导入的也是外部样式)：放在style内，只能导入css文件   --> */
+         @import "index.css";
+        /* 内部样式 */
+    div{
+        background-color: green;
+    }
+    </style>
+
+</head>
+<body>
+    <!-- 引入方式的优先级(3个)：行内样式 > 内部样式和外部样式
+    内部样式和外部样式优先级一样，后写的生效 -->
+    <!-- 行内样式 -->
+    <div style="width: 300px;height: 300px;">盒子</div>
+
+    <!-- @import 和 link 的区别   (所以一般不使用@import)
+        1.加载顺序不同，@import先加载html在加载css,link是同时加HTML和css的，
+        2.加载内容不同，@import只能加载css文件，link还能加在其他，比如icon   <link rel="icon" href="./images/img.jpg">
+        3.兼容性不同，@import支持IE5以上的版本 ，link所有版本度支持
+        4.@import会增加页面HTTP的请求
+        5.js操作时，只能操作link引入的css文件
+    -->
+
+    
+
+</body>
+</html>

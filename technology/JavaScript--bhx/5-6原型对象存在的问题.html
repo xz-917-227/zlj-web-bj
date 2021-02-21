@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型的概念：原型对象里的所有属性和方法 被所有构造函数实例化出来的对象所共享
+                    //   这是一个很好的特点，但是也带来了一些问题
+
+        //       function Person(){
+
+        //       }
+        //     //   简单对象
+        //     Person.prototype={
+        //         constructor:Person,
+        //         name:'z3',
+        //         age:'20',
+        //         jop:'程序员',
+        //         friends:['李四','王五'],
+        //         sayName:function(){alert('我的名字！');},
+        //     };
+
+
+        //     var p1=new Person();
+        //     var p2=new Person();
+         
+        //  // 问题：给p1添加了属性，整体都会被添加(修改某一个实例对象，整体都会被修改)
+        //     p1.friends.push('赵柳');
+        //     alert(p1.friends);
+        //     alert(p2.friends);   //所以P2里面也有赵柳
+
+        // 解决方法
+        // 组合使用原型和构造函数式模式  (定义一个类  开发时常用的方式  也是最广泛的)
+        // function Person(name,age,friends,job){   //构造函数式
+        //        this.name=name;
+        //        this.age;age;
+        //        this.friends=friends;
+        //        this.job=job;
+        // }
+        // Person.prototypr={    //原型
+        //         constructor:Person,
+        //         sayName:function(){alert(this.name);},
+        // };
+        // // 这两种结合就不会出现属性值一样的问题了(不会出现冲突了)，这种方式，才是开发中用的模式
+
+        // var p1=new Person('z3','23','xiaoli','程序员');
+        // var p2=new Person('l4','21','xiaolu','程序员');
+
+        // alert(p1.friends);
+        // alert(p2.friends);
+
+        //  其他常用模式
+        // 1.动态原型模式：（让你的代码 都封装到一起）(把属性和方法读写在一起)
+    //   function Person(name,age,friends,job){   //构造函数式
+    //               this.name=name;      
+    //               this.age;age;
+    //              this.friends=friends;
+    //              this.job=job;
+    //             // 动态原型方法: (这里只会执行一次，第一不存在，执行，第二次存在后不再执行)
+    //             if(typeof this.sayName !='function'){ //通过这种方式添加方法
+    //                    Person.prototype.sayName=function(){
+    //                        alert(this.name);
+    //                    }
+    //             }
+
+    //       }
+
+
+        // 2.稳妥构造函数式：durable object(稳妥对象) 非常安全的环境中开发
+        // 没有公共属性 ，不能使用this，适合在安全的环境中开发
+         function Person(name,age,job){   //构造函数式
+            //    创建一个要返回的对象
+            var obj=new Object();
+            // 可以定义一下私有的变量核函数 （只能里面调用 private）
+            var name=name;
+            // var sex='男',
+            // var saySex=function(){};
+
+            // 添加一个对外的方法
+            obj.sayName=function(){
+                alert(name);  //在函数里面可以调用私有变量
+            }
+            return obj;
+
+        }
+
+        var p1=new Person('z3');
+        p1.sayName();//要调用函数里面的属性，只能通过sayName()方法
+    
+    
+    
+    </script>
+</body>
+</html>

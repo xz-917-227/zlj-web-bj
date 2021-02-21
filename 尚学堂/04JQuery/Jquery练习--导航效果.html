@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        div {
+            margin: 50px auto;
+            width: 1000px;
+            height: 500px;
+            border: 2px solid #0423ac;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li {
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+            font-weight: bold;
+            margin: 20rpx 20px;
+            background-color: #0fd895;
+            position: relative;
+        }
+
+        span {
+            width: 300px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 99;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            color: #051ce6;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>
+                <p>我是是第1个li</p>
+                <span>我是第1个li</span>
+            </li>
+            <li>
+                <p>我是是第2个li</p>
+                <span>我是第2个li</span>
+            </li>
+            <li>
+                <p>我是是第3个li</p>
+                <span>我是第3个li</span>
+            </li>
+            <li>
+                <p>我是是第4个li</p>
+                <span>我是第4个li</span>
+            </li>
+            <li>
+                <p>我是是第5个li</p>
+                <span>我是第5个li</span>
+            </li>
+            <li>
+                <p>我是是第6个li</p>
+                <span>我是第6个li</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        $('ul li').hover(
+            function () {  //移入动画
+                // console.log(111111);
+                $('span').eq($(this).index()).stop().slideDown(500);
+            },
+            function () { //移出动画
+                // console.log(22222);
+                $('span').eq($(this).index()).stop().slideUp(500);
+            },
+        );
+    </script>
+</body>
+
+</html>

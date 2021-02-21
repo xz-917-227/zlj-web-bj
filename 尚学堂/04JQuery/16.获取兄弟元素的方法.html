@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我是第1个li元素</li>
+        <li id="li2">我是第2个li元素</li>
+        <li>我是第3个li元素</li>
+        <li>我是第4个li元素</li>
+        <li id="li5">我是第5个li元素</li>
+        <li>我是第6个li元素</li>
+        <li>我是第7个li元素</li>
+        <li>我是第8个li元素</li>
+        <li id="li9">我是第9个li元素</li>
+        <li>我是第10个li元素</li>
+    </ul>
+    
+
+    <script src="./js/jquery-1.12.4.js"></script>
+
+    <script>
+        // $('#li5').siblings().css('backgroundColor','red');//获取所有的兄弟元素
+        // $('#li5').next().css('color','blue');//获取后面一个兄弟元素
+        // $('#li5').nextAll().css('color','yellow');//获取后面所有兄弟元素
+        // $('#li5').nextUntil('#li9').css('color','blue');//获取后面兄弟元素到指定兄弟元素为止(不包括指定的兄弟元素)
+
+        // $('#li5').prev().css('color','pink');//获取前面一个兄弟元素
+        // $('#li5').prevAll().css('color','pink');//获取前面所有兄弟元素
+        $('#li5').prevUntil('#li2').css('color','pink');//获取前面兄弟元素到指定兄弟元素为止(不包括指定的兄弟元素)
+        
+        
+    </script>
+
+</body>
+</html>

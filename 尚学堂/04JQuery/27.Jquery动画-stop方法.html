@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #btns{
+        width: 200px;
+        height: 100px;
+        background-color: red;
+        position: fixed;
+        top: 50px;
+        right: 200px;
+    }
+    button{
+        padding: 10px;
+    }
+    #content{
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="btns">
+        <button>animate方法</button>
+        <button>stop方法</button>
+    </div>
+    <div id="content"></div>
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+
+        /*
+            stop()方法(重点)
+            1.作用：停止动画的方法
+            2.格式：JQuery对象.stop(参数1，参数2);
+                参数说明：
+                  参数1，为布尔值，默认是false(指结束当前动画，执行下一次动画)，
+                       如果为true(指结束当前动画，并且清空动画队列，即删除剩余的动画)[是对后面动画如何处理，是执行后面动画还是删除后面动画]
+                  参数2，为布尔值，默认是false(指当前动画没有完成，开始执行下一次动画)
+                        如果为true(指立即完成当前动画，并完成动画队列，即剩余的动画) [是对当前动画如何处理，是没有完成还是立即完成]      
+        
+        */ 
+
+        $('button').first().click(function(){
+            $('#content')
+                .animate({top:400},3000)
+                .animate({left:400},3000)
+                .animate({top:0},3000)
+                .animate({left:0},3000);
+        });
+        $('button').last().click(function(){
+            // $('#content').stop(false,false);
+            // $('#content').stop(true,false);
+            $('#content').stop(false,true);
+        });
+       
+    </script>
+</body>
+</html>

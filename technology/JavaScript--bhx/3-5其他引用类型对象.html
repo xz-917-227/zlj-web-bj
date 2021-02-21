@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <script type="text/javascript">
+            //单体对象（两个）
+
+            // 1.Global 全局的  终极的 兜底的对象  ()不存在的
+            // 其内部自带一些方法(直接使用，不需要用new等其他关键字)
+            // encodeURI   encodeURIComponent 转码方法
+            // var uri='http://www.bjsxt.com cn';
+            // var str1=encodeURI(uri);    //对“ ： //”不会进行转码
+            // var str2=encodeURIComponent(uri);  //常用的方法  (任何不标准的文字都会进行转码)
+            // alert(str1);
+            // alert(str2);
+
+            // decodeURI    decodeURIComponent    解码方法
+            // alert(decodeURI(str1));
+            // alert(decodeURIComponent(str2));
+             
+
+            // eval(string) 方法  类似于  无形的JavaScript解析器  (在JavaScript最强大的方法)
+        //    var str1="var a = 10; var b=20;";
+        //    eval方法，可以直接把string解析成js脚本
+        //    eval(str1);//里面的参数必须是String类型的，直接转换成var a = 10; var b=20;脚本语句
+        //    alert(a+b); //输出30
+
+        //    数组字符串 直接使用 eval(stringarr)
+        // {name:z3,age:20}
+        // var strobj="{name:'z3',age:20}";
+        // var obj=eval('('+strobj+')');//当是对象时，格式必须是这样的
+        // alert(obj.name);//输出  z3
+
+
+        // parseInt    parseFloat  方法 (把字符串转换成Number类型)
+    //     var num1=parseInt('20');
+    //     var num2=parseFloat('20.5');
+    //     var num3='20.55';  //还是string类型
+    //     alert(num1 +"  "+num2+"   "+num3);
+    //    alert(typeof num1);
+    //    alert(typeof num2);
+    //    alert(typeof num3);
+
+
+        //escape(uri转码)   unescape（URI解码）
+        // var str1='尚学堂';
+        // alert (str1);
+        // var str2=escape(str1);
+        // alert (str2);
+        // var str3=unescape(str2);
+        // alert (str3);
+
+
+        //   isNaN(NaN相当于not a number) 判断变量是不是Number类型  不是 返回ture  是  返回false
+        // 记住类型会自动转换
+        // var num1='10';  //会自动转换为一个数值10
+        // var num2='abcdes';
+        // alert(isNaN(num1));  //是一个number类型，返回false
+        // alert(isNaN(num2));  //不是一个number类型，返回true
+
+        // // 在js中  只有NaN  是自己不等于自己本身的
+        // // 比如
+        //  if(NaN ==NaN){
+        //      alert('相等');
+        //  }
+        //  else{
+        //      alert('不等');
+        //  }
+
+
+        //  2.Math对象 (自己去百度学一学)
+
+
+
+
+    // Date对象  日期类型
+
+    var date=new Date();
+    alert(date);
+
+    var year=date.getFullYear();  //获取当前时间的年份
+    var month=date.getMonth();  //获取当前时间的月份
+    var today=date.getDate();  //获取当前时间的日期
+    var day=date.getDay();  //获取当前时间的星期(得到的是0-6数字，要从星期天-星期六一一对应)
+    var hours=date.getHours();  //获取当前时间的“时”
+    var min=date.getMinutes();  //获取当前时间的“分”
+    var s=date.getSeconds();  //获取当前时间的“秒”
+    var ms=date.getTime();  //获取当前时间的“毫秒”
+    document.write("今天是："+year+"年"+month+"月"+today+"号"+"星期"+day+"   "+hours+"时"+min+"分"+s+"秒"+ms+"毫秒");
+
+
+
+     
+     </script>
+
+
+</body>
+</html>

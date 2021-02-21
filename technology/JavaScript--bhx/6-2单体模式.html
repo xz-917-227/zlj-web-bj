@@ -1,0 +1,138 @@
+<script charset="uf-8">
+    
+    // 单体模式(singleton):有四种  ，一般不能采用new关键字
+    // 1.简单单体模式    不是私有的，只是一个的简单的对象   现在不常用了
+    // var Singleton ={ //这种模式不能再使用new了，不能去实例，就是Singleton，所以是简单单体模式
+    //       attr1:true,      
+    //       attr2:10,
+    //       method1:function(){
+    //           alert('我是方法1');
+    //       },
+    //       method2:function(){
+    //           alert('我是方法2');
+    //       },
+    // };
+    // // 直接调用，不能再去实例，就是Singleton，已经是一个实例了
+    //    alert(Singleton.attr1);
+
+    //    补充:划分命名空间（区分代码）  开发人员一般这样写简单单体模式
+    //    var BXH={};  //这是最大的空间  //创建一个自己的空间，把自己的代码，类等放进去，与别人的代码区分开来
+    //    BXH.Singleton={  //这是空间里的
+    //     attr1:true,      
+    //       attr2:10,
+    //       method1:function(){
+    //           alert('我是方法1');
+    //       },
+    //       method2:function(){
+    //           alert('我是方法2');
+    //       },
+    //    };  
+    // //    调用 ，用这种方式调用
+    // alert(BXH.Singleton.attr2);
+
+
+    // 2.借用闭包创建单体：闭包主要的目的 保护数据
+    // (function test(){ })();  把函数放在一个()括号里，再添加一个()扩号表示执行
+    //  只要脚本一运行，这个函数就会执行 ，，这是一个最简单的闭包体  块级作用域的概念
+        // 创一个一个属于自己的命名空间  最顶层的
+//         var BXH={};
+//         BXH.Singleton=(function(){
+//  //闭包主要的目的:在这里可添加一些自己的私有成员，不被外面访问，只有通过return出口才能访问到
+//               var a1=true;  //语句用分号结尾
+//               var a2=10;
+//               var f1=function(){
+//                   alert('f1');
+//               };
+//               var f2=function(){
+//                   alert('f2');
+//               };
+
+//             // 把块级作用域里的执行结果赋值给我的单体对象
+//             return{  //这里会返回回去 是公有的  
+//                 attr1:true,      
+//                 attr2:10,
+//                 method1:function(){
+//                     return f1();  //这里是能通过return才能访问
+//                  },
+//                method2:function(){
+//                 return f2();
+//                },
+
+//             };
+//         })();
+//         // 
+//         alert(BXH.Singleton.attr1);
+//         BXH.Singleton.method1();
+
+// 3.惰性单体模式(和闭包单体有一些相似的地方)
+    // 命名空间
+    //  var Ext={};
+    //  Ext.Base=(function(){
+    //     //  私有变量  控制返回的单体对象
+    //     var uniqInstance ;//undefined  控制要不要返回单体对象，或者返回哪些单对象
+    //     //   需要一个构造器 init 初始化单体对象的方法
+    //     function init(){
+    //            //  私有成员变量
+    //     var a1=10;
+    //     var a2=true;
+    //     var b1=function(){
+    //         alert('b1');
+    //     };
+    //     var b2=function(){
+    //         alert('b2');
+    //     };
+    //     return {
+    //         attr1:a1,
+    //         attr2:a2,
+    //         method1:function(){return b1();},
+    //         method2:function(){return b2();},
+    //     };
+
+    //     }
+
+      
+          
+    //       return {   //返回一个方法    整体代码执行完最后要返回的
+    //           getInstance :function(){
+    //              if(!uniqInstance){   //如果不存在 创建单体实例
+    //                   uniqInstance=init();   //什么时候用到这个单体，就去调用它，然后返回
+    //              }
+    //              return uniqInstance;
+    //           }
+    //       };
+
+    //  })();
+
+    //  alert(Ext.Base.getInstance());  //object
+    //  Ext.Base.getInstance().method1();
+
+    // 4.分支单体模式(判断程序的分支 浏览器的差异检测)
+    // 命名空间
+      var Ext={};
+      var def=false;  //这里来表示浏览器  我用true false 代替
+      Ext.More=(function(){
+          var objA={   //比如这个是 火狐浏览器  内部的一些配置
+              attr1:'HF属性1',
+            //   属性2
+            //   方法1
+            //   方法2
+
+          };
+          var objB={   //比如这个是 IE浏览器  内部的一些配置
+            attr1:'IE属性1',
+            //   属性2
+            //   方法1
+            //   方法2
+
+          };
+          return (def) ? objA : objB ;
+
+      })();
+
+      alert(Ext.More.attr1);
+
+     
+
+
+
+</script>

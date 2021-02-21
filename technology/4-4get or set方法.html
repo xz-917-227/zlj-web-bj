@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" charset="utf-8">
+        //  get/set方法
+        var man ={
+            name:'Bosn',
+            weibo:'@Bosn',
+            // get/set 属性名 (){里面写一些内容},是放在定义属性里面写的
+            get age(){  //添加属性
+                return new Date().getFullYear()-2000;//返回年龄
+            },
+            set age(val){   //设置(修改)属性
+                console.log('Age can not be set to '+val);
+            }
+        }
+
+        console.log(man.age);//20
+        man.age=100;//因为在set age(){}方法没有做任何事情，所以设置属性无效
+        console.log(man.age);//still 20
+
+
+        
+
+
+    </script>
+</body>
+</html>

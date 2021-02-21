@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型   prototype
+
+        // 构造函数方式
+        // function Person (name,age){
+        //     this.name=name;
+        //     this.age=age;
+        //     // this.sayName=function(){
+        //     //     alert("我是姓名");
+        //     // }
+        //     this.sayName=sayName;
+        // }
+        // function sayName(){  //把方法放在一个函数里，只调用，不会new新的，效率高
+        //     alert(this.name);  //但是这里全局变量，所有度可以调用，也不太好
+        // }
+        // var p1=new Person('z3',20);
+        // var p2=new Person('z4',21);
+        // p1.sayName();
+
+        // 构造函数方式的bug(降低效率)
+        // 每次调用时都会重新new一个sayName方法，所以返回false
+      //  alert(p1.sayName==p2.sayName);//false(函数的比较)
+      //  alert(p1.name==p2.name);//false
+
+    //   prototype概念  (屏蔽了构造函数的缺点)
+    // 创建每一个函数时都有一个prototype属性，这个属性其实是一个指针，而这个指针总之指向一个对象
+    // 这个对象的用途就是将特定的属性和方法包含在内，起到一个所有实例所共享的作用
+
+    function Person(){
+
+    }
+    var obj=Person.prototype;//Person.prototype就是(原型)对象
+    // alert( obj.constructor); //这个构造器就是Person,就是一个对象
+    // alert(typeof obj);//object
+
+// 把这些属性放在Person.prototype(原型对象)，就是公共属性，new一次，可以多次调用，结果一样
+    obj.name='z3',
+    obj.age=20;
+     obj.sayName=function(){
+         alert(this.name);
+     }
+     var p1=new Person();
+     var p2=new Person();
+    //  alert(p1.age);
+    //  alert(p1.name);
+    //  p1.sayName();
+    //  p2.sayName();
+    // alert(p1.sayName==p2.sayName);//true(屏蔽掉了构造函数的缺点)
+
+    //  构造函数   原型对象    实例对象  的关系
+    
+    // 构造函数.prototype=原型对象
+    //  原型对象.constructor=构造函数     alert( obj.constructor);
+    // 实例对象.prototype=()原型对象  isPrototypeOf方法 判断传入的对象的原型对象，是不是另一个对象
+   alert( obj.isPrototypeOf(p1));//判断p1(实例对象) 的原型对象 是不是obj
+    
+    </script>
+</body>
+</html>

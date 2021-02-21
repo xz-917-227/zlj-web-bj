@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        div{
+            width: 300px;height: 300px;
+            background-color: palevioletred;
+        }
+        button{
+            width: 90px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button">fadeIn</button>
+    <button type="button">fadeOut</button>
+    <button type="button">fadeToggle</button>
+    <button type="button">fadeTo</button>
+    <div></div>
+
+
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        // Jquery内置动画  (改变的透明度opacity值)
+            //   [两个参数是可选的，回调函数是在动画时间过后实行的的,动画时间单位为毫秒ms] 
+        // 1.淡入动画(没有参数时动画是瞬间完成的)  Jquery对象.fadeIn(动画时间,回调函数fn(){})方法  
+        // 2.淡出动画(没有参数时动画是瞬间完成的)  Jquery对象.fadeOut(动画时间,回调函数fn(){})方法
+        // 3.切换动画(淡入变淡出，淡出变淡入 )     Jquery对象.fadeToggle(动画时间,回调函数fn(){})方法
+        // 注意前三者也是最后变成block或者none状态(也就是none为不占位状态)
+         //4.切换到指定透明度动画      Jquery对象.fadeTo(动画时间,指定透明度值,回调函数fn(){})方法
+        //  但是fadeTo动画，指定透明度为0时还是占位状态的，也就是不是none状态。(也就是只改了opacity，没有改变display)
+
+        // 获取所有的button
+        var $btns = $('button');
+        // console.log($btns[0]);//注意用下表获取到的是DOM对象，不能用Jquery的方法
+        // 获取第一个button  用过滤器方法 first()  eq(index)  last()
+        $btns.first().click(function(){
+            $('div').fadeIn(2000);//参数是动画时间
+        });
+        // 获取中间的button
+        $btns.eq(1).click(function(){
+            // $('div').slideUp(3000);//参数是动画时间
+            $('div').fadeOut(3000,function(){//参数是动画时间，回调函数
+                console.log('向上动画完成了');
+            });
+        });
+        // 获取最后一个button
+        $btns.eq(2).click(function(){
+            $('div').fadeToggle(3000,function(){//参数是动画时间，回调函数
+                console.log('动画执行完毕了');
+            });
+        });
+        $btns.last().click(function(){
+            $('div').fadeTo(3000,0,function(){
+                console.log('动画执行完毕了');
+            });
+        });
+    
+    </script>
+</body>
+</html>

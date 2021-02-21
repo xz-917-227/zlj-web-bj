@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Sass安装(Mac系统)：
+        1.安装Ruby：ruby -v检查电脑是否安装了ruby-- brew install ruby 安装ruby
+        2.安装Sass：1.sudo gem install sass 安装-- sass -v检查是否安装
+                    2.下载好sass 然后 gem install 安装路劲  (这样也可以安装sass)
+        3.在编辑器中创建一个简单的.scss文件--编写代码-- sass --watch test.scss:test.css--然后把桌面上的test.css文件拖到编辑器中看是否能用，能用表明本地安装好了sass
+     -->
+     <!-- 
+         Sass安装(Window系统)：（下载安装好ruby后建议直接使用第五个步骤才会成功）
+            1.在 Windows 平台下安装 Ruby 需要先有 Ruby 安装包，大家可以到 Ruby 的官网（http://rubyinstaller.org/downloads）下载对应需要的 Ruby 版本。
+            2.Ruby 安装文件下载好后，可以按应用软件安装步骤进行安装 Ruby。在安装过程中，个人建议将其安装在 C 盘下，在安装过程中选择第二个选项（不选中，就会出现编译时找不到Ruby环境的情况），如下图所示：
+            3.Ruby 安装完成后，在开始菜单中找到新安装的 Ruby，并启动 Ruby 的 Command 控制面板，如下图所示：
+            4.当你的电脑中安装好 Ruby 之后，接下来就可以安装 Sass 了。同样的在windows下安装 Sass 有多种方法。但这几种方法都是非常的简单，只需要在你的命令终端输入一行命令即可。
+                1.通过命令安装 Sass--打开电脑的命令终端，输入下面的命令：gem install sass
+                2.通过 Compass 来安装 Sass(因为 Compass 是基于 Sass 开发的一个框架。也就是说，你安装了 Compass，也就同时安装好了 Sass。):
+                        sudo gem install sass -- 执行完上面的命令之后，就开始安装 Compass 和 Sass。
+                3.本地安装 Sass:由于有时候直接使用上面的命令安装会让你无法正常实现安装（网络受限原因），当碰到这种情况之时，那么安装需要特殊去处理，可以通过下面的方法来实现 Sass 的正常安装：
+                        可以到 Rubygems(http://rubygems.org/) 网站上将 Sass 的安装包（http://rubygems.org/gems/sass）下载下来，然后在命令终端输入：
+                          gem install <把下载的安装包拖到这里>--回车即可(注：在 iOSX 系统平台，可以直接将下载的安装包拖到 "gem install" 后面，如果在是 Windows 系统，需要手功输入安装的文件路径。)
+                4.淘宝 RubyGems 镜像安装 Sass:除了下载 Sass 安装包到本地安装之外，碰到网络原因无法安装时还可以使用淘宝 RubyGems 镜像安装 Sass。只是我们需要通过 gem sources 命令来配置源，先移除默认的 https://rubygems.org 源，然后添加淘宝的源 https://ruby.taobao.org：
+                        1.第一步：移动默认的源-- gem sources --remove https://rubygems.org/
+                        2.第二步：指定淘宝的源-- gem sources -a https://ruby.taobao.org/
+                        3.第三步：查看指定的源是不是淘宝源--  gem sources -l
+                                返回结果如下：
+                                    *** CURRENT SOURCES ***
+                                    https://ruby.taobao.org
+                                 请确保只有 ruby.taobao.org。如果无误之后，执行下面的命令：
+                        4.gem install sass--回车即可
+                5.如果用淘宝 RubyGems 镜像安装 Sass会出错因为taobao Gems 源已停止维护，现由 ruby-china 提供镜像服务
+                所以要改成 gem sources --add http://gems.ruby-china.com/ --remove https://rubygems.org/  
+                然后再使用gem install sass等一会就会安装成功-- sass -v查看出现sass版本号表明安装成功
+      -->
+      <!-- 更新Sass:
+               输入 gem update sass  即可看到更新信息
+    -->
+    <!-- 卸载Sass
+               输入 gem uninstall sass 即可卸载Sass
+    -->
+     
+</body>
+</html>

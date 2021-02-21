@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组的补充
+        // indexOf方法，（查询参数的下标）比较是“===”要求比如arr.indexOf(true),虽然true为1 但是数据类型不等，所以返回的是-1
+      //  var arr=[1,2,3,4,5,4,3,2,1];
+        // 一个参数时表示传值，返回值为这个值的下标（从开头开始查询）
+       // var index=arr.indexOf(4);
+       // alert(index);
+
+// 两个参数时，第一表示起始位置（从第几个开始查询),第二个参数还是表示传值（要查的参数）
+//  var index=arr.indexOf(4,4);
+  // alert(index);//从下标为4 的位置开始查询值为4的下标是多少  //结果是5
+    
+
+ // lastIndexOf方法
+    // 查询参数的下标，从末尾开始查询，把第一个这个参数的下标返回来
+   // var index=arr.lastIndexOf(2);
+    //alert(index);
+
+    // 5个新加迭代的方法
+//  every:对于数组每一个元素都进行一个函数的运行(遍历)，如果都返回true，最后才返回true，如果有一个为false，最后就返回false
+       //   var arr=[1,2,3,4,5,4,3,2,1];
+                                //  每一项    下标    数组
+      //    var result =arr.every(function(item,index,array){
+       //              return item>2;//如果每一项度大于2，最后就返回true，或则就返回false
+     //     })
+        //  alert(result);//false
+
+
+        //filter:对于数组每一个元素都进行一个函数的运行(遍历),给定函数去执行，把过滤后的结果返回
+        // var arr=[1,2,3,4,5,4,3,2,1];
+        //                         //  每一项    下标    数组
+        //   var result =arr.filter(function(item,index,array){
+        //              return item>2;//把大于2的值返回
+        //   })
+        //   alert(result);//3,4,5,4,3
+
+
+
+        //   forEach:循环数组的每一项的值  并执行一个方法
+        // var arr=[1,2,3,4,5,4,3,2,1];
+        //                 //  每一项    下标    数组
+        //  arr.forEach(function(item,index,array){
+        //     alert(item);//把数组的每一项都执行了alert方法
+        //   })
+
+
+
+        //   map:对于数组每一个元素都进行一个函数的运行(遍历)  可以经过函数执行完毕后 把新的结果返回
+        //     var arr=[1,2,3,4,5,4,3,2,1];
+        //                         //  每一项    下标    数组
+        //   var result =arr.map(function(item,index,array){
+        //              return item*2;//把数组每一项都乘以2，然后返回一个新的数组
+        //   })
+        //   alert(result);//2,4,6,8,10,8,6,4,2
+
+
+
+
+//         some:对于数组每一个元素都进行一个函数的运行(遍历)，如果都返回false，最后才返回false，只要有一个为true，最后就返回true（与every相反）
+        //  var arr=[1,2,3,4,5,4,3,2,1];
+        //                       //   每一项    下标    数组
+        //  var result =arr.some(function(item,index,array){
+        //             return item>5;//只要有一项>5，就返回true
+        //  })
+        //  alert(result);//false
+
+
+        // reduce  和   reduceRight  方法     （两者遍历的起始位置不同）
+
+        var arr=[1,2,3,4,5,4,3,2,1];
+        //从左边开始遍历                   // 参数：前一个值，当前值，索引位置，array
+        var result =arr.reduce(function(prev,cur,index,array){
+                    return prev+cur;//前一个值与当前值相加(相加后边为一个值)，然后依次下去，最后得出一个值为返回值
+         })
+           alert(result);
+  //从右边开始遍历                   // 参数：前一个值，当前值，索引位置，array
+            var result =arr.reduceRight(function(prev,cur,index,array){
+                    return prev+cur;//前一个值与当前值相加(相加后边为一个值)，然后依次下去，最后得出一个值为返回值
+         })
+            alert(result);
+
+    </script>
+
+
+</body>
+</html>
