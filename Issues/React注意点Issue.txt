@@ -1,0 +1,53 @@
+1.trunk2项目commit时不要把devInfo.js提交上去，这是每个人不同的API
+2.在React框架中使用类组件，返回页面显示找render()方法，使用函数组件写法返回页面显示找return()方法
+3.React使用函数为组件时  使用ant design里面的组件 都是要定义的(不需要使用this)，要区别与使用类做组件的写法
+例如：使用类做组件时   制作tab切换  找到ant design中Card切换  写法如下完全可以按照ant design官访文档来写
+          使用函数做组件 时要区别 
+ 1.方法和state初始值的写法
+完整案例：
+ //聊天切换  标题
+  const tabListNoTitle = [
+    {
+      key: '0',
+      tab: 'article',
+    },
+    {
+      key: '1',
+      tab: 'app',
+    },
+    {
+      key: '2',
+      tab: 'project',
+    },
+  ];
+  //聊天切换 content
+  const contentListNoTitle = {
+    0:  <p>'article', content</p>,  //内容可以放在组件中   注意React中组件名开头要大写
+    1: <p>app content</p>,
+    2: <p>project content</p>,
+  };
+  //聊天内容组件  箭头函数 (无效)
+  const ChatContentCard = (
+    <div>1111</div>
+  );
+//切换 tab
+  const [state, onTabChange] = useState('0');//第一个参数是变量，第二个参数是方法，后面useState('0')里面的值是变量的初始值，变量的值只能在方法里改变
+
+
+//组件使用
+<Card
+            style={{ width: '100%' }}
+            tabList={tabListNoTitle}
+            activeTabKey={state}
+            // tabBarExtraContent={<a href="#">More</a>}
+            onTabChange={key => {
+              onTabChange(key);  //在这里调用方法改变state的值，把key赋给state
+            }}
+          >
+            {contentListNoTitle[state]}
+</Card>
+4.const { TextArea } = Input;定义不能放在函数组件里面，
+使用组件<TextArea rows={5} style={{ marginBottom: 24, }}/>注意使用style是双花括号{{}}，单个花括号是React放组件，变量的
+<span className={ styles.spanInput}> 注意className是单个花括号
+
+          
