@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-22 23:53:15
+ * @LastEditTime: 2021-02-22 23:56:21
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \06web-HTML5新特性\本地存储\01getcookie.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 1、cookie练习
+        // 1.定义用户信息
+        var uname='lilei';
+        // 用户名包含中文
+        var uname2="abc张三123";//自己设置的中文不会乱码，如果从后端得到就必须转码(可能编码方式不同)
+
+        //2.设置过期时间  2分钟后
+        var nowTime=new Date();  //拿到当前时间--可以直接在浏览器(调试)中--检查中--使用代码获得当前时间--中国标准时间--转成国际时间
+        var endTime=new Date(nowTime.getTime()+2*60*1000);//终止时间
+
+        // 设置cookie(存储)
+        document.cookie='username='+encodeURIComponent(uname)+';expires='+endTime.toUTCString()+';path=/';
+        document.cookie='username2='+encodeURIComponent(uname2)+';expires='+endTime.toUTCString()+';path=/';
+        // document.cookie='username='+uname+';expires='+endTime.toUTCString()+';path=/';//第二条会覆盖第一条，因为key一样会覆盖
+        document.cookie='mima=123;expires='+endTime.toUTCString()+';path=/';
+        //检测，浏览器打开该文件  localhost/项目名等/01cookie.html  调试器找到Application--找到cookie--就能看到，
+        // 当打开后就可以不用在运行这个文件了，因为式存储到localhost，运行其它文件也会存在，
+        // 2分钟后自动消失，不能在当前文件刷新会一直重新开始的就不会消失了 
+
+        // 获取cookie   只读取key=value; ......
+        console.log(document.cookie);
+        //目的获取某一个字段的对应的cookie值  传key对应的值
+
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-22 22:38:35
+ * @LastEditTime: 2021-02-22 23:50:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \06web-HTML5新特性\本地存储\01cookie.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        一.Web  存储  (重点)  存储是要打开域名的--要打开后台服务器--项目放在服务器里
+        1.cookie
+         cookie 英文解析"小甜品"  当你预览某个网页时候，输入账号和密码的时候，
+         再次进入这个网页会有你的账号记录(会保存一段时间)，欢迎xxx
+         应用：登录(记住我)  加入购物车
+         特点：
+            1.本地存储 不能脱离网络
+            2.存储大小：4KB左右  （ie7+ ：50个   其他主流浏览器不限制）
+            3.可以设置过期时间，过期后自动删除
+        语法：一条语句只能存一条
+            存储： document.cookie='key=value;expires=GMTString;path=/';
+                  key:键名(自定义)
+                  value：键值
+                  expires:过期时间  有效范围
+                  GMTString：必须是格林尼治事件
+                  path=/  存储的位置   /指根目录  localhost
+            注意：1.过期时间：不是当前时间  是国际时间 格林尼治时间
+                        国际时间=当前时间(中国标准时间).toUTCString()
+                  2.存储信息： 如果是中文必须转码 (转中文)  存储数据简单数据类型
+                        中文转码：encodeURLComponent()  只转中文
+                        中文解码：decodeURLComponent()
+
+
+	        存储的要求：value 要进行转码，不能有汉字 encodeURIComponent
+	        有效期 需要是GMT时间toGMTString() / toUTCString()
+
+            浏览器调试时--检查--找到Application--cookie--点击链接--即可看到存储信息
+
+            读取：只读取key和value
+                document.cookie
+        */
+
+
+    </script>
+
+    <script>
+        // 1、cookie练习
+        // 1.定义用户信息
+        var uname='lilei';
+        // 用户名包含中文
+        var uname2="abc张三123";//自己设置的中文不会乱码，如果从后端得到就必须转码(可能编码方式不同)
+
+        //2.设置过期时间  2分钟后
+        var nowTime=new Date();  //拿到当前时间--可以直接在浏览器(调试)中--检查中--使用代码获得当前时间--中国标准时间--转成国际时间
+        var endTime=new Date(nowTime.getTime()+2*60*1000);//终止时间
+
+        // 设置cookie(存储)
+        document.cookie='username='+encodeURIComponent(uname)+';expires='+endTime.toUTCString()+';path=/';
+        document.cookie='username2='+encodeURIComponent(uname2)+';expires='+endTime.toUTCString()+';path=/';
+        // document.cookie='username='+uname+';expires='+endTime.toUTCString()+';path=/';//第二条会覆盖第一条，因为key一样会覆盖
+        document.cookie='mima=123;expires='+endTime.toUTCString()+';path=/';
+        //检测，浏览器打开该文件  localhost/项目名等/01cookie.html  调试器找到Application--找到cookie--就能看到，
+        // 当打开后就可以不用在运行这个文件了，因为式存储到localhost，运行其它文件也会存在，
+        // 2分钟后自动消失，不能在当前文件刷新会一直重新开始的就不会消失了 
+
+        // 获取cookie   只读取key=value; ......
+        console.log(document.cookie);
+    </script>
+</body>
+</html>
