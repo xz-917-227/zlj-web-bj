@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-23 23:25:05
+ * @LastEditTime: 2021-02-23 23:45:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \06web-HTML5新特性\本地存储\03sessionStorage会话存储.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*sessionStorage 会话存储  HTML5新特性(重点)(只能存在根目录)
+        特点：
+            脱离网络(首次登陆肯定需要)  不需要网络
+            大小 5M
+            会话存储：浏览器打开期间一直有效，浏览器关闭会自动删除(要关闭，在同一页面打开其他页面不属于关闭该页面)
+        语法：
+            设置：sessionStorage.setItem('key',value);
+            获取：sessionStorage.getItem('key');
+            删除：sessionStorage.removeItem('key');
+            清空：sessionStorage.clear();
+        注意：
+            存储复杂数据类型要转换 
+            存储 JSON.stringify()
+            获取 JSON.paser()
+        调试：
+            浏览器--调试--Application--Session Storage点击网址--即可看到信息
+    */    
+    </script>
+    <script>
+        // sessionStorage练习
+         //设置存储内容
+         var uname='张4';
+        var mima=123;
+
+        sessionStorage.setItem('username',uname);
+        sessionStorage.setItem('password',mima);
+    </script>
+    
+</body>
+</html>

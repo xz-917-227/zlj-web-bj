@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-02-22 23:53:15
- * @LastEditTime: 2021-02-22 23:56:21
- * @LastEditors: your name
+ * @LastEditTime: 2021-02-23 22:53:26
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \06web-HTML5新特性\本地存储\01getcookie.html
 -->
@@ -38,11 +38,62 @@
         // 2分钟后自动消失，不能在当前文件刷新会一直重新开始的就不会消失了 
 
         // 获取cookie   只读取key=value; ......
-        console.log(document.cookie);
+        //获取到的格式是  key=value; key=value; key=value; ...(注意中间有空格)
+        // console.log(document.cookie);
         //目的获取某一个字段的对应的cookie值  传key对应的值
+
+
+        // 2.获取cookie
+        // 目的：获取某一个字段的对应的cookie值  传key获取对应的值
+        // 方法一：封装方法获取cookie
+        function getCookie(key){
+            console.log(document.cookie+"1111");//获取所有的cookie
+            var cookies=document.cookie;//username=lilei; username2=abc%E5%BC%A0%E4%B8%89123; mima=123
+            if(cookies){//存在解析 cookies获取 key对应的值
+                // 分割字符串转为数组
+                var arr=cookies.split(';');
+                //遍历数组 分割数组的每一项内容
+                for(var i=0;i<arr.length;i++){
+                    var newArr=arr[i].trim().split('=');
+                    console.log(newArr);
+                }
+            }
+        }
+
+        // getCookie();
+
+         //方法二：字符串的分割
+     //思路：字符串的查找  字符串的切割   indexOf()   slice()
+     function getCookie2(key){
+        console.log(document.cookie);//最后补一个分号;
+        var cookies=document.cookie+';';//username=lilei; username2=abc%E5%BC%A0%E4%B8%89123; mima=123
+        //先获取当前传进来的key(整个key首个字符的位置)对应的下表位置
+        var keyStart=cookies.indexOf(key);
+        console.log(keyStart);
+        //计算当前key的长度  key.length+keyStart==当前key对应的等号的位置，在+1就等于要获取的value位置的开始  
+        var len=key.length;
+        console.log(key.length);
+        //key对应的值位置  就是等号的位置
+        var start=keyStart+len+1;//获取到value首个字符的开始位置
+        // 查找当前位置开始 第一次出现分号；的位置
+        var end=cookies.indexOf(';',start);
+        return cookies.slice(start,end);
+
+     }
+     var str=getCookie2('mima');
+     console.log(str);
+
+
+         // 注意cookie是存在根目录locaohost,也就是本项目的根目录里，
+        //  所以当你一个文件设置了cookie后其他文件也可以获取到cookie
+        // 所以在这个文件里也可以获取到cookie
+
+
 
         
     </script>
+
+    
 
 </body>
 </html>

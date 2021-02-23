@@ -1,0 +1,80 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-23 22:54:41
+ * @LastEditTime: 2021-02-23 23:45:20
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \06web-HTML5新特性\本地存储\02localStorage本地存储.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //localStorage 本地存储   HTML5新增特性(重点)  (当前浏览存储当前浏览能看到)
+        /*
+            特点：(再次)不需要网络(第一次登录肯定需要)(只能存在根目录)
+                大小：5M  永久储存   
+                只要不(手动)删除就会一直在(不能设置过期时间)  
+                有对应的操作方法
+                也是存在localhost,也就是本项目的根目录，所以你打开其他文件时，也会看到这些信息
+            语法：(注意key一定要加上引号)
+                设置：localStorage.setItem('key',value);
+                读取：localStorage.getItem('key');
+                删除：localStorage.removeItem('key');
+                全部删除：localStorage.clear();
+            注意：
+                存储复杂的数据类型时 数据类型转换  JSON.stringify()  JSON.parse()
+                存储的时候把复杂的数据类型转换为字符串  JSON.stringify(数据)
+                获取的时候把复杂的数据转换为 对象  JSON.parse(数据);
+            调试：
+                浏览器--调试--Application--Local Storage点击网址--即可看到信息
+        */
+
+        
+    </script>
+
+    <script>
+        // localStorage练习
+        //设置存储内容
+        var uname='张三';
+        var mima=123;
+
+        localStorage.setItem('username',uname);
+        localStorage.setItem('password',mima);
+
+        // 存储复杂数据类型
+        var arr=[10,20,30,true,'hello'];
+        // localStorage.setItem('arr',arr);
+        localStorage.setItem('arr',JSON.stringify(arr));//设置时转为字符串
+
+        //获取key的内容
+        var str=localStorage.getItem('arr');
+        console.log(JSON.parse(str));//获取时再转为对象
+
+        //存储对象
+        var obj={
+            name:'lilei',
+            age:20,
+            jop:'呈程序员'
+        };
+        localStorage.setItem('obj',JSON.stringify(obj));
+
+        var objstr=localStorage.getItem('obj');//当没有该key时就会返回 null
+        console.log(JSON.parse(objstr));
+
+        //删除
+        localStorage.removeItem('arr');
+
+        //清空
+        localStorage.clear();
+
+    
+    </script>
+</body>
+</html>

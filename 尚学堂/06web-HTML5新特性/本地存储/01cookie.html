@@ -1,29 +1,31 @@
 <!--
  * @Author: your name
  * @Date: 2021-02-22 22:38:35
- * @LastEditTime: 2021-02-22 23:50:38
+ * @LastEditTime: 2021-02-23 23:22:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \06web-HTML5新特性\本地存储\01cookie.html
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         /*
         一.Web  存储  (重点)  存储是要打开域名的--要打开后台服务器--项目放在服务器里
-        1.cookie
+        1.cookie (当前浏览存储当前浏览能看到)
          cookie 英文解析"小甜品"  当你预览某个网页时候，输入账号和密码的时候，
          再次进入这个网页会有你的账号记录(会保存一段时间)，欢迎xxx
          应用：登录(记住我)  加入购物车
          特点：
-            1.本地存储 不能脱离网络
+            1.本地存储 不能脱离网络(因为每次在保留了情况下会自动帮你登录，登录是需要网络的)
             2.存储大小：4KB左右  （ie7+ ：50个   其他主流浏览器不限制）
             3.可以设置过期时间，过期后自动删除
         语法：一条语句只能存一条
@@ -47,6 +49,8 @@
 
             读取：只读取key和value
                 document.cookie
+                    // 注意cookie是存在根目录locaohost,也就是本项目的根目录里，
+                    所以当你一个文件设置了cookie后其他文件也可以获取到cookie
         */
 
 
@@ -55,25 +59,90 @@
     <script>
         // 1、cookie练习
         // 1.定义用户信息
-        var uname='lilei';
+        var uname = 'lilei';
         // 用户名包含中文
-        var uname2="abc张三123";//自己设置的中文不会乱码，如果从后端得到就必须转码(可能编码方式不同)
+        var uname2 = "abc张三123";//自己设置的中文不会乱码，如果从后端得到就必须转码(可能编码方式不同)
 
         //2.设置过期时间  2分钟后
-        var nowTime=new Date();  //拿到当前时间--可以直接在浏览器(调试)中--检查中--使用代码获得当前时间--中国标准时间--转成国际时间
-        var endTime=new Date(nowTime.getTime()+2*60*1000);//终止时间
+        var nowTime = new Date();  //拿到当前时间--可以直接在浏览器(调试)中--检查中--使用代码获得当前时间--中国标准时间--转成国际时间
+        var endTime = new Date(nowTime.getTime() + 2 * 60 * 1000);//终止时间
 
         // 设置cookie(存储)
-        document.cookie='username='+encodeURIComponent(uname)+';expires='+endTime.toUTCString()+';path=/';
-        document.cookie='username2='+encodeURIComponent(uname2)+';expires='+endTime.toUTCString()+';path=/';
+        document.cookie = 'username=' + encodeURIComponent(uname) + ';expires=' + endTime.toUTCString() + ';path=/';
+        document.cookie = 'username2=' + encodeURIComponent(uname2) + ';expires=' + endTime.toUTCString() + ';path=/';
         // document.cookie='username='+uname+';expires='+endTime.toUTCString()+';path=/';//第二条会覆盖第一条，因为key一样会覆盖
-        document.cookie='mima=123;expires='+endTime.toUTCString()+';path=/';
+        document.cookie = 'mima=123;expires=' + endTime.toUTCString() + ';path=/';
         //检测，浏览器打开该文件  localhost/项目名等/01cookie.html  调试器找到Application--找到cookie--就能看到，
         // 当打开后就可以不用在运行这个文件了，因为式存储到localhost，运行其它文件也会存在，
         // 2分钟后自动消失，不能在当前文件刷新会一直重新开始的就不会消失了 
 
         // 获取cookie   只读取key=value; ......
-        console.log(document.cookie);
+        //获取到的格式是  key=value; key=value; key=value; ...(注意中间有空格)
+        // console.log(document.cookie);
+        //目的获取某一个字段的对应的cookie值  传key对应的值
+
+
+        // 2.获取cookie
+        // 目的：获取某一个字段的对应的cookie值  传key获取对应的值
+        // 方法一：封装方法获取cookie
+        // 思路：把字符串转数组  分割 分号；  在分割 等号= 最后通过索引值获key和对应value
+        function getCookie(key) {  //key指的是设置cookie设置的key
+            console.log(document.cookie);//获取所有的cookie
+            var cookies = document.cookie;//username=lilei; username2=abc%E5%BC%A0%E4%B8%89123; mima=123
+            if (cookies) {//存在解析 cookies获取 key对应的值
+                // 分割字符串转为数组
+                var arr = cookies.split(';');
+                console.log(arr);
+                //遍历数组 分割数组的每一项内容
+                for (var i = 0; i < arr.length; i++) {
+                    //trim()的作用是去掉字bai符串两端的多余的空格，注du意，是两端的空zhi格，且dao无论两端的空格有多少个都会去掉，当然中间的那些空格不会被去掉
+                    // console.log(arr[i].trim());
+                    var newArr = arr[i].trim().split('=');//每分割一次都会重新复制给newArr
+                    // console.log(newArr);
+                    if(key == newArr[0]){
+                        return decodeURIComponent(newArr[1]);//username=lilei; username2=abc%E5%BC%A0%E4%B8%89123; mima=123 
+                    }
+                }
+                
+            }
+        }
+
+        // getCookie();
+        // var mima=getCookie('username2');
+        // console.log(mima);
+
+     //方法二：字符串的分割
+     //思路：字符串的查找  字符串的切割   indexOf()   slice()
+     function getCookie2(key){
+        console.log(document.cookie);//最后补一个分号;
+        var cookies=document.cookie+';';//username=lilei; username2=abc%E5%BC%A0%E4%B8%89123; mima=123
+        //先获取当前传进来的key(整个key首个字符的位置)对应的下表位置
+        var keyStart=cookies.indexOf(key);
+        console.log(keyStart);
+        //计算当前key的长度  key.length+keyStart==当前key对应的等号的位置，在+1就等于要获取的value位置的开始  
+        var len=key.length;
+        console.log(key.length);
+        //key对应的值位置  就是等号的位置
+        var start=keyStart+len+1;//获取到value首个字符的开始位置
+        // 查找当前位置开始 第一次出现分号；的位置
+        var end=cookies.indexOf(';',start);
+        return cookies.slice(start,end);
+
+     }
+    //  var str=getCookie2('mima');
+    //  console.log(str);
+
+
+     //方法三 用正则表达式(自己写)
+
+    
+
+
+
+
+
     </script>
+
 </body>
+
 </html>
