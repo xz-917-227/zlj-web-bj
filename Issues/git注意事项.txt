@@ -6,7 +6,7 @@
 还要用 git merge 把远端仓库提取数据并尝试合并到当前分支
 5.使用git push origin master 推送时网络要好，否则可能会推送失败
 菜鸟教程：https://www.runoob.com/git/git-server.html
-6.git clone 网速慢，失败时解决方案：https://blog.csdn.net/u014630636/article/details/106181159/?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-7
+6.git clone 文件太大，网速慢，clone失败时解决方案：https://blog.csdn.net/u014630636/article/details/106181159/?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-7
     步骤1.使用国内镜像网站：目前已知Github国内镜像网站有github.com.cnpmjs.org（亲测这个访问速度较快）和git.sdut.me/
           接下来只需要在clone某个项目的时候将github.com替换为github.com.cnpmjs.org即可，如下例
             git clone https://github.com/Hackergeek/architecture-samples
