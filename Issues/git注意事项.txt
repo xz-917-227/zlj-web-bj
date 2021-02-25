@@ -21,5 +21,6 @@
                             我们需要将clone下来的仓库push url修改为github.com。如下例：
             使用国内镜像网站clone下来的项目远程仓库地址如下图：git remote -v  (查看项目远程仓库地址)
     3.使用如下命令修改仓库的push url：git remote set-url --push origin  https://github.com/Hackergeek/architecture-samples
+        之后就可以正常修改modify和推送push了。
 
 
