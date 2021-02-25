@@ -1,7 +1,25 @@
 ﻿1.修改git.path--保存--关闭IDEA(要关闭所有的窗口才有效)
 2.git clone 克隆的是主分支master的内容
+3.注意区别：git clone的项目包含.git目录，这里面有历史版本信息；采用下载zip文件的是没有版本历史信息的。只是当前分支的最新版本
 3.用git push origin test(分支名) (当前是什么分支就推送到什么分支上)
 4.在GitHub远程仓库修改文件后提交后--在本地用git fetch拉取代码库后，
 还要用 git merge 把远端仓库提取数据并尝试合并到当前分支
 5.使用git push origin master 推送时网络要好，否则可能会推送失败
 菜鸟教程：https://www.runoob.com/git/git-server.html
+6.git clone 网速慢，失败时解决方案：https://blog.csdn.net/u014630636/article/details/106181159/?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-7
+    步骤1.使用国内镜像网站：目前已知Github国内镜像网站有github.com.cnpmjs.org（亲测这个访问速度较快）和git.sdut.me/
+          接下来只需要在clone某个项目的时候将github.com替换为github.com.cnpmjs.org即可，如下例
+            git clone https://github.com/Hackergeek/architecture-samples
+            替换为
+            git clone https://github.com.cnpmjs.org/Hackergeek/architecture-samples
+            或者
+            git clone https://git.sdut.me/Hackergeek/architecture-samples
+    步骤2.如果你仅仅只是想clone项目，不需要对clone下来的项目进行modify和push，那下面那个步骤就不需要看了。
+        下面的步骤是为了解决使用镜像网站clone下来的项目无法进行push的问题的，因为国内的镜像网站是无法登录的，
+        如果你尝试登录，结果如下图。
+        所以要修改仓库 push url:为了解决使用国内镜像网站clone下来的项目无法push的问题，
+                            我们需要将clone下来的仓库push url修改为github.com。如下例：
+            使用国内镜像网站clone下来的项目远程仓库地址如下图：git remote -v  (查看项目远程仓库地址)
+    3.使用如下命令修改仓库的push url：git remote set-url --push origin  https://github.com/Hackergeek/architecture-samples
+
+
