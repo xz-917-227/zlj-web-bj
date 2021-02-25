@@ -1,0 +1,4 @@
+学习资料：
+      1.《JavaScript权威指南》
+      2.MDN：https;//developer.mozilla.org/zh-CN/learn/javascript
+      3.多动手实践+参与讨论

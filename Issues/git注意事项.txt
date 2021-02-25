@@ -22,5 +22,6 @@
             使用国内镜像网站clone下来的项目远程仓库地址如下图：git remote -v  (查看项目远程仓库地址)
     3.使用如下命令修改仓库的push url：git remote set-url --push origin  https://github.com/Hackergeek/architecture-samples
         之后就可以正常修改modify和推送push了。
-
+7.判断拿到github项目在本地电脑修改是否能push到github上去：使用命令 git remote -v  查看该项目是否关联远程仓库的url,
+  没有表明不能push到远程仓库。
 
