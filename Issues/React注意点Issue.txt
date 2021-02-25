@@ -22,14 +22,21 @@
   ];
   //聊天切换 content
   const contentListNoTitle = {
-    0:  <p>'article', content</p>,  //内容可以放在组件中   注意React中组件名开头要大写
+    0:  <ChatContent />,  //内容可以放在组件中   注意React中组件名开头要大写
     1: <p>app content</p>,
     2: <p>project content</p>,
   };
-  //聊天内容组件  箭头函数 (无效)
-  const ChatContentCard = (
-    <div>1111</div>
-  );
+  //聊天内容组件  <ChatContent />  要另写一个文件，通过引入组件才有效
+     函数组件最后要通过return返回会显示界面，
+	写法：
+	const ChatContent=()=>{
+	//可以放执行操作代码
+	         return(
+		<>   //注意要配合“<></>使用”
+		//最后显示内容代码
+		);
+		</>
+	};
 //切换 tab
   const [state, onTabChange] = useState('0');//第一个参数是变量，第二个参数是方法，后面useState('0')里面的值是变量的初始值，变量的值只能在方法里改变
 
@@ -49,5 +56,7 @@
 4.const { TextArea } = Input;定义不能放在函数组件里面，
 使用组件<TextArea rows={5} style={{ marginBottom: 24, }}/>注意使用style是双花括号{{}}，单个花括号是React放组件，变量的
 <span className={ styles.spanInput}> 注意className是单个花括号
-
-          
+5.当const Select=(....);以组件形式放在在或括号里调用报错时{<Select />}，转成{Select}变量写法看看，如果Select是引进来的组件就可以这样写{<Select />}
+6.使用Link组件方法：
+	1.通过引入Anchor,然后定义const { Link } = Anchor;可得到Link,但是这个Link必须配合Anchor使用，否则报错。
+	2. 直接通过import { Link } from 'umi';就可以直接使用Link,与Anchor无关联。
