@@ -1,8 +1,30 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-25 14:30:01
+ * @LastEditTime: 2021-02-26 11:47:03
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \zlj-web-bj\Issues\React开发注意点Issue.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+
 1.trunk2项目commit时不要把devInfo.js提交上去，这是每个人不同的API
 2.在React框架中使用类组件，返回页面显示找render()方法，使用函数组件写法返回页面显示找return()方法
 3.React使用函数为组件时  使用ant design里面的组件 都是要定义的(不需要使用this)，要区别与使用类做组件的写法
 例如：使用类做组件时   制作tab切换  找到ant design中Card切换  写法如下完全可以按照ant design官访文档来写
-          使用函数做组件 时要区别 
+          使用函数做组件 时要区别
  1.方法和state初始值的写法
 完整案例：
  //聊天切换  标题
@@ -28,15 +50,15 @@
   };
   //聊天内容组件  <ChatContent />  要另写一个文件，通过引入组件才有效
      函数组件最后要通过return返回会显示界面，
-	写法：
-	const ChatContent=()=>{
-	//可以放执行操作代码
-	         return(
-		<>   //注意要配合“<></>使用”
-		//最后显示内容代码
-		);
-		</>
-	};
+  写法：
+  const ChatContent=()=>{
+  //可以放执行操作代码
+           return(
+    <>   //注意要配合“<></>使用”
+    //最后显示内容代码
+    );
+    </>
+  };
 //切换 tab
   const [state, onTabChange] = useState('0');//第一个参数是变量，第二个参数是方法，后面useState('0')里面的值是变量的初始值，变量的值只能在方法里改变
 
@@ -58,5 +80,26 @@
 <span className={ styles.spanInput}> 注意className是单个花括号
 5.当const Select=(....);以组件形式放在在或括号里调用报错时{<Select />}，转成{Select}变量写法看看，如果Select是引进来的组件就可以这样写{<Select />}
 6.使用Link组件方法：
-	1.通过引入Anchor,然后定义const { Link } = Anchor;可得到Link,但是这个Link必须配合Anchor使用，否则报错。
-	2. 直接通过import { Link } from 'umi';就可以直接使用Link,与Anchor无关联。
+  1.通过引入Anchor,然后定义const { Link } = Anchor;可得到Link,但是这个Link必须配合Anchor使用，否则报错。
+  2. 直接通过import { Link } from 'umi';就可以直接使用Link,与Anchor无关联。
+7.React.lazy懒加载组件:
+  1.React.lazy方法可以异步加载组件文件
+     const Foo = React.lazy(() => import('../componets/Foo));
+   React.lazy不能单独使用，需要配合React.suspense，suspence是用来包裹异步组件，添加loading效果等。
+     <React.Suspense fallback={<div>loading...</div>}>
+        <Foo/>
+     </React.Suspense>
+  2. React.lazy原理
+    React.lazy使用import来懒加载组件，import在webpack中最终会调用requireEnsure方法，
+    动态插入script来请求js文件，类似jsonp的形式。
+  8.Dva Js :https://dvajs.com/guide/
+  9.export default connect与@connect:https://www.it610.com/article/1280523583495356416.htm
+
+
+    */
+
+
+  </script>
+</body>
+
+</html>
