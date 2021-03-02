@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-02 17:12:27
+ * @LastEditTime: 2021-03-02 17:25:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \zlj-web-bj\technology\Moment js学习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Moment js学习
+            1.Moment.js 是一个JavaScript 日期处理类库，可以用在node.js和浏览器中。
+            2.node.js下安装：npm install moment
+            3.在react文件里引入
+                //import导入
+                    import moment from "moment";
+                //或者是require
+                var moment = require('moment');  
+            4.使用方法：
+                1. 获取当前时间并格式化，以YYYY-MM-DD HH:mm:ss形式显示:
+                    moment().format('YYYY-MM-DD HH:mm:ss'); // 20121-03-2 17:17:50
+                2. 星期几
+                    moment().format('d'); // 4  (传入一个参数 d ，获得下标为4，表明是星期四，0是星期天)
+                3. Unix时间戳
+                    moment().format('X'); // 1504160900
+                4. 相对时间
+                    moment("20170101", "YYYYMMDD").fromNow(); // 5 years ago
+                    moment("20191010", "YYYYMMDD").fromNow(); // 2 years ago
+                5. 20天后的日期
+                    moment().add('days',20).format('YYYY年MM月DD日'); // 2021年03月22日
+                6. 9小时后
+                    moment().add('hours',9).format('HH:mm:ss'); // 23:28:20
+                7. 明天
+                    moment().add(1, 'days').calendar(); // Tomorrow at 2:28 PM
+                8. 将毫秒转换成年月日
+                    const dataTime = record.favTime;
+                    let day = moment(dataTime).format('YYYY-MM-DD HH:mm:ss'); //2017-03-26 02:16:45
+
+
+
+        */
+    </script>
+</body>
+</html>
