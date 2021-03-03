@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-02-25 14:30:01
- * @LastEditTime: 2021-03-02 16:11:38
+ * @LastEditTime: 2021-03-03 11:38:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \zlj-web-bj\Issues\React开发注意点Issue.html
@@ -95,7 +95,15 @@
   8.Dva Js :https://dvajs.com/guide/
   9.export default connect与@connect:https://www.it610.com/article/1280523583495356416.htm
   10.组件里面再定义的组件，在内部也可以使用。
- 
+  11.React组件重新渲染
+     1.使用Class作为组件时，改变this.state里面的值，通过调用this.setState来改变，进而重新调用render(),得到重新渲染
+     2.使用函数作为组件时，使用这种方法创建变量 const [isfinished, isfinishedChange] = useState(item.isfinished == '完成于' ? true : false);
+      通过调用isfinishedChange方法改变isfinished从而得到重新渲染效果，如果直接 const isfinished='';再去另外创建一个函数去改变isfinished值，是不能实现重新渲染效果的。
+        因为useState相当于类组件中this.setState()的效果  所以开头要引入import React, { useState } from 'react';
+        注意方法的写法：isfinishedChange(!isfinished);表明!isfinished赋给isfinished，，所以可以在外面在写一个函数去调用isfinishedChange方法。
+             const checkChange=()=>{  //通过调用checkChange函数，从而调用了isfinishedChange
+                isfinishedChange(!isfinished);
+            };
     */
 
 
