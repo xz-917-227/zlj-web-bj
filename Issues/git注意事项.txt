@@ -26,26 +26,29 @@
   没有表明不能push到远程仓库。
 8.git项目在本地修改push时，远端项目必须在线才能连接到然后push上去(也就是要在浏览器中打开github登录进去才行)。
 9.解决GitHub经常打不开或者访问慢终极解决办法（有时感觉依然无效）
-  1.先打开终端win+r --- 然后输入  ping 140.82.112.4  判断是不是本地DNS无法解析导致的。
-  2.打开C:\Windows\System32\drivers\etc\hosts  文件
-    在末尾添加：
-      #github related website
-      140.82.112.4 github.com
-      151.101.185.194 github.global.ssl.fastly.net
-      203.98.7.65 gist.github.com
-      13.229.189.0 codeload.github.com
-      185.199.109.153 desktop.github.com
-      185.199.108.153 guides.github.com
-      185.199.108.153 blog.github.com
-      18.204.240.114 status.github.com
-      185.199.108.153 developer.github.com
-      185.199.108.153 services.github.com
-      192.30.253.175 enterprise.github.com
-      34.195.49.195 education.github.com
-      185.199.108.153 pages.github.com
-      34.196.237.103 classroom.github.com
-    然后保存即可(hosts文件无法保存解决方法--找到hosts文件--右键--属性--安全--
-      编辑--选中“Users”用户和勾选“写入”--确定--弹出框选择“是”。即可)
-      修改完hosts文件后，再把hosts选中“Users”用户和“去掉勾选”“写入”--以防文件出故障。
+  1.查看是否是因为本地的NDF无法解析所导致的
+    1.先打开终端win+r --- 然后输入  ping 140.82.112.4  判断是不是本地DNS无法解析导致的。
+    2.打开C:\Windows\System32\drivers\etc\hosts  文件
+      在末尾添加：
+        #github related website
+        140.82.112.4 github.com
+        151.101.185.194 github.global.ssl.fastly.net
+        203.98.7.65 gist.github.com
+        13.229.189.0 codeload.github.com
+        185.199.109.153 desktop.github.com
+        185.199.108.153 guides.github.com
+        185.199.108.153 blog.github.com
+        18.204.240.114 status.github.com
+        185.199.108.153 developer.github.com
+        185.199.108.153 services.github.com
+        192.30.253.175 enterprise.github.com
+        34.195.49.195 education.github.com
+        185.199.108.153 pages.github.com
+        34.196.237.103 classroom.github.com
+      然后保存即可(hosts文件无法保存解决方法--找到hosts文件--右键--属性--安全--
+        编辑--选中“Users”用户和勾选“写入”--确定--弹出框选择“是”。即可)
+        修改完hosts文件后，再把hosts选中“Users”用户和“去掉勾选”“写入”--以防文件出故障。
+  2.查看是否使用了代理服务器，VPN，SS之类的，并且打开全局代理模式
+    解决方法：退出代理服务器，便可正常进入github网页
 
 

@@ -1,0 +1,130 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-04 10:27:04
+ * @LastEditTime: 2021-03-04 17:32:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \zlj-web-bj\technology\Chart JS 学习.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Chart.js -->
+    <!-- 
+        Chart.js学习   
+            中文网：http://chartjs.cn/
+            ***官方文档：https://www.chartjs.org/  (建议看---重点)
+            使用Chart.js构建美观的图表所需的一切
+        入门链接：https://blog.csdn.net/xgocn/article/details/79088126
+            1.安装和使用
+                你可以从GitHub里面下载最新版本的Chart.js或者在你的项目中使用CDN link。
+                或者你也可以通过以下命令在(项目中)使用npm或bower中来安装chart.js。
+                    npm install chart.js --save
+                    ower install chart.js --save 
+            2.引入：
+                脚本标签：<script src="./node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+                普通JS：var Chart = require('chart.js');
+                捆绑软件（Webpack，汇总等）
+                    如：在React项目中引入，用cnpm install chart.js --save  安装    然后 import Chart from 'chart.js'; 导入 
+            3.条形图实例：
+                <canvas id="popChart" width="600" height="400"></canvas>//HTML5新特性 画布
+                <script>
+                    //全局设置图标的字体类型 大小 颜色
+                    Chart.defaults.global.defaultFontFamily = "Lato";
+                    Chart.defaults.global.defaultFontSize = 18;
+                    Chart.defaults.global.defaultFontColor = 'blue';
+                    //全局设置 图表中的图例(标题)  Chart.defaults.global.legend
+                     Chart.defaults.global.tooltips可以用于设置全局工具提示栏的外观。
+
+                    //例子 ：条形图
+                    var popCanvas = document.getElementById("popChart").getContext("2d");
+                    var barChart = new Chart(popCanvas, {
+                        type: 'bar',//指定图表类型
+                        data: {  //图标数据
+                            labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
+                            datasets: [{
+                                label: 'Population',
+                                data: [1379302771, 1281935911, 326625791, 260580739, 207353391, 204924861, 190632261, 157826578, 142257519, 126451398],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)',
+                                    'rgba(255, 159, 64, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ]
+                            }]
+                        },
+                        options: {  
+                            legend: {  //修改图表中的图例(也就是最上方标题)
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 80,
+                                    fontColor: 'rgb(60, 180, 100)'
+                                }
+                            },
+                             tooltips: {  //控制图表的本地绘制方式
+                                cornerRadius: 0,
+                                caretSize: 0,
+                                xPadding: 16,
+                                yPadding: 10,
+                                backgroundColor: 'rgba(0, 150, 100, 0.9)',
+                                titleFontStyle: 'normal',
+                                titleMarginBottom: 15
+                            }
+                        }
+                    });
+                </script>  
+     -->
+
+     <!-- ECharts.js -->
+     <!-- 
+         ECharts.js学习 
+            官方文档：https://echarts.apache.org/en/index.html
+            EChart.js是Apache出的图标组件库。与Chart.js相比，Echarts.js动态效果更优秀一些。
+            界面看起来就更“上档次”。支持中英文切换，亲民。
+      -->
+
+    <!-- Chart.js与ECharts.js的区别 :https://blog.csdn.net/qq_36235241/article/details/103851693
+        1.画布：
+          Chart.js的展示部分需要使用canvas标签，再通过id来绑定script代码部分。
+            <div style=" width: 100%;display: flex;align-items: center;justify-content: center;">
+            	<div style="width: 70%;">
+            		<canvas id="myChart1"></canvas> 
+            	</div>
+            </div>
+          ECharts.js的展示部分直接使用div标签即可，注意必须规定画布的大小，再通过id来绑定script代码部分。
+            <div style=" width: 100%;display: flex;align-items: center;justify-content: center;">
+	            <div style="width: 70%;height: 500px;" id="myChart1"></div>
+            </div>
+        2.语法:
+            具体语法代码写在script标签里面。画布中的id对应document.getElementById('myChart1');里的id。
+            
+
+    -->
+
+    <script>
+        //Ant Design Pro 使用图表 charts bizcharts
+            // 1.总结：首先要知道， 它不能直接使用 charts ，需要安装 bizcharts 插件，然后导入 bizcharts 中的 charts；
+        
+
+        //Ant Design Pro : https://v2-pro.ant.design/components/charts#pie  里面有对应的chart图表  还有其他组件内容
+            // 在Ant Design Pro中引入：import Charts from 'ant-design-pro/lib/Charts';
+            // 也可以单独把Charts下载下来 ，，import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from './Charts';  按需引入
+        //去看好业绩后台 AllChart.jsx文件
+    </script>
+</body>
+</html>
