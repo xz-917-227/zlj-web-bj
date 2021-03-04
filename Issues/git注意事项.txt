@@ -25,7 +25,7 @@
 7.判断拿到github项目在本地电脑修改是否能push到github上去：使用命令 git remote -v  查看该项目是否关联远程仓库的url,
   没有表明不能push到远程仓库。
 8.git项目在本地修改push时，远端项目必须在线才能连接到然后push上去(也就是要在浏览器中打开github登录进去才行)。
-9.解决GitHub经常打不开或者访问慢终极解决办法
+9.解决GitHub经常打不开或者访问慢终极解决办法（有时感觉依然无效）
   1.先打开终端win+r --- 然后输入  ping 140.82.112.4  判断是不是本地DNS无法解析导致的。
   2.打开C:\Windows\System32\drivers\etc\hosts  文件
     在末尾添加：
