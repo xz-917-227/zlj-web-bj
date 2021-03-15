@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-02-25 15:31:24
- * @LastEditTime: 2021-03-03 17:59:43
+ * @LastEditTime: 2021-03-11 17:34:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \zlj-web-bj\technology\XML学习.html
@@ -177,8 +177,66 @@
                         文本
                         属性
                         或混合以上所有...
-                        
+                2.XML 命名规则
+                    XML 元素必须遵循以下命名规则：
+                    名称可以"包含"字母、数字以及其他的字符
+                    名称"不能"以数字或者标点符号开始
+                    名称"不能"以字母 xml（或者 XML、Xml 等等）开始
+                    名称"不能"包含空格
+                    可使用任何名称，没有保留的字词。
+                3.最佳命名习惯
+                    使名称具有描述性。使用下划线的名称也很不错：<first_name>、<last_name>。
+                    名称应简短和简单，比如：<book_title>，而不是：<the_title_of_the_book>。
+                    避免 "-" 字符。如果您按照这样的方式进行命名："first-name"，一些软件会认为您想要从 first 里边减去 name。
+                    避免 "." 字符。如果您按照这样的方式进行命名："first.name"，一些软件会认为 "name" 是对象 "first" 的属性。
+                    避免 ":" 字符。冒号会被转换为命名空间来使用（稍后介绍）。
+                    XML 文档经常有一个对应的数据库，其中的字段会对应 XML 文档中的元素。
+                    有一个实用的经验，即使用数据库的命名规则来命名 XML 文档中的元素。
+                    在 XML 中，éòá 等非英语字母是完全合法的，不过需要留意，您的软件供应商不支持这些字符时可能出现的问题。
+                4.XML元素是可扩展的
+                    XML 元素是可扩展，以携带更多的信息。
+                    请看下面的 XML 实例：
+                    <note>
+                        <to>Tove</to>
+                        <from>Jani</from>
+                        <body>Don't forget me this weekend!</body>
+                    </note>
+                    让我们设想一下，我们创建了一个应用程序，可将 <to>、<from> 以及 <body> 元素从 XML 文档中提取出来，并产生以下的输出：
+                        MESSAGE
+                        To: Tove
+                        From: Jani
+                        Don't forget me this weekend!
+                    想象一下，XML 文档的作者添加的一些额外信息：
+                    <note>
+                        <date>2008-01-10</date>
+                        <to>Tove</to>
+                        <from>Jani</from>
+                        <heading>Reminder</heading>
+                        <body>Don't forget me this weekend!</body>
+                    </note>
+                    那么这个应用程序会中断或崩溃吗？
+                    不会。这个应用程序仍然可以找到 XML 文档中的 <to>、<from> 以及 <body> 元素，并产生同样的输出。
+                    XML 的优势之一，就是可以在"不中断应用程序"的情况下"进行扩展"。
+
             5.XML 属性
+                1.XML属性
+                    XML元素具有属性，类似于HTML。
+                    属性(Attribute)提供有关元素的额外信息。
+                    在HTML中，属性提供有关元素的额外信息：
+                    <img src="computer.gif">
+                    <a href="demo.html">
+                    属性通常提供不属于数据组成部分的信息。在下面的实例中，文件类型与数据无关，但是对需要处理这个元素的软件来说却很重要：
+                    <file type="gif">computer.gif</file>
+                2.XML属性必须加引号
+                    属性值必须被引号包围，不过单引号和双引号均可使用。比如一个人的性别，person 元素可以这样写：
+                        <person sex="female">
+                    或者这样也可以：
+                        <person sex='female'>
+                    如果属性值本身包含双引号，您可以使用单引号，就像这个实例：
+                        <gangster name='George "Shotgun" Ziegler'>
+                    或者您可以使用字符实体：
+                        <gangster name="George &quot;Shotgun&quot; Ziegler">
+                
             6.XML 验证
             7.XML 验证器
             8.查看 XML 文件

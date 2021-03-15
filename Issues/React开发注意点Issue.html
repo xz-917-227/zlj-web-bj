@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-02-25 14:30:01
- * @LastEditTime: 2021-03-03 11:38:18
+ * @LastEditTime: 2021-03-11 16:23:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \zlj-web-bj\Issues\React开发注意点Issue.html
@@ -104,6 +104,31 @@
              const checkChange=()=>{  //通过调用checkChange函数，从而调用了isfinishedChange
                 isfinishedChange(!isfinished);
             };
+  12.在函数中遇到return就会终止函数，把return里的值返回回去，如果没有return，就看不到渲染效果，在return里面，
+      如果直接使用{变量}，要先用<></>包裹起来，否则报错
+  13.在Modal中嵌套Form，要获取Form的数据，可以通过自定义Modal的footer，给按钮添加submitBtn点击事件来获取表单数据
+            也可以通过，给Form添加按钮添加submitBtn点击事件来获取数据
+    const [form]=Form.useForm();//获取表单 来进行数据交互
+    <Modal>
+      <Form form={form}>
+      <Form.Item><Input /></Form.Item>
+      <Form.Item><Button onClick={submitBtn} /></Form.Item>
+      </Form.Item>
+    </Modal>
+    //提交方法
+    const submitBtn = async () => {
+      const fieldsValue = await form.validateFields(); // 获取form表单的值
+      message.info("form的值：" + JSON.stringify(fieldsValue));//把获取到的数据转为字符串(message.info()是弹出提示信息方法)
+    }
+    14.在开发中，1.如果在组件里调用组件里面的组件一般使用方法的形式调用：{Method()},
+                如果在组件里调用组件外面的组件一般使用组件的形式调用：<Method />
+                2.一般把变量和一些方法统一都放在整个组件的外面去定义
+                3.数据不能跨级获取
+                4.js中新增的 `` 是用来拼写字符串，里面可以直接写变量  如 var num=2;  `输出数字：${num}`  --->结果是  输出数字：2
+                5.开发一个功能或结构时，先分析--布局结构--功能要求--步骤--然后再来开发(把分析一步一步地写下来，不然容易导致开发中的思路不清晰，混乱)
+                6.爬墙/翻墙：指网站访问不了(网站无法访问并不是网站本身或者网络问题，而是被“墙”挡住了，“爬墙”就是能够访问这些网站。)，被国家给屏蔽了，
+                  所以通过爬墙或翻墙技术(也就是指绕过相应的IP封锁、内容过滤、域名劫持、流量限制等，实现对网络内容的访问)。
+    
     */
 
 
