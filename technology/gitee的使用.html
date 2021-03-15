@@ -1,0 +1,33 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-15 11:28:58
+ * @LastEditTime: 2021-03-15 14:35:47
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \zlj-web-bj\technology\gitee的使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        如何将一个项目同时提交到GitHub和Gitee(码云)两个仓库？
+            1. 在 GitHub 上新建一个空仓库(或者已存在有仓库)
+            2. 在 Gitee 上新建一个关联 GitHub 的空仓库(关联：记住要在最后导入github文件路径)--(这样在“GitHub已存在”的仓库就会更新到gitee上了)--（点击刷新按钮也可以强制同步）
+            如何 Git提交同步？
+            3. 将GitHub 的空仓库克隆到本地（已存在就不用克隆了）
+            4. 修改 Git 的配置文件---在该项目中找到.git文件夹(一般.git文件夹会隐藏--点击头部左上角的 “文件” -- 点击 “选项” -- 点击 “查看”-- 找到 “隐藏文件和文件夹”--选中“显示隐藏的文件、文件夹和驱动器”--点击 确定 ---即可看到.git文件夹了)
+            4.找到.git 里面的config文件，打开 
+                添加一句：
+                 // gitee的仓库地址
+                url = git@gitee.com:secbro/shiro.git
+              也就是说，在原来的github仓库地址下面再添加一个url配置，指向gitee的地址。
+              当然，这里有一个前提条件，Gitee和GitHub的账号的公私钥为同一套。
+     -->
+</body>
+</html>
